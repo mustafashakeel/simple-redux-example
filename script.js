@@ -1,3 +1,14 @@
+function recursiveFactorial(num){
+	var number = num;
+	if(number ==1){
+		return number;
+
+	}else{
+		return number * recursiveFactorial(number -1);
+	}
+
+}
+
 function setfactorial(number){
 	console.log(" number", number );	
 var factorial =1;
@@ -5,16 +16,22 @@ var factorial =1;
 		factorial *= i;
 	}
 	//return factorial;
-	console.log(factorial);
+	
 
 	document.getElementById('getFactorial').innerHTML = factorial;
 }
 
 function getFactorial(){
-var factorial = document.getElementById('factorial').value;
+	var factorial = document.getElementById('factorial').value;
+		
+	setfactorial(factorial);
 
-alert(factorial);	
-setfactorial(factorial);
+	 var  aa= recursiveFactorial(factorial);
+	 alert(aa);
+
+	 document.getElementById('recursive').innerHTML = aa; 	
+ 
+
 }
 
 

@@ -1,0 +1,45 @@
+The this KeywordIn JavaScript, the thing called this, is the object that "owns" the JavaScript code.
+The value of this, when used in a function, is the object that "owns" the function.
+The value of this, when used in an object, is the object itself.
+The this keyword in an object constructor does not have a value. It is only a substitute for the new object.
+
+The value of this will become the new object when the constructor is used to create an object.
+
+this in a function using Strict
+function strickF(self){
+'use strict'
+return self;
+}
+strictF(this);
+
+in Strict self invoking functions 
+(function(self){
+ 'use strict';
+return self;
+})(this);
+
+
+var qureshi = {
+name:function(name){
+this.names = name;
+return this.names;
+},
+city:this.city
+}
+
+undefined
+qureshi.name("Amer");
+"Amer"
+qureshi.names
+"Amer"
+
+Constructor 
+
+function family(lname, fname){
+    this.lname = lname;
+    this.fname = fname;
+    this.context = this;
+}
+var eisa = new family("Qureshi, "Eisa");
+eisa.context
+family {lname: "Qureshi", fname: "Eisa", context: family}

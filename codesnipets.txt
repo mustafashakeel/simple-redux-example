@@ -1,0 +1,16 @@
+var  sentence = "This is a great thing to do ";
+
+  function wordCount(sentence){
+  
+  var words = sentence.split(" ");
+console.log(words);
+for( var i=0; i< words.length; i++){
+  
+  console.log("word " +i+" : "+ words[i]);
+
+}
+
+  
+}
+
+wordCount(sentence);
