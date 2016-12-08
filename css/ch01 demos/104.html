@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS</title>
+
+	<style>
+	ul li{
+
+    background: #666;
+    padding: 1%;
+    box-sizing: border-box;
+    float: left;
+    width: 7.32%;
+    height: 32px;
+    margin: 0 1.1% 1.1% 0;
+    text-align: center;
+    font-weight: bold;
+    -webkit-transition: all 1s ease;
+	}
+	li{
+		display: list-item;
+	}
+	input[type='button']:active ~ul li{
+		background:blue;
+	}
+	input[type='button']:hover ~ul li{
+		background:yellow;
+	}
+
+	input[value="two"]:checked ~ul li{
+		background:red;
+	}
+	</style>
+
+
+	
+	
+</head>
+<body>
+
+<input type="button" name="name" value="click me " >
+<label for="two">two </label>
+<input type="radio" id="two" name="twos" value="2">
+<ul>
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+	<li>5</li>
+	<li>6</li>
+	<li>7</li>
+	<li>8</li>
+	<li>9</li>
+	<li>10</li>
+</ul>
+	
+</body>
+</html>

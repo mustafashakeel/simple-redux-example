@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>	Images</title>
+</head>
+<body>
+<img src="canada.gif" alt="Canada" onclick="handle(event)" />
+<img src="usa.gif" alt="USA" onclick="handle(event)" />
+
+<h1 onmouseover="handle(event)" onmouseleave="handle(event)">	This is a Great Heading</h1>
+<p ondblclick="handle(event)">	This Description
+This method returns the index within the calling String object of the first occurrence of the specified value, starting the search at fromIndex or -1 if the value is not found.
+
+Syntax
+Use the following syntax to use the indexOf() method.</p>
+
+<ul>	<li>	<a href="page2.html" class="noclick">Page1</a></li><li>	<a href="page2.html" class="noclick"> page2S</a></li>
+<a href="page3.html"> click</a></li>
+<li><a href="page3.html" id="nowhere">NoWhere</a>		</li></ul>
+
+<script>
+
+document.getElementById('nowhere').addEventListener('click',function(e){
+alert("ASDfas");
+	//return false;
+	e.preventDefault();
+
+})
+function noclicks(){
+	
+
+	console.log("ASDFASDFSDAFA");
+	return false;
+}
+//var idd = document.getElementById('aa');
+var cc =  document.getElementsByClassName('noclick');
+
+//		console.log("ID ", idd);
+// console.log("clss", cc.length);
+
+for (var i=0; i < cc.length; i++){
+	console.log(cc[i]);
+	cc[i].onclick = noclicks;
+}
+
+
+
+function handle(e){
+	console.log(e.type);
+	switch(e.type){
+		case "mouseover":
+			e.target.style.background = "yellow";
+			break;
+		case "mouseleave":
+			e.target.style.background = "white";
+			break;
+		case "click":
+				changeImages(e);
+				break;
+
+
+	}
+
+	
+
+}
+
+
+
+var images = ['canada.gif','jamaica.gif','mexico.gif','usa.gif']; 
+
+
+
+function changeImages(e){
+var img1 =  document.getElementsByTagName('img')[0].getAttribute('src');
+
+var img2 =  document.getElementsByTagName('img')[1].getAttribute('src');
+
+for (var i= 0 ; i < images.length; i++){
+	
+	
+	if(images[i].indexOf(img1) != -1 || images[i].indexOf(img2) != -1 ){
+
+	}else{
+						e.target.src = images[i];
+	}
+	
+
+}
+}
+</script>	
+</body>
+</html>

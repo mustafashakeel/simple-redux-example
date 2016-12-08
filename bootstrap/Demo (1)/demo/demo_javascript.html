@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 201 - Javascript </title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+    body {
+      padding: 7% 2%;
+    }
+
+    .jumbotron {
+      background: #dedede;
+    }
+
+    h1 {
+      margin-bottom: 3%;
+
+    }
+
+    .margin {
+      margin: 5% 0;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+      .form-group input {
+        padding-left: 6%;
+      }
+
+      .form-group span {
+        position: absolute;
+        color: #666;
+        top: 29.411765%;
+        left: 5%;
+      }
+
+      .tab-dropdown {
+        background: #428bca;
+        color: white;
+      }
+
+      .container-fluid>.navbar-collapse {
+        width: 100%;
+      }
+
+      .nav-pills {
+        padding:.5em 0;
+        display: inline-block;
+        margin: 0 0 0 7%;
+      }
+
+        .nav-pills a {
+          color: #f0ad4e;
+          text-decoration: none;
+        }
+
+        .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+          color: #fff;
+          background-color: #f0ad4e;
+          }
+
+
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body data-spy="scroll" data-target=".navbar-example">
+  
+
+<!-- navigation goes here -->
+
+    <div class="container">
+
+      <!-- navbar starts here -->
+        
+  <div class="navbar-example">
+        <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+              <ul class="nav nav-pills center-block">
+                <li class="active"><a href="#collapse_ex">Collapse.js</a></li>
+                <li><a href="#tab_ex">Tab.js</a></li>
+                <li><a href="#carousel_ex">Carousel.js & Affix.js</a></li>
+                <li><a href="#affix_ex">Popover.js</a></li>
+              </ul>     
+             
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div><!-- /.navbar-example -->
+
+        
+      <!--navbar ends here-->
+</div><!--container-->
+
+<div  id="collapse_ex" ></div>
+
+  
+<div class="container">
+
+        <h1>Bootstrap 201 <span class="label label-warning">Javascript</span></h1>
+
+        <div class="row jumbotron"> 
+        <h3>Collapse.js</h3>
+          
+       <!-- Collapse.js -->
+
+      <div class="alert col-md-12">
+
+            <h2>First Collapse Example</h2>
+
+
+              <!--uses classes to show or hide content
+                  .collapse = hides content
+                  .collapse in = shows content
+              -->
+
+            
+            <div class="panel-group" id="accordion">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                      Collapsible Group Item #1
+                    </a>
+                  </h4>
+                </div><!-- /.panel-heading -->
+
+                <!--First panel is collapsed by default with class .collapse .in-->
+                <div id="collapseOne" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  </div><!-- /.panel-body -->
+                </div><!-- /.panel-collapse -->
+              </div><!-- panel -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                      Collapsible Group Item #2
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                      Collapsible Group Item #3
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  </div>
+                </div>
+              </div>
+            
+
+            </div><!-- /.panel-group -->
+          </div><!--end First example-->            
+
+          <!--accordion ends here-->
+    
+          <div class="col-md-12">
+              
+                 
+              <!--Second Collapsable Example goes here -->
+
+          </div>
+         
+ </div><!-- /.row -->
+
+<!-- Collapse.js ends here --> 
+
+<hr class="margin">
+
+</div><!--container-->
+
+   
+      
+  <div class="container jumbotron">      
+        <div class="row" id="tab_ex">
+      
+         <!-- Tap.js -->
+
+          <div class="col-md-6 col-md-offset-4">
+          <h3>Tab.js</h3>
+
+
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#media1" data-toggle="tab">YouTube Video</a></li>
+                  <li><a href="#media2" data-toggle="tab">Image</a></li>
+                  <li><a href="#media3" data-toggle="tab">List Groups</a></li>
+                  <li><a href="#media4" data-toggle="tab">Table</a></li>
+
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                  <div class="tab-pane active" id="media1"><iframe width="560" height="315" src="http://www.youtube.com/embed/fk1Q9y6VVy0"  allowfullscreen></iframe>
+                  </div>
+
+                  <div class="tab-pane" id="media2"><img src="images/mountains.png" alt="#"></div>
+
+                  <div class="tab-pane" id="media3">
+                    
+                     <ul class="list-group">
+                      <li class="list-group-item">Cras justo odio</li>
+                      <li class="list-group-item">Dapibus ac facilisis in</li>
+                      <li class="list-group-item">Morbi leo risus</li>
+                      <li class="list-group-item">Porta ac consectetur ac</li>
+                      <li class="list-group-item">Vestibulum at eros</li>
+                    </ul>
+
+                  </div>
+
+                  <div class="tab-pane" id="media4">
+
+                     <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>First Name</th>
+                          <th>Last Name</th>
+                          <th>Username</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td class="">Jacob</td>
+                          <td>Thornton</td>
+                          <td>@fat</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td colspan="2">Larry the Bird</td>
+                          <td>@twitter</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td colspan="2">Larry the Bird</td>
+                          <td>@twitter</td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+
+
+                </div><!-- tab-content -->
+
+          </div>
+        </div><!--/.row-->
+
+
+          <!--tabs.js ends here-->
+
+
+      <hr class="margin" id="carousel_ex">
+
+
+      <div class="row">
+
+       <!-- Carousel.js -->
+
+        <div class="col-md-6 col-md-offset-4">
+        <h3>Carousel.js & Affix.js</h3>    
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+      
+          
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+
+            <div class="item active">
+              <img src="http://placehold.it/555x300/eee" alt="#">
+            </div>
+
+            <div class="item">
+               <img src="http://placehold.it/555x300/ccc" alt="#">
+            </div>
+
+            <div class="item">
+               <img src="http://placehold.it/555x300/333" alt="#">
+            </div>
+
+            <div class="item">
+              <img src="http://placehold.it/555x300/666" alt="#">  
+            </div>
+
+
+
+           
+
+      </div><!-- carousel-inner -->
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
+        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+
+    </div><!-- #/carousel-example-generic -->  
+  </div>
+
+</div><!--/.row-->
+
+<!-- Carousel.js ends here-->
+
+     
+    
+    <!-- Popover.js -->
+  <div class="row">
+
+  <hr class="margin">
+
+
+      <div class="col-md-6 col-md-offset-4" id="popover_ex">
+        <h3>Popover.js</h3>
+ 
+           <div class="bs-example" style="padding-bottom: 24px;">
+              <a href="#" id="element" class="btn btn-lg btn-info" data-toggle="popover" title="Popover Demo"  data-placement="right" data-content="Click again to make me go away" role="button">click</a>
+          </div>
+      </div>
+
+    </div><!--/.row-->
+
+<!-- Popover.js ends here-->
+
+
+<div class="row">
+  
+  <div class="col-md-12" id="affix_ex">
+     
+     <!-- Affix.js -->
+     <div data-spy="affix" data-offset-bottom="480">
+
+      <ul>
+         <li><a href="http://cyberdesigncraft.com/bootst3/elements.html" target="_blank">More about the Boostrap Elements</a></li>
+         <li><a href="http://bootstraptor.com/bootstrap3/" target="_blank">Bootstrapor.com</a></li>
+         <li><a href="" target="_blank">Link C</a></li>
+         <li><a href="" target="_blank">Link D</a></li>
+         <li><a href="" target="_blank">Link E</a></li>
+       </ul>
+       </div> 
+
+  </div>
+</div>
+         
+</div><!-- /.container -->
+
+      
+
+
+<!-- code snippet for tab.js -->
+
+<!--  <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#media4" data-toggle="pill">Table</a></li>
+            <li><a href="#media5" data-toggle="pill">Media</a></li>       
+           </ul>
+      </li> 
+
+  -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/docs.min.js"></script>
+    <script>
+
+    //Scrollpy.js
+    $('body').scrollspy({ target: '.navbar-example' });
+
+    //Carousel.js
+
+    $('.carousel').carousel({
+    interval: 6000,
+    pause: 'hover'
+    })
+
+    //Popover.js
+    // to prevent the default behavior of a link
+     $('#element').on('click', function(e){
+        e.preventdefault;
+        return false;
+
+      });
+
+
+    </script>
+  </body> 
+</html>

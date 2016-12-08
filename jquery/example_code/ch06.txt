@@ -1,0 +1,485 @@
+chapter: Dimensions
+==================
+jQuery(document).ready(function() {
+    alert('Window height: ' + jQuery(window).height()); // returns the height of
+the viewport
+    alert('Window width: ' + jQuery(window).width()); // returns the width of the
+viewport
+
+    alert('Document height: ' + jQuery(document).height()); // returns the height 
+of the document
+    alert('Document width: ' + jQuery(document).width()); // returns the width of 
+the document
+});
+    
+    
+====================================
+<div id="results"></div>
+<div id="myDiv">Some text.</div>
+    
+    
+====================================
+#myDiv {
+    width:100px;
+    height:30px;
+    padding:10px;
+    border:1px;
+}
+    
+    
+====================================
+jQuery(document).ready(function() {
+    var $myDiv = jQuery('#myDiv');
+    var $results = jQuery('#results');
+
+    jQuery('<p>Computed width: ' + $myDiv.width() + '</p>')
+        .appendTo($results); // 100
+    jQuery('<p>Computed height: ' + $myDiv.height() + '</p>')
+        .appendTo($results); // 30
+    jQuery('<p>Inner width: ' + $myDiv.innerWidth() + '</p>')
+        .appendTo($results); // 120
+    jQuery('<p>Inner height: ' + $myDiv.innerHeight() + '</p>')
+        .appendTo($results); // 50
+    jQuery('<p>Outer width: ' + $myDiv.outerWidth() + '</p>')
+        .appendTo($results); // 122
+    jQuery('<p>Outer height: ' + $myDiv.outerHeight() + '</p>')
+        .appendTo($results); // 52
+
+    jQuery('<p>Document outer height: ' + jQuery(document).outerHeight() + '</p>')
+        .appendTo($results); // NaN
+    jQuery('<p>Document inner height: ' + jQuery(document).innerHeight() + '</p>')
+        .appendTo($results); // NaN
+    jQuery('<p>Window outer height: ' + jQuery(window).outerHeight() + '</p>')
+        .appendTo($results); // NaN
+    jQuery('<p>Window inner height: ' + jQuery(window).innerHeight() + '</p>')
+        .appendTo($results); // NaN
+});
+    
+    
+====================================
+<body id="the_offset_parent">
+    <h1>Finding the Offset of an Element</h1>
+    <div id="foo">
+        <div id="bar">Some text inside #bar, which is inside #foo</div>
+    </div>
+
+    <div id="results"></div>
+</body>
+    
+    
+====================================
+jQuery(document).ready(function() {
+    var $foo = jQuery('#foo');
+    var $bar = jQuery('#bar');
+
+    var $results = jQuery('#results');
+    var fooPosition = $foo.position();
+    var barPosition = $bar.position();
+    var fooOffset = $foo.offset();
+    var barOffset = $bar.offset();
+
+    var $fooOffsetParent = $foo.offsetParent();
+    var $barOffsetParent = $bar.offsetParent();
+
+    $results
+        .append('<p>#foo position.top: ' + fooPosition.top + '</p>') // 10
+        .append('<p>#foo position.left: ' + fooPosition.left + '</p>') // 10
+        .append('<p>#bar position.top: ' + barPosition.top + '</p>') // 10
+        .append('<p>#bar position.left: ' + barPosition.left + '</p>') // 10
+
+        .append('<p>#foo offset.top: ' + fooOffset.top + '</p>') // 10
+        .append('<p>#foo offset.left: ' + fooOffset.left + '</p>') // 10
+        .append('<p>#bar offset.top: ' + barOffset.top + '</p>') // 10
+        .append('<p>#bar offset.left: ' + barOffset.left + '</p>') // 10
+
+        .append('<p>ID of #foo offsetParent: '
+            + $fooOffsetParent.attr('id')) // the_offset_parent
+        .append('<p>ID of #bar offsetParent: '
+            + $barOffsetParent.attr('id')); // the_offset_parent
+});
+    
+    
+====================================
+<body id="the_offset_parent">
+    <div id="foo" style="position:absolute; top:10px; left:10px;">
+        <div id="bar">Some text inside #bar, which is inside the 
+absolutely-positioned #foo</div>
+    </div>
+
+    <div id="results" style="position:absolute; top:60px; left:10px;"></div>
+</body>
+    
+    
+====================================
+jQuery(document).ready(function() {
+    var $foo = jQuery('#foo');
+    var $bar = jQuery('#bar');
+
+    var $results = jQuery('#results');
+    var fooPosition = $foo.position();
+    var barPosition = $bar.position();
+    var fooOffset = $foo.offset();
+    var barOffset = $bar.offset();
+
+    var $fooOffsetParent = $foo.offsetParent();
+    var $barOffsetParent = $bar.offsetParent();
+
+    $results
+        .append('<p>#foo position.top: ' + fooPosition.top + '</p>') // 10
+        .append('<p>#foo position.left: ' + fooPosition.left + '</p>') // 10
+        .append('<p>#bar position.top: ' + barPosition.top + '</p>') // 0
+        .append('<p>#bar position.left: ' + barPosition.left + '</p>') // 0
+
+        .append('<p>#foo offset.top: ' + fooOffset.top + '</p>') // 10
+        .append('<p>#foo offset.left: ' + fooOffset.left + '</p>') // 10
+        .append('<p>#bar offset.top: ' + barOffset.top + '</p>') // 10
+        .append('<p>#bar offset.left: ' + barOffset.left + '</p>') // 10
+
+        .append('<p>ID of #foo offsetParent: '
+            + $fooOffsetParent.attr('id')) // the_offset_parent
+        .append('<p>ID of #bar offsetParent: '
+            + $barOffsetParent.attr('id')); // foo
+});
+    
+    
+====================================
+jQuery('#bar').click(function() {
+    var fooOffset = jQuery('#foo').offset(),
+        destination = fooOffset.top;
+    jQuery(document).scrollTop(destination);
+});
+    
+    
+====================================
+<head>
+    <style>
+    #foo {
+    width:300px;
+    padding:10px;
+    height:20px;
+    border:1px solid black;
+    overflow:auto;
+    position:relative;
+    }
+    </style>
+</head>
+<body>
+    <input type="button" id="bar" value="Click to scroll to last paragraph" />
+    <input type="button" id="bam" value="Click to scroll to last paragraph with 
+animation" />
+    <div id="foo">
+    <p>This is the first paragraph. Lorem ipsum dolor sit amet, consectetur 
+adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+id est laborum.</p>
+    <p>This is the second paragraph. Lorem ipsum dolor sit amet, consectetur 
+adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+id est laborum.</p>
+    <!-- several more paragraphs -->
+    </div>
+</body>
+    
+    
+====================================
+var $foo = jQuery('#foo');
+$('#bar').click(function() {
+    var lastParagraphPosition = jQuery('#foo p:last').position();
+    var scrollPosition = $foo.scrollTop() + lastParagraphPosition.top;
+    $foo.scrollTop(scrollPosition);
+});
+    
+    
+====================================
+var $foo = jQuery('#foo');
+$('#bam').click(function() {
+    var lastParagraphPosition = jQuery('#foo p:last').position();
+    var scrollPosition = $foo.scrollTop() + lastParagraphPosition.top;
+    jQuery('#foo').animate({scrollTop: scrollPosition}, 300);
+});
+    
+    
+====================================
+jQuery(document).ready(function() {
+    var viewportWidth = jQuery(window).width(),
+        viewportHeight = jQuery(window).height(),
+
+        documentScrollTop = jQuery(document).scrollTop(),
+        documentScrollLeft = jQuery(document).scrollLeft(),
+
+        minTop = documentScrollTop,
+        maxTop = documentScrollTop + viewportHeight,
+        minLeft = documentScrollLeft,
+        maxLeft = documentScrollLeft + viewportWidth,
+
+        $myElement = jQuery('#myElement'),
+        elementOffset = $myElement.offset();
+    if (
+        (elementOffset.top > minTop && elementOffset.top < maxTop) &&
+        (elementOffset.left > minLeft &&elementOffset.left < maxLeft)
+    ) {
+        alert('element is visible');
+    } else {
+        alert('element is not visible');
+    }
+});
+    
+    
+====================================
+jQuery(document).ready(function() {
+    var viewportWidth = jQuery(window).width(),
+        viewportHeight = jQuery(window).height(),
+        documentScrollTop = jQuery(document).scrollTop(),
+        documentScrollLeft = jQuery(document).scrollLeft(),
+
+        $myElement = jQuery('#myElement'),
+
+        elementOffset = $myElement.offset(),
+        elementHeight = $myElement.height(),
+        elementWidth = $myElement.width(),
+
+        minTop = documentScrollTop,
+        maxTop = documentScrollTop + viewportHeight,
+        minLeft = documentScrollLeft,
+        maxLeft = documentScrollLeft + viewportWidth;
+
+    if (
+        (elementOffset.top > minTop && elementOffset.top + elementHeight < maxTop) &&
+        (elementOffset.left > minLeft && elementOffset.left + elementWidth < maxLeft)
+    ) {
+        alert('entire element is visible');
+    } else {
+        alert('entire element is not visible');
+    }
+});
+    
+    
+====================================
+jQuery(document).ready(function() {
+
+var viewportWidth = jQuery(window).width(),
+    viewportHeight = jQuery(window).height(),
+
+    documentScrollTop = jQuery(document).scrollTop(),
+    documentScrollLeft = jQuery(document).scrollLeft(),
+
+    $myElement = jQuery('#myElement'),
+
+    verticalVisible, horizontalVisible,
+
+    elementOffset = $myElement.offset(),
+    elementHeight = $myElement.height(),
+    elementWidth = $myElement.width(),
+
+    minTop = documentScrollTop,
+    maxTop = documentScrollTop + viewportHeight,
+    minLeft = documentScrollLeft,
+    maxLeft = documentScrollLeft + viewportWidth;
+
+function scrollToPosition(position) {
+    jQuery('html,body').animate({
+        scrollTop : position.top,
+        scrollLeft : position.left
+    }, 300);
+}
+
+if (
+    ((elementOffset.top > minTop && elementOffset.top < maxTop) ||
+    (elementOffset.top + elementHeight > minTop && elementOffset.top + 
+elementHeight < maxTop))
+&&
+    ((elementOffset.left > minLeft && elementOffset.left < maxLeft) ||
+    (elementOffset.left + elementWidth > minLeft && elementOffset.left + 
+elementWidth < maxLeft))
+) {
+    alert('some portion of the element is visible');
+
+    if (elementOffset.top >= minTop && elementOffset.top + elementHeight 
+<= maxTop) {
+        verticalVisible = elementHeight;
+    } else if (elementOffset.top < minTop) {
+        verticalVisible = elementHeight - (minTop - elementOffset.top);
+    } else {
+        verticalVisible = maxTop - elementOffset.top;
+    }
+
+    if (elementOffset.left >= minLeft && elementOffset.left + elementWidth 
+<= maxLeft) {
+        horizontalVisible = elementWidth;
+    } else if (elementOffset.left < minLeft) {
+        horizontalVisible = elementWidth - (minLeft - elementOffset.left);
+    } else {
+        horizontalVisible = maxLeft - elementOffset.left;
+    }
+
+    var percentVerticalVisible = (verticalVisible / elementHeight) * 100;
+    var percentHorizontalVisible = (horizontalVisible / elementWidth) * 100;
+
+    if (percentVerticalVisible < 50 || percentHorizontalVisible < 50) {
+        alert('less than 50% of element visible; scrolling');
+        scrollToPosition(elementOffset);
+    } else {
+        alert('enough of the element is visible that there is no need to scroll');
+    }
+
+} else {
+    // element is not visible; scroll to it
+    alert('element is not visible; scrolling');
+    scrollToPosition(elementOffset);
+}
+
+});
+    
+    
+====================================
+jQuery(document).ready(function() {
+    jQuery('#bar').click(function() {
+        var viewportWidth = jQuery(window).width(),
+            viewportHeight = jQuery(window).height(),
+
+            $foo = jQuery('#foo'),
+            elWidth = $foo.width(),
+            elHeight = $foo.height(),
+            elOffset = $foo.offset();
+
+        jQuery(window)
+            .scrollTop(elOffset.top + (elHeight/2) - (viewportHeight/2))
+            .scrollLeft(elOffset.left + (elWidth/2) - (viewportWidth/2));
+    });
+});
+    
+    
+====================================
+var $myElement = jQuery('#foo p').eq(0),
+            elPosition = $myElement.position();
+
+        $myElement.css({
+            position : 'absolute',
+            top : elPosition.top,
+            left : elPosition.left
+        });
+    
+    
+====================================
+var $myElement = jQuery('#foo p').eq(1),
+            elPosition = $myElement.position();
+
+        $myElement.css({
+            position : 'absolute',
+            top : elPosition.top + 20,
+            left : elPosition.left + 20
+        });
+    
+    
+====================================
+<style>
+#foo {
+    width: 300px;
+    height: 100px;
+    border: 1px solid red;
+    padding: 5px;
+}
+#tooltip {
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #fff;
+</style>
+
+<div id="foo">An existing element</div>
+    
+    
+====================================
+jQuery(document).ready(function() {
+    var $foo = jQuery('#foo'),
+        fooPosition = $foo.position(),
+        $tooltip = $('<div id="tooltip">A new element</div>').insertAfter($foo);
+
+    $tooltip.css({
+        position : 'absolute',
+        top : fooPosition.top + 10,
+        left : fooPosition.left + 10,
+        width : $foo.width() - 20
+    });
+});
+    
+    
+====================================
+jQuery(document).ready(function() {
+    var $foo = jQuery('#foo'),
+        fooOffset = $foo.offset(),
+        $tooltip = $('<div id="tooltip">A new element</div>').appendTo('body');
+
+    $tooltip.css({
+        position : 'absolute',
+        top : fooOffset.top + 10,
+        left : fooOffset.left + ($foo.width() / 2),
+        width : $foo.width() - 20
+    });
+});
+    
+    
+====================================
+var checkWidth = function() {
+    var browserWidth = $(window).width();
+    if (browserWidth < 960) {
+        setSize('small');
+    } else {
+        setSize('large');
+    }
+};
+
+jQuery(document).ready(function() {
+    checkWidth();
+    $(window).resize(checkWidth);
+});
+    
+    
+====================================
+var setSize = function(size) {
+    var $body = jQuery('body');
+      jQuery('body').removeClass('large small').addClass(size);
+};
+    
+    
+====================================
+<link rel="stylesheet" type="text/css" id="css_size" href="size-small.css" />
+    
+    
+====================================
+var setSize = function(size) {
+    var $css = jQuery('#css_size');
+    $css.attr('href', 'size-' + size + '.css');
+};
+    
+    
+====================================
+<link rel="stylesheet" type="text/css" class="css_size small" href="size-small.css" />
+<link rel="alternate stylesheet" type="text/css" class="css_size large"
+    href="size-large.css" disabled=true/>
+    
+    
+====================================
+var setSize = function(size) {
+
+    jQuery('link.css_size').each(function() {
+        var $this = $(this);
+        if ($this.hasClass(size)) {
+            $this
+                .removeAttr('disabled')
+                .attr('rel', 'stylesheet');
+        } else {
+            $this
+                .attr('disabled', true)
+                .attr('rel', 'alternate stylesheet');
+        }
+    });
+};
+    
+    
+==================

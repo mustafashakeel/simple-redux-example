@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Chapter 10: Example 18</title>
+    <style>
+        .drop-zone {
+            width: 300px;
+            padding: 20px;
+            border: 2px dashed #000;
+        }
+        .draggable{
+            width:100px;
+            height:100px;
+            background: yellow;
+
+        }
+    </style>
+</head>
+<body>
+<div draggable="true" class="draggable"> Info </div>
+    <div id="dropZone" class="drop-zone">Drop Zone!</div>
+    <div id="dropStatus"></div>
+
+    <script>
+        function handleDragEnter(e) {
+            dropStatus.innerHTML = "You're dragging something!";
+        }
+
+        var dropZone = document.getElementById("dropZone");
+        var dropStatus = document.getElementById("dropStatus");
+
+        dropZone.addEventListener("dragenter", handleDragEnter);
+    </script>
+</body>
+</html>

@@ -1,0 +1,848 @@
+chapter: HTML Form Enhancements from
+  Scratch
+==================
+// when the HTML DOM is ready
+$(document).ready(function(){
+    // focus the <input id="username" type="text" ...>
+    $('#username').focus();
+});
+    
+    
+====================================
+<input name="username" id="username" type="text" />
+
+<script type="text/javascript">
+    $('#username').focus();
+</script>
+    
+    
+====================================
+// when the HTML DOM is ready
+$(document).ready(function(){
+    var $inputTxt = $('#username');
+    if( $inputTxt.val() == '' ) {
+        // focus the username input by default
+        $inputTxt.focus();
+    }
+});
+    
+    
+====================================
+<fieldset id="shippingInfo">
+    <legend>Shipping Address</legend>
+
+    <label for="shipName">Name</label>
+    <input name="shipName" id="shipName" type="text" />
+
+    <label for="shipAddress">Address</label>
+    <input name="shipAddress" id="shipAddress" type="text" />
+</fieldset>
+
+<fieldset id="billingInfo">
+    <legend>Billing Address</legend>
+
+    <label for="sameAsShipping">Same as Shipping</label>
+    <input name="sameAsShipping" id="sameAsShipping" type="checkbox" 
+value="sameAsShipping" />
+
+    <label for="billName">Name</label>
+    <input name="billName" id="billName" type="text" />
+
+    <label for="billAddress">Address</label>
+    <input name="billAddress" id="billAddress" type="text" />
+</fieldset>
+    
+    
+====================================
+// find the "sameAsShipping" checkbox and listen for the change event
+$('#sameAsShipping').change(function(){
+
+    if( this.checked ){
+        // find all text inputs inside billingInfo and disable them
+        $('#billingInfo input:text').attr('disabled','disabled');
+
+    } else {
+        // find all text inputs inside billingInfo and enable them
+        $('#billingInfo input:text').removeAttr('disabled');
+    }
+
+}).trigger('change'); // close change() then trigger it once
+    
+    
+====================================
+// find the "sameAsShipping" checkbox and listen for the change event
+$('#sameAsShipping').change(function(){
+    if( this.checked ){
+        // find all text inputs inside billingInfo, disable them, then cycle 
+through each one
+        $('#billingInfo input:text').attr('disabled',
+'disabled').each(function(i){
+
+                // find the shipping input that corresponds to this billing input
+                var valueFromShippingInput = 
+$('#shippingInfo input:text:eq('+i+')').val();
+                // set the billing value with the shipping text value
+                $(this).val( valueFromShippingInput );
+
+        }); // close each()
+
+    } else {
+        // find all text inputs inside billingInfo and enable them
+        $('#billingInfo input:text').removeAttr('disabled');
+    }
+}).trigger('change'); // close change() then trigger it
+    
+    
+====================================
+// find the shippingInfo text inputs and listen for the keyup and change event
+$('#shippingInfo input:text').bind('keyup change',function(){
+
+    // if "sameAsShipping" checkbox is checked
+    if ( $('#sameAsShipping:checked').length ){
+
+        // find out what text input this is
+        var i = $('#shippingInfo input:text').index( this );
+        var valueFromShippingInput = $(this).val();
+
+        $('#billingInfo input:text:eq('+i+')').val( valueFromShippingInput );
+    }
+
+}); // close bind()
+    
+    
+====================================
+<style type="text/css" title="text/css">
+ #sameAsShippingWrapper { display:none; }
+ .jsEnabled #sameAsShippingWrapper { display:block }
+</style>
+
+...
+
+// when the HTML DOM is ready
+$(document).ready(function(){
+    $('form').addClass('jsEnabled');
+});
+
+...
+
+<form>
+ ...
+ <div id="sameAsShippingWrapper">
+   <label for="sameAsShipping">Same as Shipping</label>
+   <input name="sameAsShipping" id="sameAsShipping" type="checkbox" ... />
+ </div>
+ ....
+</form>
+    
+    
+====================================
+var html_label = '<label for="sameAsShipping">Same as Shipping</label>';
+var html_input = '<input name="sameAsShipping" id="sameAsShipping" type="checkbox" 
+value="sameAsShipping" />';
+
+$( html_label + html_input ).prependTo('#billingInfo").change( ... ).trigger( ... );
+    
+    
+====================================
+<p>How did you hear about us?</p>
+<ul id="chooseSource">
+    <li>
+        <input name="source" id="source1" type="radio" value="www" />
+        <label for="source1">Website or Blog</label>
+    </li>
+    <li>
+        <input name="source" id="source2" type="radio" value="mag" />
+        <label for="source2">Magazine</label>
+    </li>
+    <li>
+        <input name="source" id="source3" type="radio" value="per" />
+        <label for="source3">Friend</label>
+    </li>
+    <li>
+        <input name="source" id="source4" type="radio" value="oth" />
+        <label for="source4">Other</label>
+        <input name="source4txt" id="source4txt" type="text" />
+    </li>
+</ul>
+    
+    
+====================================
+// find any text input in chooseSource list, and listen for blur
+$('#chooseSource input:text').blur(function(){
+
+    // if text input has text
+    if ( $(this).val() != '' ) {
+        // find the radio button sibling and set it be selected
+        $(this).siblings('input:radio').attr('checked',true);
+    }
+
+});
+    
+    
+====================================
+$('#chooseSource input:text').each(function(){
+
+    // these are both used twice, let's store them to be more efficient
+    // the text input
+    var $inputTxt = $(this);
+    // the associated radio button
+    var $radioBtn = $inputTxt.siblings('input:radio');
+
+    // listen for the blur event on the text input
+    $inputTxt.blur(function(){
+        // if text input has text
+        if ( $inputTxt.val() != '' ) {
+            // select radio button
+            $radioBtn.attr('checked',true);
+        }
+    });
+
+    // listen for the change event on the radio button
+    $radioBtn.change(function(){
+        // if it is checked, focus on text input
+        if ( this.checked ) { $inputTxt.focus(); }
+    });
+
+}); // close each()
+    
+    
+====================================
+<fieldset>
+
+    <legend>Reasons to be happy</legend>
+
+    <a class="selectAll" href="#">Select All</a>
+    <a class="deselectAll" href="#">Deselect All</a>
+
+    <input name="reasons" id="iwokeup" type="checkbox" value="iwokeup" />
+    <label for="iwokeup">I woke up</label>
+
+    <input name="reasons" id="health" type="checkbox" value="health" />
+    <label for="health">My health</label>
+
+    <input name="reasons" id="family" type="checkbox" value="family" />
+    <label for="family">My family</label>
+
+    <input name="reasons" id="sunshine" type="checkbox" value="sunshine" />
+    <label for="sunshine">The sun is shining</label>
+
+</fieldset>
+    
+    
+====================================
+// find the "Select All" link in a fieldset and list for the click event
+$('fieldset .selectAll').click(function(event){
+    event.preventDefault();
+    // find all the checkboxes and select them
+    $(this).siblings('input:checkbox').attr('checked','checked');
+});
+
+// find the "Deselect All" link in a fieldset and list for the click event
+$('fieldset .deselectAll').click(function(event){
+    event.preventDefault();
+    // find all the checkboxes and deselect them
+    $(this).siblings('input:checkbox').removeAttr('checked');
+});
+    
+    
+====================================
+<style type="text/css" title="text/css">
+ .selectAll, .deselectAll { display:none; }
+ .jsEnabled .selectAll, .jsEnabled .deselectAll { display:inline; }
+</style>
+
+...
+
+// when the HTML DOM is ready
+$(document).ready(function(){
+    $('form').addClass('jsEnabled');
+});
+    
+    
+====================================
+<fieldset>
+
+    <legend>Reasons to be happy</legend>
+
+    <input name="reasons" id="toggleAllReasons" type="checkbox" class="toggle" />
+    <label for="toggleAllReasons" class="toggle">Select All</label>
+
+    <input name="reasons" id="iwokeup" type="checkbox" value="iwokeup" />
+    <label for="iwokeup">I woke up</label>
+
+    <input name="reasons" id="health" type="checkbox" value="health" />
+    <label for="health">My health</label>
+
+    <input name="reasons" id="family" type="checkbox" value="family" />
+    <label for="family">My family</label>
+
+    <input name="reasons" id="sunshine" type="checkbox" value="sunshine" />
+    <label for="sunshine">The sun is shining</label>
+
+</fieldset>
+    
+    
+====================================
+// find the "Select All" toggle in a fieldset, cycle through each one you find
+$('fieldset .toggle:checkbox').each(function(){
+
+    // these are used more than once, let's store them to be more efficient
+    // the toggle checkbox
+    var $toggle = $(this);
+    // the other checkboxes
+    var $checkboxes = $toggle.siblings('input:checkbox');
+
+    // listen for the change event on the toggle
+    $toggle.change(function(){
+        if ( this.checked ) {
+            // if checked, select all the checkboxes
+            $checkboxes.attr('checked','checked');
+        } else {
+            // if not checked, deselect all the checkboxes
+            $checkboxes.removeAttr('checked');
+        }
+    });
+
+    // listen for the change event on each individual checkbox (not toggle)
+    $checkboxes.change(function(){
+        if ( this.checked ) {
+            // if this is checked and all others are checked, select the toggle
+            if ( $checkboxes.length == $checkboxes.filter(':checked').length ) {
+                $toggle.attr('checked','checked');
+            }
+        } else {
+            // if not checked, deselect the toggle
+            $toggle.removeAttr('checked');
+        }
+    }).eq(0).trigger('change'); // close change() then trigger change on first 
+checkbox only
+}); // close each()
+    
+    
+====================================
+<style type="text/css" title="text/css">
+ .toggle { visibility:hidden; }
+ .jsEnabled .toggle { visibility:visible; }
+</style>
+
+...
+
+// when the HTML DOM is ready
+$(document).ready(function(){
+    $('form').addClass('jsEnabled');
+});
+    
+    
+====================================
+<label for="colors">Colors</label>
+<select id="colors" multiple="multiple">
+    <option>Black</options>
+    <option>Blue</options>
+    <option>Brown</options>
+</select>
+
+<button id="remove">Remove Selected Color(s)</button>
+
+
+<label for="newColorName">New Color Name</label>
+<input id="newColorName" type="text" />
+
+<label for="newColorValue">New Color Value</label>
+<input id="newColorValue" type="text" />
+
+<button id="add">Add New Color</button>
+    
+    
+====================================
+// find the "Add New Color" button
+$('#add').click(function(event){
+    event.preventDefault();
+
+    var optionName = $('#newColorName').val();
+    var optionValue = $('#newColorValue').val();
+
+    $('<option/>').attr('value',optionValue).text(optionName).appendTo('#colors');
+});
+    
+    
+====================================
+// find the "Remove Selected Color(s)" button
+$('#remove').click(function(event){
+    event.preventDefault();
+
+    var $select = $('#colors');
+
+    $('option:selected',$select).remove();
+});
+    
+    
+====================================
+$('<option/>').attr("value",optionValue).text(optionName).appendTo('#colors');
+    
+    
+====================================
+$('<option value="'+optionValue+'">'+optionName+'</option>').appendTo('#colors');
+    
+    
+====================================
+<fieldset class="autotab">
+    <legend>Product Serial Number</legend>
+    <input type="text" maxlength="4" />
+    <input type="text" maxlength="4" />
+    <input type="text" maxlength="4" />
+    <input type="text" maxlength="4" />
+</fieldset>
+    
+    
+====================================
+$('fieldset.autotab input').bind('keydown keyup',function(event){
+
+    // the keycode for the key evoking the event
+    var keyCode = event.which;
+
+    // we want to ignore the following keys:
+    // 9 Tab, 16 Shift, 17 Ctrl, 18 Alt, 19 Pause Break, 20 Caps Lock
+    // 27 Esc, 33 Page Up, 34 Page Down, 35 End, 36 Home
+    // 37 Left Arrow, 38 Up Arrow, 39 Right Arrow, 40 Down Arrow
+    // 45 Insert, 46 Forward Delete, 144 Num Lock, 145 Scroll Lock
+    var ignoreKeyCodes = 
+',9,16,17,18,19,20,27,33,34,35,36,37,38,39,40,45,46,144,145,';
+    if ( ignoreKeyCodes.indexOf(',' + keyCode + ',') > −1 ) { return; }
+
+    // we want to ignore the backspace on keydown only
+    // let it do its job, but otherwise don't change focus
+    if ( keyCode == 8 && event.type == 'keydown' ) { return; }
+
+    var $this = $(this);
+    var currentLength = $this.val().length;
+    var maximumLength = $this.attr('maxlength');
+
+    // if backspace key and there are no more characters, go back
+    if ( keyCode == 8 && currentLength == 0 ) {
+        $this.prev().focus();
+    }
+
+    // if we've filled up this input, go to the next
+    if ( currentLength == maximumLength ) {
+        $this.next().focus();
+    }
+});
+    
+    
+====================================
+<textarea></textarea>
+<div class="remaining">Characters remaining: <span class="count">300</span></div>
+    
+    
+====================================
+// for each "Characters remaining: ###" element found
+$('.remaining').each(function(){
+
+    // find and store the count readout and the related textarea/input field
+    var $count = $('.count',this);
+    var $input = $(this).prev();
+
+    // .text() returns a string, multiply by 1 to make it a number (for math)
+    var maximumCount = $count.text()*1;
+
+    // update function is called on keyup, paste and input events
+    var update = function(){
+
+        var before = $count.text()*1;
+        var now = maximumCount - $input.val().length;
+
+        // check to make sure users haven't exceeded their limit
+        if ( now < 0 ){
+            var str = $input.val();
+            $input.val( str.substr(0,maximumCount) );
+            now = 0;
+        }
+
+        // only alter the DOM if necessary
+        if ( before != now ){
+            $count.text( now );
+        }
+    };
+
+    // listen for change (see discussion below)
+    $input.bind('input keyup paste', function(){setTimeout(update,0)} );
+
+    // call update initially, in case input is pre-filled
+    update();
+
+}); // close .each()
+    
+    
+====================================
+$input.bind('input keyup paste', function(){setTimeout(update,0)} );
+    
+    
+====================================
+<style type="text/css" title="text/css">
+ .remaining { display:none; }
+ .jsEnabled .remaining { display:block; }
+</style>
+
+...
+
+// when the HTML DOM is ready
+$(document).ready(function(){
+    $('form').addClass('jsEnabled');
+});
+    
+    
+====================================
+<input type="text" class="onlyNumbers" />
+    
+    
+====================================
+$('.onlyNumbers').bind('keydown',function(event){
+
+    // the keycode for the key pressed
+    var keyCode = event.which;
+
+    // 48-57 Standard Keyboard Numbers
+    var isStandard = (keyCode > 47 && keyCode < 58);
+
+    // 96-105 Extended Keyboard Numbers (aka Keypad)
+    var isExtended = (keyCode > 95 && keyCode < 106);
+
+    // 8 Backspace, 46 Forward Delete
+    // 37 Left Arrow, 38 Up Arrow, 39 Right Arrow, 40 Down Arrow
+    var validKeyCodes = ',8,37,38,39,40,46,';
+    var isOther = ( validKeyCodes.indexOf(',' + keyCode + ',') > −1 );
+
+    if ( isStandard || isExtended || isOther ){
+        return true;
+    } else {
+        return false;
+    }
+
+}).bind('blur',function(){
+
+    // regular expression that matches everything that is not a number
+    var pattern = new RegExp('[^0-9]+', 'g');
+
+    var $input = $(this);
+    var value = $input.val();
+
+    // clean the value using the regular expression
+    value = value.replace(pattern, '');
+    $input.val( value )
+});
+    
+    
+====================================
+<form action="process.php">
+
+    <!-- value changed via JavaScript -->
+    <input type="hidden" name="usingAJAX" value="false" />
+
+    <label for="favoriteFood">What is your favorite food?</label>
+    <input type="text" name="favoriteFood" id="favoriteFood" />
+
+    <input type="submit" value="Tell Us" />
+
+</form>
+    
+    
+====================================
+$('form').submit(function(event){
+
+    // we want to submit the form using Ajax (prevent page refresh)
+    event.preventDefault();
+
+    // this is where your validation code (if any) would go
+    // ...
+
+    // this tells the server-side process that Ajax was used
+    $('input[name="usingAJAX"]',this).val( 'true' );
+
+    // store reference to the form
+    var $this = $(this);
+
+    // grab the url from the form element
+    var url = $this.attr('action');
+
+    // prepare the form data to send
+    var dataToSend = $this.serialize();
+
+    // the callback function that tells us what the server-side process had to say
+    var callback = function(dataReceived){
+
+        // hide the form (thankfully we stored a reference to it)
+        $this.hide();
+
+        // in our case the server returned an HTML snippet so just append it to 
+        // the DOM
+        // expecting: <div id="result">Your favorite food is pizza! Thanks for 
+        // telling us!</div>
+        $('body').append(dataReceived)
+    };
+
+    // type of data to receive (in our case we're expecting an HTML snippet)
+    var typeOfDataToReceive = 'html';
+
+    // now send the form and wait to hear back
+    $.get( url, dataToSend, callback, typeOfDataToReceive )
+
+}); // close .submit()
+    
+    
+====================================
+<style type="text/css" title="text/css">
+    div.question {
+        padding: 1em;
+    }
+    div.errorMessage {
+        display: none;
+    }
+    div.showErrorMessage {
+        display: block;
+        color: #f00;
+        font-weight: bold;
+        font-style: italic;
+    }
+    label.error {
+        color: #f00;
+        font-style: italic;
+    }
+</style>
+    
+    
+====================================
+<form action="process.php">
+
+<!-- TEXT -->
+<div class="question">
+    <label for="t">Username</label>
+    <input id="t" name="user" type="text" class="required" />
+    <div id="errorMessage_user" class="errorMessage">Please enter your username.</div>
+</div>
+
+<!-- PASSWORD -->
+<div class="question">
+    <label for="p">Password</label>
+    <input id="p" name="pass" type="password" class="required" />
+    <div id="errorMessage_pass" class="errorMessage">Please enter your password.</div>
+</div>
+
+<!-- SELECT ONE -->
+<div class="question">
+    <label for="so">Favorite Color</label>
+    <select id="so" name="color" class="required">
+        <option value="">Select a Color</option>
+        <option value="ff0000">Red</option>
+        <option value="00ff00">Green</option>
+        <option value="0000ff">Blue</option>
+    </select>
+    <div id="errorMessage_color" class="errorMessage">Please select your favorite 
+color.</div>
+</div>
+
+<!-- SELECT MULTIPLE -->
+<div class="question">
+    <label for="sm">Favorite Foods</label>
+    <select id="sm" size="3" name="foods" multiple="multiple" class="required">
+        <option value="pizza">Pizza</option>
+        <option value="burger">Burger</option>
+        <option value="salad">Salad</option>
+    </select>
+    <div id="errorMessage_foods" class="errorMessage">Please choose your favorite 
+foods.</div>
+</div>
+
+<!-- RADIO BUTTONS -->
+<div class="question">
+    <span>Writing Hand:</span>
+    <input id="r1" type="radio" name="hand" class="required"/>
+    <label for="r1">Left</label>
+    <input id="r2" type="radio" name="hand" class="required" />
+    <label for="r2">Right</label>
+    <div id="errorMessage_hand" class="errorMessage">Please select what hand you 
+write with.</div>
+</div>
+
+<!-- TEXTAREA -->
+<div class="question">
+    <label for="tt">Comments</label>
+    <textarea id="tt" name="comments" class="required"></textarea>
+    <div id="errorMessage_comments" class="errorMessage">Please tell us what you 
+think.</div>
+</div>
+
+<!-- CHECKBOX -->
+<div class="question">
+    <input id="c" type="checkbox" name="legal" class="required" />
+    <label for="c">I agree with the terms and conditions</label>
+    <div id="errorMessage_legal" class="errorMessage">Please check the box!</div>
+</div>
+
+<input type="submit" value="Continue" />
+
+</form>
+    
+    
+====================================
+$('form').submit(function(event){
+
+    var isErrorFree = true;
+
+    // iterate through required form elements and check to see if they are valid
+    $('input.required, select.required, textarea.required',this).each(function(){
+        if ( validateElement.isValid(this) == false ){
+            isErrorFree = false;
+        };
+    });
+
+    // Ajax alternatives:
+    // event.preventDefault();
+    // if (isErrorFree){ $.get( url, data, callback, type ) }
+    // if (isErrorFree){ $.post( url, data, callback, type ) }
+    // if (isErrorFree){ $.ajax( options ) }
+
+    return isErrorFree;
+
+}); // close .submit()
+    
+    
+====================================
+var validateElement = {
+
+    isValid:function(element){
+
+        var isValid = true;
+        var $element = $(element);
+        var id = $element.attr('id');
+        var name = $element.attr('name');
+        var value = $element.val();
+
+        // <input> uses type attribute as written in tag
+        // <textarea> has intrinsic type of 'textarea'
+        // <select> has intrinsic type of 'select-one' or 'select-multiple'
+        var type = $element[0].type.toLowerCase();
+
+        switch(type){
+            case 'text':
+            case 'textarea':
+            case 'password':
+                if ( value.length == 0 || 
+value.replace(/\s/g,'').length == 0 ){ isValid = false; }
+                break;
+            case 'select-one':
+            case 'select-multiple':
+                if( !value ){ isValid = false; }
+                break;
+            case 'checkbox':
+            case 'radio':
+                if( $('input[name="' + name + 
+'"]:checked').length == 0 ){ isValid = false; };
+                break;
+        } // close switch()
+
+        // instead of $(selector).method we are going to use $(selector)[method]
+        // choose the right method, but choose wisely
+        var method = isValid ? 'removeClass' : 'addClass';
+
+        // show error message [addClass]
+        // hide error message [removeClass]
+        $('#errorMessage_' + name)[method]('showErrorMessage');
+        $('label[for="' + id + '"]')[method]('error');
+
+        return isValid;
+
+    } // close validateElement.isValid()
+}; // close validateElement object
+    
+    
+====================================
+var validateElement = {
+
+    stripWhitespace : function(str){
+        return str.replace(/\s/g,'');
+    },
+    isValid : function(element){
+
+        //... snipped code ...//
+
+            case 'text':
+            case 'textarea':
+            case 'password':
+                // if text length is zero after stripping whitespace, it's not valid
+                if ( this.stripWhitespace(value).length == 0 ){ isValid = false; }
+                break;
+
+        //... snipped code ...//
+
+    } // close validateElement.isValid()
+}; // close validateElement object
+    
+    
+====================================
+// instead of $(selector).method we are going to use $(selector)[method]
+// choose the right method, but choose wisely
+var method = isValid ? 'removeClass' : 'addClass';
+
+// show error message [addClass]
+// hide error message [removeClass]
+$('#errorMessage_' + name)[method]('showErrorMessage');
+$('label[for="' + id + '"]')[method]('error');
+    
+    
+====================================
+if (isValid) {
+    $('#errorMessage_' + name).removeClass('showErrorMessage');
+    $('label[for="' + id + '"]').removeClass('error');
+} else {
+    $('#errorMessage_' + name).addClass('showErrorMessage');
+    $('label[for="' + id + '"]').addClass('error');
+}
+    
+    
+====================================
+// instead of $(selector).method we are going to use $(selector)[method]
+// choose the right method, but choose wisely
+var method = isValid ? 'removeClass' : 'addClass';
+
+// show error message [addClass]
+// hide error message [removeClass]
+$('#errorMessage_' + name)[method]('showErrorMessage');
+$('label[for="' + id + '"]')[method]('error');
+
+// after initial validation, allow elements to re-validate on change
+$element
+    .unbind('change.isValid')
+    .bind('change.isValid',function(){ validateElement.isValid(this); });
+    
+    
+====================================
+// instead of $(selector).method we are going to use $(selector)[method]
+// choose the right method, but choose wisely
+var method = isValid ? 'removeClass' : 'addClass';
+
+// show error message [addClass]
+// hide error message [removeClass]
+$('#errorMessage_' + name)[method]('showErrorMessage');
+
+if ( type == 'checkbox' || type == 'radio' ) {
+
+    // if radio button or checkbox, find all inputs with the same name
+    $('input[name="' + name + '"]').each(function(){
+        // update each input elements <label> tag, (this==<input>)
+        $('label[for="' + this.id + '"]')[method]('error');
+    });
+
+} else {
+
+    // all other elements just update one <label>
+    $('label[for="' + id + '"]')[method]('error');
+
+}
+
+// after initial validation, allow elements to re-validate on change
+$element
+    .unbind('change.isValid')
+    .bind('change.isValid',function(){ validateElement.isValid(this); });
+    
+    
+==================

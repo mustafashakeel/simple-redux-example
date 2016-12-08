@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script>
+		
+var sentence = " Mustafa Shakeel Qureshi and Sabah hafeez";
+var arr = [];
+
+
+	arr = 	sentence.split(" ");
+
+console.log(arr);
+
+var lists = "Copy this books List: Great Expectations , Habit , Javascript cookbook . and also the other text";
+
+
+var start = lists.indexOf(':'), 
+end = lists.indexOf('.'),
+listsarr = [];
+listsarr= lists.substring(start+1, end);
+
+console.log(listsarr);
+var lista = listsarr.split(",");
+console.log(lista);
+var aa =[];
+arr.forEach(function(index,value, array){
+
+aa.push(index) ;
+ console.log("--", index,"qqq",value,"111", array);
+});
+console.log("::::",aa);
+
+
+	</script>
+</head>
+<body>
+
+<div id="testing"></div>
+	
+<script>
+	var text = "<h1>You can easily trim <i>unnecessary</i> whitespace from the start and</h1>";
+	text = text.replace(/</g, "&lt");
+	text = text.replace(/</g,"&gt");
+
+// document.getElementById('testing').innerHTML ="Asdfad";
+document.getElementById("testing").innerHTML = text;
+
+</script>
+</body>
+</html>

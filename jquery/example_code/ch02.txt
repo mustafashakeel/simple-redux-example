@@ -1,0 +1,388 @@
+chapter: Selecting Elements with jQuery
+==================
+jQuery('#content p a');
+    // Select all anchor elements within all paragraph elements within #content
+    
+    
+====================================
+jQuery('#content p a').addClass('selected');
+    
+    
+====================================
+jQuery('body div#wrapper div#content');
+    
+    
+====================================
+jQuery('#content');
+    
+    
+====================================
+<a href="/category">Category</a>
+<ul id="nav">
+    <li><a href="#anchor1">Anchor 1</a></li>
+    <li><a href="#anchor2">Anchor 2</a></li>
+    <li><span><a href="#anchor3">Anchor 3</a></span></li>
+</ul>
+    
+    
+====================================
+jQuery('#nav li > a');
+ // This selects two elements, as expected
+    
+    
+====================================
+jQuery('> p', '#content');
+    // Fundamentally the same as jQuery('#content > p')
+    
+    
+====================================
+jQuery('#content').children();
+    
+    
+====================================
+var anchors = jQuery('a');
+
+// Getting all direct children of all anchor elements
+// can be achieved in three ways:
+
+// #1
+anchors.children();
+
+// #2
+jQuery('> *', anchors);
+
+// #3
+anchors.find('> *');
+    
+    
+====================================
+jQuery('#content').children('p');
+    
+    
+====================================
+<div id="content">
+    <h1>Main title</h1>
+    <h2>Section title</h2>
+    <p>Some content...</p>
+    <h2>Section title</h2>
+    <p>More content...</p>
+</div>
+    
+    
+====================================
+jQuery('h1 + h2');
+    // Selects ALL H2 elements that are adjacent siblings of H1 elements
+    
+    
+====================================
+jQuery('h1').siblings('h2,h3,p');
+    // Selects all H2, H3, and P elements that are siblings of H1 elements.
+    
+    
+====================================
+<ul>
+    <li>First item</li>
+    <li class="selected">Second item</li>
+    <li>Third item</li>
+    <li>Fourth item</li>
+    <li>Fifth item</li>
+</ul>
+    
+    
+====================================
+jQuery('li.selected').nextAll('li');
+    
+    
+====================================
+jQuery('li.selected ~ li');
+    
+    
+====================================
+jQuery('h1').next('h2');
+    
+    
+====================================
+var topHeaders = jQuery('h1');
+topHeaders.next('h2').css('margin','0');
+    
+    
+====================================
+<ol>
+    <li>First item</li>
+    <li>Second item</li>
+    <li>Third item</li>
+    <li>Fourth item</li>
+</ol>
+    
+    
+====================================
+jQuery('ol li:first');
+jQuery('ol li:eq(0)');
+jQuery('ol li:lt(1)');
+    
+    
+====================================
+<table>
+    <tr><td>0</td><td>even</td></tr>
+    <tr><td>1</td><td>odd</td></tr>
+    <tr><td>2</td><td>even</td></tr>
+    <tr><td>3</td><td>odd</td></tr>
+    <tr><td>4</td><td>even</td></tr>
+</table>
+    
+    
+====================================
+jQuery('tr:even').addClass('even');
+    
+    
+====================================
+table tr.even {
+    background: #CCC;
+}
+    
+    
+====================================
+jQuery(':even');
+    
+    
+====================================
+jQuery('ul li').filter(':first');
+    
+    
+====================================
+jQuery('div:animated');
+    
+    
+====================================
+jQuery('div:not(div:animated)').animate({height:100});
+    
+    
+====================================
+var myElem = jQuery('#elem');
+if( myElem.is(':animated') ) {
+    // Do something.
+}
+    
+    
+====================================
+<!-- HTML -->
+<span>Hello Bob!</span>
+
+// Select all SPANs with 'Bob' in:
+jQuery('span:contains("Bob")');
+    
+    
+====================================
+jQuery('div:has(p a)');
+    
+    
+====================================
+jQuery('p').filter(function(){
+    return /(^|\s)(apple|orange|lemon)(\s|$)/.test(jQuery(this).text());
+});
+    
+    
+====================================
+jQuery('div:not(#content)'); // Select all DIV elements except #content
+    
+    
+====================================
+jQuery('a:not(div.important a, a.nav)');
+// Selects anchors that do not reside within 'div.important' or have the class 'nav'
+    
+    
+====================================
+var $anchors = jQuery('a');
+$anchors.click(function(){
+    $anchors.not(this).addClass('not-clicked');
+});
+    
+    
+====================================
+$('#nav a').not('a.active');
+    
+    
+====================================
+jQuery('div:hidden');
+    
+    
+====================================
+if (jQuery('#elem').is(':hidden')) {
+    // Do something conditionally
+}
+jQuery('p:visible').hide(); // Hiding only elements that are currently visible
+    
+    
+====================================
+jQuery('*').filter(function(){
+    return jQuery(this).css('display') === 'none'
+            && jQuery(this).css('visibility') !== 'hidden';
+});
+    
+    
+====================================
+jQuery('a[href="http://google.com"]');
+    
+    
+====================================
+// Select all elements with a TITLE and HREF:
+jQuery('*[title][href]');
+    
+    
+====================================
+jQuery('a').filter(function(){
+    return (new RegExp('http:\/\/(?!' + location.hostname + ')')).test(this.href);
+});
+    
+    
+====================================
+<div id="content-sec-1">...</div>
+<div id="content-sec-2">...</div>
+<div id="content-sec-3">...</div>
+<div id="content-sec-4">...</div>
+    
+    
+====================================
+jQuery('div[id^="content-sec-"]');
+    
+    
+====================================
+jQuery(':input:not(:hidden)');
+    // Selects all input elements except those that are hidden.
+    
+    
+====================================
+jQuery(':text, textarea');
+    
+    
+====================================
+jQuery('*').filter(function(){
+    return !!jQuery(this).css('backgroundImage');
+});
+    
+    
+====================================
+this; // Regular element object
+jQuery(this); // jQuery object
+    
+    
+====================================
+// Select all DIV elements with a width between 100px and 200px:
+jQuery('div').filter(function(){
+    var width = jQuery(this).width();
+    return width > 100 && width < 200;
+});
+
+// Select all images with a common image extension:
+jQuery('img').filter(function(){
+    return /\.(jpe?g|png|bmp|gif)(\?.+)?$/.test(this.src);
+});
+
+// Select all elements that have either 10 or 20 children:
+jQuery('*').filter(function(){
+    var children = jQuery(this).children().length;
+    return children === 10 || children === 20;
+});
+    
+    
+====================================
+jQuery('div a:not([href^=http://]), p a:not([href^=http://])');
+
+jQuery('div, p').find('a').not('[href^=http://]');
+    
+    
+====================================
+jQuery('form').bind('submit', function(){
+    var allInputs = jQuery('input', this);
+    // Now you would do something with 'allInputs'
+});
+    
+    
+====================================
+jQuery('p', '#content');
+    
+    
+====================================
+jQuery('#content p');
+    
+    
+====================================
+jQuery( context ).find( selector );
+    
+    
+====================================
+jQuery.expr[':'].newFilter = function(elem, index, match){
+    return true; // Return true/false like you would on the filter() method
+};
+    
+    
+====================================
+jQuery.expr[':'].inline = function(elem) {
+    return jQuery(elem).css('display') === 'inline';
+};
+    
+    
+====================================
+// E.g. #1
+jQuery('div a:inline').css('color', 'red');
+// E.g. #2
+jQuery('span').filter(':not(:inline)').css('color', 'blue')
+    
+    
+====================================
+jQuery('span').data('something', 123);
+
+// We want to be able to do this:
+jQuery('*:data(something,123)');
+    
+    
+====================================
+jQuery.expr[':'].data = function(elem, index, m) {
+        
+    // Remove ":data(" and the trailing ")" from
+    // the match, as these parts aren't needed:
+    m[0] = m[0].replace(/:data\(|\)$/g, '');
+     
+    var regex = new RegExp('([\'"]?)((?:\\\\\\1|.)+?)\\1(,|$)', 'g'),
+        // Retrieve data key:
+        key = regex.exec( m[0] )[2],
+        // Retrieve data value to test against:
+        val = regex.exec( m[0] );
+    
+    if (val) {
+        val = val[2];
+    }
+    
+    // If a value was passed then we test for it, otherwise
+    // we test that the value evaluates to true:
+    return val ? jQuery(elem).data(key) == val : !!jQuery(elem).data(key);
+ 
+};
+    
+    
+====================================
+// As we originally mused (above):
+jQuery('div:data("something",123)');
+
+// Check if 'something' is a "truthy" value
+jQuery('div:data(something)');
+
+// With or without (inner) quotes:
+jQuery('div:data(something, "something else")');
+    
+    
+====================================
+jQuery.extend(jQuery.expr[':'], {
+    newFilter1 : function(elem, index, match){
+        // Return true or false.
+    },
+    newFilter2 : function(elem, index, match){
+        // Return true or false.
+    },
+    newFilter3 : function(elem, index, match){
+        // Return true or false.
+    }
+});
+    
+    
+==================

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>	Click Buttons </title>
+</head>
+<body>
+
+<form name="button">
+
+<input type="text" name="myName">
+<input type="text" name="age">
+
+
+<input type="button" name="clickme" value="Button Clicked 0 times" /><br/>
+<span>	click to alert</span><input type="checkbox" id="checkme" name="alertme"> <span id="checktimes">	</span>
+
+<br/>
+<span id="errorform" style="color:red;">	</span>
+</form>
+<script>
+
+
+var buttonclick = document.button.clickme, 
+	bclicks = 0;
+	var checkmenow = 0;
+
+var myForm = document.button;
+var myName = myForm.myName,
+	myAge = myForm.age,
+	errorname = " ",
+	formError = document.getElementById('errorform');
+
+
+
+
+function mynameisValid(){
+		
+	var mynameValue = myName.value;
+	if(mynameValue =="" || mynameValue ==" " ){
+		errorform +="Please Enter the Name ";
+		formError.innerHTML = " * "+ errorform;
+
+
+	}
+
+}
+function myageisValid(){
+
+var myAgeValue = myAge.value;
+if(myAgeValue >= 60 ||  myAgeValue <= 18 ){
+	errorform += " Your Age Does not Qualify you ";
+	formError.innerHTML = " * "+ errorform;
+}
+
+}
+
+myName.addEventListener('blur',mynameisValid);
+myAge.addEventListener('blur',myageisValid);
+
+function clicks(){
+	bclicks = + bclicks +1;
+
+	buttonclick.value = " Button Clicked "+ bclicks	+ "times";
+
+}
+
+
+var checkme = document.button.alertme;
+
+function checkOut(){
+	// this.checkmeout = 0;
+	// checkmeout = + checkmeout+1;
+	checkmenow++;
+	var checkspan = document.getElementById('checktimes');
+	checkspan.innerHTML = "Checkbox has been Checked "+ checkmenow+ "Times"
+}
+checkme.addEventListener('change',checkOut);
+buttonclick.addEventListener("click",clicks);
+
+</script>
+
+</body>
+</html>

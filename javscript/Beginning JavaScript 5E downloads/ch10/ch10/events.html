@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>	Images</title>
+	<style >
+		.pcolor{
+			color:red;
+			background:yellow;
+		}
+	</style>
+</head>
+<body >
+<img src="canada.gif" alt="Canada" onclick="handle(event)" />
+<img src="usa.gif" alt="USA" onclick="handle(event)" />
+
+<h1 >	This is a Great Heading</h1>
+<p >	This Description
+This method returns the index within the calling String object of the first occurrence of the specified value, starting the search at fromIndex or -1 if the value is not found.
+
+Syntax
+Use the following syntax to use the indexOf() method.</p>
+
+<p>	This is Paragraph 2</p>
+
+<ul>	<li>	<a href="page2.html" class="noclick">Page1</a></li><li>	<a href="page2.html" class="noclick"> page2S</a></li>
+<a href="page3.html"> click</a></li>
+<li><a href="page3.html" id="nowhere">NoWhere</a>		</li></ul>
+
+<script>
+
+
+function handle(e){
+	console.log(e);
+
+var target = e.target,
+	etype  = e.type,
+	tname = target.tagName;
+
+if (tname == 'P'){
+	if(etype =='mouseover'){
+		
+	target.className= "pcolor";
+
+	}else if (etype =='mouseout'){
+		target.className = '';
+	}
+
+
+
+}
+if (etype =='click'){
+	console.log("Clicked",e);
+	alert( "Clicked on X "+e.clientX+ " Y Coord"+e.clientY);
+
+}
+
+// console.log("target",tname);
+
+}
+document.addEventListener('mouseover',handle);
+ document.addEventListener('mouseout',handle);
+  document.addEventListener('click',handle);
+</script>	
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Range Slider Value</title>
+
+<style type="text/css">
+
+.range-value {
+  font-size: 1.5em;
+  margin-left: .5em;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<input type="range" >
+<span class="range-value"></span>
+<script src="../js/jquery1.9.js"></script>
+
+<script>
+
+
+$('input[type="range"]').change(function(e){
+
+	console.log("!!1", e);
+
+});
+
+
+</script>
+
+</body>
+</html>

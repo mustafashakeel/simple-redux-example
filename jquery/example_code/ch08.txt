@@ -1,0 +1,335 @@
+chapter: Events
+==================
+jQuery( listener).bind( 'eventName', handlerFunction);
+    
+    
+====================================
+jQuery( listener).eventName( handlerFunction);
+    
+    
+====================================
+// Using bind()
+ jQuery('div').bind('click',function(e){...});
+ // Using the shortcut
+ jQuery('div').click(function(e){...});
+    
+    
+====================================
+jQuery('div').click(function(e){
+            alert('event');
+         })
+         .keydown(function(e){
+            alert('event');
+         });
+    
+    
+====================================
+function handler(e){
+    alert('event');
+ }
+
+ jQuery('div').click(handler)
+         .keydown(handler);
+    
+    
+====================================
+jQuery('div').bind'click keydown', function(e){
+    alert('event');
+ });
+    
+    
+====================================
+function handler(e){
+    alert('event');
+ }
+
+ jQuery('div').bind('click keydown', handler);
+
+ // ...
+
+ jQuery('div').unbind('click keydown', handler);
+    
+    
+====================================
+jQuery('#button1').click(function(e){
+     jQuery('div.panel').hide();
+     jQuery('#panel1').show();
+     jQuery('#desc').text('You clicked the red button');
+ });
+
+ jQuery('#button2').click(function(e){
+     jQuery('div.panel').hide();
+     jQuery('#panel2').show();
+     jQuery('#desc').text('You clicked the blue button');
+ });
+
+ jQuery('#button3').click(function(e){
+     jQuery('div.panel').hide();
+     jQuery('#panel3').show();
+     jQuery('#desc').text('You clicked the green button');
+ });
+    
+    
+====================================
+function buttonClicked(e){
+     jQuery('div.panel').hide();
+     jQuery('#panel'+e.data.panel).show();
+     jQuery('#desc').text('You clicked the '+e.data.color+' button');
+ }
+
+ jQuery('#button1').bind('click',{panel:1, color:'red'}, buttonClicked);
+ jQuery('#button2').bind('click',{panel:2, color:'blue'}, buttonClicked);
+ jQuery('#button3').bind('click',{panel:3, color:'green'}, buttonClicked);
+    
+    
+====================================
+jQuery.each(['red','blue','green'], function(num, color){
+     num++; // it's 0-index based
+     jQuery('#button'+num).bind('click',function(e){
+         jQuery('div.panel').hide();
+         jQuery('#panel'+num).show();
+         jQuery('#desc').text('You clicked the '+color+' button');
+     });
+ })
+    
+    
+====================================
+jQuery.fn.myPlugin = function(){
+    return this
+        .bind('click.myPlugin', function(){
+             // [code]
+        })
+        .bind('mousedown.myPlugin', function(){
+             // [code]
+        });
+};
+    
+    
+====================================
+jQuery.fn.disposeMyPlugin = function(){
+    return this.unbind('.myPlugin');
+};
+    
+    
+====================================
+jQuery.fn.runMyPlugin = function(){
+     return this.trigger('click.myPlugin');
+ };
+    
+    
+====================================
+jQuery('div.panels').trigger('click!');
+    
+    
+====================================
+jQuery('form').trigger('submit', ['John','Doe', 28, {gender:'M'}]);
+    
+    
+====================================
+jQuery('form').bind('submit', function(e, name, surname, age, extra){
+    // Do something with these arguments
+});
+    
+    
+====================================
+jQuery('#slideshow').bind('add-image', function(e, src){
+    var $img = jQuery('<img />').attr('src', src);
+    jQuery(this).append($img);
+});
+jQuery('#slideshow').trigger('add-image', 'img/dogs4.jpg');
+    
+    
+====================================
+jQuery('#button').bind('click', function(e, submit){
+    if( submit )
+        // Do something
+    else
+        // Do something else
+});
+jQuery('#button').trigger('click', true);
+    
+    
+====================================
+jQuery('form').bind('submit', function(e){
+    // Do something with e.name, e.surname, etc.
+});
+jQuery('form').trigger({
+    type:'submit',
+    name:'John',
+    surname:'Doe',
+    age: 28,
+    gender:'M'
+});
+    
+    
+====================================
+var e = jQuery.Event('submit'); // the new operator can be omitted
+e.name = 'John';
+e.surname = 'Doe';
+e.age = 28;
+e.gender = 'M';
+jQuery('form').trigger(e);
+    
+    
+====================================
+<!DOCTYPE html>
+<html>
+<head>
+ <style type="text/css">
+    html.no-message #message{ display:none; }
+ </style>
+ <script src="assets/jquery-latest.js"></script>
+ <script type="text/javascript">
+     // Bad
+     jQuery(document).ready(function($){
+        $('#message').hide();
+     });
+     // Correct
+     jQuery('html').addClass('no-message');
+     // or...
+     document.documentElement.className = 'no-message';
+ </script>
+</head>
+<body>
+    <p id="message">I should not be visible</p>
+    <!--
+      Many more html elements
+    -->
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="assets/jquery-latest.js"></script>
+</head>
+<body>
+    <p>The time is <span id="time">&nbsp;</span></p>
+    <script type="text/javascript">
+    jQuery('#time').text( new Date().toString() );
+    </script>
+    <!-- Many more html elements -->
+</body>
+</html>
+    
+    
+====================================
+jQuery('form')
+    .submit(function(e){
+       e.preventDefault(); // Don't submit for real
+       if( jQuery('#field').val() == '' )
+           e.stopImmediatePropagation();
+    })
+    .submit(function(e){
+       // Only executed if the function above
+       // didn't call e.stopImmediatePropagation
+    });
+    
+    
+====================================
+(function($){
+
+function checkEnabled(e){
+    if( jQuery(this).is('.disabled') ){
+        e.stopImmediatePropagation(); // Stop all handlers
+        e.preventDefault();
+    }
+};
+
+jQuery.fn.buttonize = function(){
+    return this.css('cursor','pointer')
+              .bind('click mousedown mouseup',checkEnabled};
+};
+
+})(jQuery);
+    
+    
+====================================
+jQuery.fn.closest = function( selector ){
+    return this.map(function(){
+        var $parent = jQuery(this).parents();
+        return jQuery(this).add($parents).filter( selector )[0];
+    });
+ }
+    
+    
+====================================
+jQuery('table').click(function(e){
+    var $tr = jQuery(e.target).closest('tr');
+    // Do something with the table row
+ });
+    
+    
+====================================
+jQuery('#something').hover(
+    function(){
+        // add some cool animation for jQuery(this)
+    },
+    function(){
+        // Revert the cool animation to its initial state
+    }
+);
+    
+    
+====================================
+jQuery('#something').hover(
+    function(){
+        jQuery(this).stop().animate({opacity:1}, 1000);
+    },
+    function(){
+        jQuery(this).stop().animate({opacity:0.8}, 1000);
+    }
+ );
+    
+    
+====================================
+jQuery('#something').hover(
+    function(){
+        jQuery(this).stop().fadeTo( 1, 1000 );
+    },
+    function(){
+        jQuery(this).stop().fadeTo( 0.8, 1000 );
+    }
+ );
+    
+    
+====================================
+jQuery('#something').hover(
+    function(){
+        jQuery(this).stop()
+            .fadeTo( 1, 1000 )
+            .animate( {height:500}, 1000 );
+    },
+    function(){
+        jQuery(this).stop()
+            .fadeTo( 0.8, 1000 )
+            .animate( {height:200}, 1000 );
+    }
+ );
+    
+    
+====================================
+jQuery('#something').hover(
+    function(){
+        jQuery(this).stop(true)
+            .fadeTo( 1, 1000 )
+            .animate( {height:500}, 1000 );
+    },
+    function(){
+        jQuery(this).stop(true)
+            .fadeTo( 0.8, 1000 )
+            .animate( {height:200}, 1000 );
+    }
+ );
+    
+    
+====================================
+function handler(){
+    alert('got clicked');
+}
+jQuery('.clickable').bind('click', handler);
+    
+    
+==================

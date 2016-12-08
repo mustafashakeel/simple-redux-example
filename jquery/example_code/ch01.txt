@@ -1,0 +1,656 @@
+chapter: jQuery Basics
+==================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+</head>
+<body>
+<div>old content</div>
+<script>
+
+//hide all divs on the page
+jQuery('div').hide();
+
+//update the text contained inside of all divs
+jQuery('div').text('new content');
+
+//add a class attribute with a value of updatedContent to all divs
+jQuery('div').addClass("updatedContent");
+
+//show all divs on the page
+jQuery('div').show();
+
+</script>
+</body>
+</html>
+    
+    
+====================================
+//hide all divs on the page
+jQuery('div').hide();
+
+//update the text contained inside of the div
+jQuery('div').text('new content');
+
+//add a class attribute with a value of updatedContent to all divs
+jQuery('div').addClass("updatedContent");
+
+//show all divs on the page
+jQuery('div').show();
+    
+    
+====================================
+jQuery('div').hide().text('new content').addClass("updatedContent").show();
+    
+    
+====================================
+jQuery('div')
+    .hide()
+    .text('new content')
+    .addClass("updatedContent")
+    .show();
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/
+jquery/1.3.0/jquery.min.js"></script> </head>
+<body>
+<div>old content</div>
+<div>old content</div>
+<div>old content</div>
+<div>old content</div>
+<script>
+//hide all divs on the page
+jQuery('div').hide().text('new content').addClass("updatedContent").show();
+
+</script>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+</head>
+<body>
+<script type="text/JavaScript">
+    alert('jQuery ' + jQuery.fn.jquery);
+</script>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> 
+<script type="text/JavaScript">
+    jQuery(document).ready(function(){//DOM not loaded, must use ready event
+        alert(jQuery('p').text());
+    });
+</script>
+</head>
+<body>
+<p>The DOM is ready!</p>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/JavaScript">
+    jQuery(function(){ //DOM not loaded, must use ready event
+        alert(jQuery('p').text());
+    });
+</script>
+</head>
+<body>
+<p>The DOM is ready!</p>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p>The DOM is ready!</p>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/JavaScript">
+     alert(jQuery('p').text());//go for it the DOM is loaded
+</script>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<a href='#'>link</a>
+<a href='#'>link</a>
+<a href='#'>link</a>
+<a href='#'>link</a>
+<a href='#'>link</a>
+<a href='#'>link</a>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> 
+<script type="text/JavaScript">
+     //alerts there are 6 elements
+     alert('Page contains ' + jQuery('a').length +  ' <a> elements!');
+</script>
+</body>
+</html>
+    
+    
+====================================
+jQuery('selector1, selector2, selector3').length;
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body bgcolor="yellow"> <!-- yes the attribute is depreciated, I know, roll 
+with it -->
+<a href='#'>link</a>
+<a href='#'>link</a>
+<a href='#'>link</a>
+<a href='#'>link</a>
+<a href='#'>link</a>
+<a href='#'>link</a>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> 
+<script type="text/JavaScript">
+     //alerts there are 6 elements
+     alert('Page contains ' + jQuery(document.getElementsByTagName('a')).length +  
+' <a> Elements, And has a '
+     + jQuery(document.body).attr('bgcolor') + ' background');
+</script>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<form>
+<input name="" type="checkbox" />
+<input name="" type="radio" />
+<input name="" type="text" />
+<input name="" type="button" />
+</form>
+
+<form>
+<input name="" type="checkbox" />
+<input name="" type="radio" />
+<input name="" type="text" />
+<input name="" type="button" />
+</form>
+
+<input name="" type="checkbox" />
+<input name="" type="radio" />
+<input name="" type="text" />
+<input name="" type="button" />
+
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> 
+<script type="text/JavaScript">
+
+ //searches within all form elements, using a wrapper for context, alerts "8 inputs"
+ alert('selected ' + jQuery('input',$('form')).length + ' inputs');
+
+ //search with the first form element, using DOM reference as the context, alerts 
+ //"4 inputs"
+ alert('selected' + jQuery('input',document.forms[0]).length + ' inputs');
+
+ //search within the body element for all input elements using an expression, 
+ //alerts "12 inputs" 
+ alert('selected' + jQuery('input','body').length + ' inputs');
+
+</script>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<a href="#" class="external">link</a>
+<a href="#" class="external">link</a>
+<a href="#"></a>
+<a href="#" class="external">link</a>
+<a href="#" class="external">link</a>
+<a href="#"></a></li>
+<a href="#">link</a>
+<a href="#">link</a>
+<a href="#">link</a>
+<a href="#">link</a>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/JavaScript">
+
+   //alerts 4 left in the set
+       alert(jQuery('a').filter('.external').length + ' external links');
+</script>
+</body>
+</html>
+    
+    
+====================================
+alert(
+   jQuery('a')
+      .filter(function(index){ return $(this).hasClass('external');})
+      .length + ' external links'
+);
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p>Ut ad videntur facilisis <em>elit</em> cum. Nibh insitam erat facit 
+<em>saepius</em> magna.  Nam ex liber iriure et imperdiet. Et mirum eros 
+iis te habent. </p>
+<p>Claram claritatem eu amet dignissim magna. Dignissim quam elit facer eros 
+illum. Et qui ex esse <em>tincidunt</em> anteposuerit. Nulla nam odio ii 
+vulputate feugait.</p>
+<p>In quis <em>laoreet</em> te legunt euismod. Claritatem <em>consuetudium</em> 
+wisi sit velit facilisi.</p>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/JavaScript">
+ //alerts total italic words found inside of <p> elements
+       alert('The three paragraphs in all contain ' + 
+       jQuery('p').find('em').length + ' 
+italic words');
+</script>
+</body>
+</html>
+    
+    
+====================================
+alert('The three paragraphs in all contain ' + jQuery('em',$('p')).length + 
+' italic words');
+    
+    
+====================================
+alert('The three paragraphs in all contain ' + jQuery('p em').length + 
+' italic words');
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p>text</p>
+<p class="middle">Middle <span>text</span></p>
+<p>text</p>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/JavaScript">
+    alert(jQuery('p').filter('.middle').length); //alerts 1
+    alert(jQuery('p').filter('.middle').end().length); //alerts 3
+    alert(jQuery('p').filter('.middle').find('span')
+.end().end().length); //alerts 3
+</script>
+</body>
+</html>
+    
+    
+====================================
+alert(jQuery('p').filter('.middle').length); //alerts 1
+    
+    
+====================================
+alert(jQuery('p').filter('.middle').end().length); //alerts 3
+    
+    
+====================================
+alert(jQuery('p').filter('.middle').find('span').end().end().length); //alerts 3
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div>
+<p>Paragraph</p>
+<p>Paragraph</p>
+</div>
+<script type="text/JavaScript" src="http://ajax.googleapis.com/
+ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/JavaScript">
+    jQuery('div').find('p').andSelf().css('border','1px solid #993300');
+</script>
+</body>
+</html>
+    
+    
+====================================
+<div>
+<ul>
+<li><a href="#">link</a></li>
+<li><a href="#">link</a></li>
+<li><a href="#">link</a></li>
+<li><a href="#">link</a></li>
+</ul>
+</div>
+    
+    
+====================================
+//selects the second element in the set of <li>'s by index, index starts at 0
+jQuery('li:eq(1)');
+    
+    
+====================================
+jQuery('li:eq(1)').next() //selects the third <li>
+
+jQuery('li:eq(1)').prev() //selects the first <li>
+
+jQuery('li:eq(1)').parent() //selects the <ul>
+
+jQuery('li:eq(1)').parent().children() //selects all <li>s
+
+jQuery('li:eq(1)').nextAll() //selects all the <li>s after the second <li>
+
+jQuery('li:eq(1)').prevAll() //selects all the <li>s before the second <li>
+    
+    
+====================================
+jQuery('li:eq(1)').parent().children() //selects all <li>'s
+    
+    
+====================================
+jQuery('li:eq(1)').parent().children(':last') //selects the last <li>
+    
+    
+====================================
+jQuery('<p><a>jQuery</a></p>');
+    
+    
+====================================
+jQuery('<p><a>jQuery</a></p>').find('a').attr('href','http://www.jquery.com');
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/JavaScript">
+jQuery('<p><a>jQuery</a></p>').find('a').attr('href','http://www.jquery.com')
+  .end().appendTo('body');
+</script>
+</body>
+</html>
+    
+    
+====================================
+jQuery(document.createElement('p')).appendTo('body'); //adds an empty p element 
+to the page
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h3>Anchors</h3>
+<a href='#'>Anchor Element</a>
+<a href='#'>Anchor Element</a>
+<a href='#'>Anchor Element</a>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/JavaScript">
+  jQuery('a').remove();
+</script>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h3>Anchors</h3>
+<a href='#' class='remove'>Anchor Element</a>
+<a href='#'>Anchor Element</a>
+<a href='#' class="remove">Anchor Element</a>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/JavaScript">
+  jQuery('a').remove('.remove');
+</script>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<ul>
+<li class='remove'>name</li>
+<li>name</li>
+<li class='remove'>name</li>
+<li class='remove'>name</li>
+<li>name</li>
+<li class='remove'>name</li>
+<li>name</li>
+<li class='remove'>name</li>
+</ul>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/JavaScript">
+  jQuery('li.remove').replaceWith('<li>removed</li>');
+</script>
+</body>
+</html>
+    
+    
+====================================
+jQuery('<li>removed</li>').replaceAll('li.remove');
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<ul>
+<li>list</li>
+<li>list</li>
+<li>list</li>
+<li>list</li>
+</ul>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/JavaScript">
+ jQuery('ul').clone().appendTo('body');
+</script>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<ul id="a">
+<li>list</li>
+<li>list</li>
+<li>list</li>
+<li>list</li>
+</ul>
+<ul id="b"></ul>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/JavaScript">
+ jQuery('ul#a li')
+    .click(function(){alert('List Item Clicked')})
+    .parent()
+        .clone(true)
+            .find('li')
+            .appendTo('#b')
+        .end()
+    .end()
+    .remove();
+</script>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<a>jquery.com</a>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js">
+</script>
+<script type="text/JavaScript">
+// alerts the jQuery home page URL
+alert(
+    jQuery('a').attr('href','http://www.jquery.com').attr('href')
+);
+</script>
+</body>
+</html>
+    
+    
+====================================
+jQuery('a').attr({'href':'http://www.jquery.com','title':'jquery.com'}).attr('href')
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p></p>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js">
+</script>
+<script type="text/JavaScript">
+jQuery('p').html('<strong>Hello World</strong>, I am a <em>&lt;p&gt;</em> element.');
+alert(jQuery('p').html());
+</script>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p></p>
+<script type="text/JavaScript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js">
+</script>
+<script type="text/JavaScript">
+     jQuery('p').text('Hello World, I am a <p> element.');
+     alert(jQuery('p').text());
+</script>
+</body>
+</html>
+    
+    
+====================================
+(function($){ //function to create private scope with $ parameter
+    //private scope and using $ without worry of conflict
+})(jQuery); //invoke nameless function and pass it the jQuery object
+    
+    
+==================

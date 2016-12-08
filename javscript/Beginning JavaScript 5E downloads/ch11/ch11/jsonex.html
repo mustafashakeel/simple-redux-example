@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>	json</title>
+</head>
+<body>
+
+<span id="demo">	</span>
+<script >
+	
+	var person = {
+		name:"mustafa",
+		place:"coquitlam",
+		age:"38"
+	}
+
+	console.log(person);
+	var newJSON  = JSON.stringify(person);
+	console.log(newJSON);
+
+	var jObj = JSON.parse(newJSON);
+	console.log(jObj);
+
+		document.getElementById('demo').innerHTML = jObj.name;
+
+</script>
+
+</body>
+</html>

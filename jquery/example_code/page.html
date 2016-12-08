@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+</head>
+<script>
+	$(document).ready(function(){
+		function test(){
+			alert(" Test ");
+		}
+		
+		$('#text').bind('click',test);
+	});
+</script>
+<body>
+
+
+<div id="container">
+
+<button id="text">
+	Click me !
+</button>	
+</div>
+	
+</body>
+</html>

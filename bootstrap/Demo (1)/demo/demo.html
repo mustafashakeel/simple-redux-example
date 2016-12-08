@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 - CSS</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+    
+    <style>
+
+      body {
+        padding: 4% 2%;
+      }
+   
+
+      h1 {
+        margin-bottom: 3%;
+
+      }
+
+      hr.margin {
+        margin: 3% 0;
+      }
+         
+
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  
+
+
+
+    <div class="container">
+
+    <!-- navigation goes here --> 
+
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another Action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+
+      <ul class="nav navbar-nav navbar-left">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+          
+   
+        <h1>Bootstrap 101 <span class="label label-success">CSS & Components</span></h1>
+    
+
+       <!--1st row -->
+
+     
+
+        <div class="row jumbotron"> 
+          <h1>Hello, World!</h1>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, aspernatur, soluta, voluptas nulla officia animi provident ratione velit magni repellat et doloribus commodi veritatis adipisci suscipit porro voluptates ex officiis.</p>
+
+  
+ 
+        
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, praesentium, deleniti, totam et porro voluptas tempore quisquam doloremque quis sunt adipisci eveniet cum vitae! Fugiat nobis repudiandae quia qui ipsum.</p>
+              <a href="#">Learn More >></a>
+            
+         
+                    
+        </div><!-- /.row -->
+
+      <hr class="margin">
+
+    
+        
+       <!--2nd row -->
+
+
+         <div class="row">
+          <div class="col-md-4">
+            <img src="http://placehold.it/350x150" alt="#">
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, consequatur, laboriosam inventore quae suscipit ullam officiis delectus.</p>
+            <button>Learn More</button> 
+          </div>
+
+        <div class="col-md-4">
+            <img src="http://placehold.it/350x150" alt="#">
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, consequatur, laboriosam inventore quae suscipit ullam officiis delectus.</p>
+            <button>Click Here</button> 
+          </div>
+
+         <div class="col-md-4">
+            <img src="http://placehold.it/350x150" alt="#">
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, consequatur, laboriosam inventore quae suscipit ullam officiis delectus.</p>
+            <button>Buy Now!</button> 
+          </div>
+      </div><!-- /.row -->
+
+
+      <hr class="margin">
+
+       <!--3rd row -->
+
+      <!--table-->
+
+      <div class="row">
+         
+      <div class="col-md-6">
+          <table class="table table-hovered">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Username</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td colspan="2">Larry the Bird</td>
+              <td>@twitter</td>
+            </tr>
+
+            <tr>
+              <td>3</td>
+              <td colspan="2">Larry the Bird</td>
+              <td>@twitter</td>
+            </tr>
+
+            <tr>
+              <td>3</td>
+              <td colspan="2">Larry the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-6">
+
+      <div>
+        <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, molestias, nisi eos nostrum repudiandae laboriosam enim quo esse tempore corporis placeat officia laborum facilis voluptate consequuntur obcaecati ipsam blanditiis. Optio.</p>
+        <button class="btn btn-success">Try Now !</button>
+      </div><br>
+ 
+      <!--panel-->
+
+      <div class="panel panel-default">
+          <div class="panel-heading">Panel heading without title</div>
+          <div class="panel-body">
+            Panel content
+          </div>
+
+         </div><!-- panel -->
+
+    </div>
+
+  </div><!-- /.row -->
+        
+    <hr class="margin">
+
+
+    <!--4th row -->
+
+    <!--thumbnails-->
+
+    <div class="row">
+
+        <div class="col-xs-6 col-md-3">
+          <div class="thumbnail">
+            <img src="http://placehold.it/250x180/666" alt="#">
+          </div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <div class="thumbnail">
+            <img src="http://placehold.it/250x180/666" alt="#">
+          </div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <a href="#"  class="thumbnail">
+            <img src="http://placehold.it/250x180/dedede" alt="#">
+          </a>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <a href="#"  class="thumbnail">
+            <img src="http://placehold.it/250x180/eee" alt="#">
+          </a>
+        </div>
+    
+    </div><!-- /.row -->
+
+<hr class="margin">
+
+
+  <!--5th row -->
+
+  <div class="row">  
+  
+    <!--form-->
+
+    <div class="col-md-6"> 
+      <form class="form-horizontal" role="form">
+
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control input-lg" id="inputEmail3" placeholder="Email">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control input-lg" id="inputPassword3" placeholder="Password">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Remember me
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default">Sign in</button>
+        </div>
+      </div>
+    </form>
+
+  </div> 
+
+  <!--media object-->
+
+  <div class="media col-md-6">
+
+      <a class="pull-left" href="#">
+        <img class="media-object"  src="http://placehold.it/70x70" alt="#">
+      </a>
+
+      <div class="media-body">
+        <h4 class="media-heading">Media heading</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut quos reiciendis repellendus sit voluptatem. Aliquid, aliquam, similique, architecto, velit blanditiis minima eaque voluptas aperiam in a nostrum nobis possimus autem.</p>
+      </div>
+
+  </div>
+
+</div><!-- /.row -->
+
+
+<hr class="margin">
+
+<footer>
+  <p><small>&copy; Copyright - All Rights Reserved - 2014</small></p>
+</footer>
+
+</div><!-- /.container -->
+
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body> 
+</html>

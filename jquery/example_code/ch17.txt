@@ -1,0 +1,331 @@
+chapter: Using jQuery in Large Projects
+==================
+<!DOCTYPE html>
+<html><head>
+    <title>17.1 - Using Client-Side Storage</title>
+    <script type="text/javascript" src="../../jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="jquery.jstore-all.js"></script>
+</head>
+
+<body>
+    <h1>17.1 - Using Client-Side Storage</h1>
+    <p>Storage engine: <span id="storage-engine"></span></p>
+    <input id="task-input"></input>
+    <input id="task-add" type="submit" value="Add task"></input>
+    <input id="list-clear" type="submit" value="Remove all tasks"></input>
+    <ul  id="task-list"></ul>
+</body></html>
+    
+    
+====================================
+(function($) {
+    $.jStore.ready(function(ev,engine) {
+        engine.ready(function(ev,engine) {
+            $('#storage-engine').html($.jStore.CurrentEngine.type);
+            $('#task-list').append($.store('task-list'));
+        });
+    });
+    
+    
+====================================
+   $('document').ready(function() {
+       $('#task-add').click(function() {
+           var task = $('#task-input').val();
+           var taskHtml = '<li><a href="#">done</a> ' + task + '</li>';
+           $.store('task-list',$('#task-list').append(taskHtml).html());
+           return false;
+       });
+    
+    
+====================================
+      $('#list-clear').click(function() {
+          $('#task-list').empty();
+          $.remove('task-list');
+          return false;
+      });
+    
+    
+====================================
+      $('#task-list a').live('click',function() {
+          $(this).parent().remove();
+          var taskList = $('#task-list').html();
+          if( taskList ) { $.store('task-list',taskList); }
+          else { $.remove('task-list'); }
+          return false;
+       });
+   });
+})(jQuery);
+    
+    
+====================================
+            if( taskList ) { $.store('task-list',taskList); }
+            else { $.remove('task-list'); }
+    
+    
+====================================
+return !!(jQuery.hasFlash('8.0.0'));
+    
+    
+====================================
+<!DOCTYPE html>
+<html><head>
+    <title>17.2 Saving Application State for a Single Session</title>
+    <style>
+        .square {
+            width: 100px; height: 100px; margin: 15px;
+            background-color: gray; border: 3px solid white; }
+        .selected {
+            border: 3px solid orange; }
+    </style>
+    <script src="../../jquery-1.3.2.min.js"></script>
+</head>
+
+<body>
+    <h1>17.2 Saving Application State for a Single Session</h1>
+    <a href="one.html">page one</a>
+    <a href="two.html">page two</a>
+    <div id="one" class="square"></div>
+    <div id="two" class="square"></div>
+    <div id="three" class="square"></div>
+</body></html>
+    
+    
+====================================
+jQuery(document).ready(function() {
+    $('.square').each(function(){
+        if( sessionStorage[window.location + this.id] == 'true' ) {
+            $(this).addClass('selected');
+        }
+    });
+
+    $('.square').click(function() {
+        $(this).toggleClass('selected');
+        sessionStorage[window.location + this.id] = $(this).hasClass('selected');
+        return false;
+    });
+});
+    
+    
+====================================
+(function($) {
+    $('document').ready(function() {
+        if( window.localStorage ) { appStorage = window.localStorage; }
+        else { appStorage = globalStorage[location.hostname]; }
+
+        var listHtml = appStorage['task-list'];
+        $('#task-list').append(listHtml.value ? listHtml.value : listHtml);
+    
+    
+====================================
+        $('#task-add').click(function() {
+            var task = $('#task-input').val();
+            var taskHtml = '<li><a href="#">done</a> ' + task + '</li>';
+            appStorage['task-list'] = $('#task-list').append(taskHtml).html();
+            return false;
+        });
+
+        $('#list-clear').click(function() {
+            $('#task-list').empty();
+            appStorage['task-list'] = '';
+            return false;
+        });
+
+        $('#task-list a').live('click',function() {
+            $(this).parent().remove();
+            appStorage['task-list'] = $('#task-list').html();
+            return false;
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+<!DOCTYPE html>
+<html><head>
+    <title>jQuery Cookbook - 17.4 Using a Javascript Template Engine</title>
+    <style>.hidden { display: none }</style>
+    <script type="text/javascript" src="../../jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="pure.js"></script>
+</head>
+
+<body>
+    <h1>17.4 - Using a Javascript Template Engine</h1>
+    <input type="button" id="add-book" value="Add book"></input>
+    <input type="button" id="clear-list" value="Clear booklist"></input>
+    <div id="book-list"></div>
+    
+    
+====================================
+     <div id="book-template" class="hidden book">
+        <ul class="author-list"><li class="author"><span class="name"></span>
+</li></ul>
+        <p class="title"></p>
+        <p class="year"></p>
+        <div class='book-footer'>
+            <div class="rating-div">Rating: <span class="rating"></span></div>
+            <div>Location: <span class="location"></span></div>
+        </div>
+    </div>
+</body></html>
+    
+    
+====================================
+{
+    "title": "Democracy and the Post-Totalitarian Experience",
+    "author": [
+        {
+            "name": "Leszek Koczanowicz"
+        },
+        {
+            "name": "Beth J. Singer"
+        }
+    ],
+    "year": "2005",
+    "rating": "3",
+    "location": "Mandalay"
+}
+    
+    
+====================================
+(function($) {
+    $('document').ready(function() {
+        $('#add-book').data('id',1);
+    
+    
+====================================
+        $('#add-book').click(function() {
+            var curId = $(this).data('id');
+            $.getJSON('server.php', {id: +curId}, function(data) {
+                if( data.none ) { return false; }
+                var divId = 'book-' + curId;
+                $('#book-list').append($('#book-template').clone().attr('id',divId));
+                $('#'+divId).autoRender(data).removeClass('hidden');
+                $('#add-book').data('id', curId + 1);
+            });
+            return false;
+        });
+    
+    
+====================================
+        $('#clear-list').click(function() {
+            $('#add-book').data('id',1);
+            $('#book-list').empty();
+            return false;
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+<!DOCTYPE html>
+<html><head>
+    <title>jQuery Cookbook - 17.5 - Queuing Ajax Requests</title>
+    <script type="text/javascript" src="../../jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="jquery-ajax-queue_1.0.js"></script>
+</head>
+
+<body>
+    <h1>17.5 - Queuing Ajax Requests</h1>
+    <input type="button" id="unqueued-requests" value="Unqueued requests"></input>
+    <input type="button" id="queued-requests" value="Queued requests"></input>
+    <input type="button" id="synced-requests" value="Synced requests"></input>
+    <p id="response"></p>
+</body></html>
+    
+    
+====================================
+(function($) {
+    $('document').ready(function() {
+        $('#unqueued-requests').click(function() {
+            $('#response').empty();
+            $.each([1,2,3,4,5,6,7,8,9,10], function() {
+                $.get('server.php',{ data: this }, function(data) {
+                    $('#response').append(data);
+                });
+            });
+            return false;
+        });
+    
+    
+====================================
+        $('#queued-requests').click(function() {
+            $('#response').empty();
+            $.each([1,2,3,4,5,6,7,8,9,10], function() {
+                $.ajaxQueue({url: 'server.php',
+                    data: { data: this },
+                    success: function(data) { $('#response').append(data); }
+                });
+            });
+            $.dequeue( $.ajaxQueue, "ajax" );
+            return false;
+        });
+    
+    
+====================================
+        $('#synced-requests').click(function() {
+            $('#response').empty();
+            $.each([1,2,3,4,5,6,7,8,9,10], function() {
+                $.ajaxSync({url: 'server.php',
+                    data: { data: this },
+                    success: function(data) { $('#response').append(data); }
+                });
+            });
+            return false;
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+<!DOCTYPE html>
+<html><head>
+    <title>17.6 Dealing with Ajax and the Back Button</title>
+    <script src="../../jquery-1.3.2.min.js"></script>
+    <script src="jquery.history.js"></script>
+</head>
+
+<body>
+    <h1>17.6 Ajax and the Back Button</h1>
+    <a href="#apples" class='word'>apples</a>
+    <a href="#oranges" class='word'>oranges</a>
+    <a href="#bananas" class='word'>bananas</a>
+    <p id='definition'></p>
+</body></html>
+    
+    
+====================================
+(function($) {
+    function historyLoad(hash) {
+        if(hash) { $('#definition').load('server.php',{word: hash}); }
+        else { $('#definition').empty(); }
+    }
+
+    $(document).ready(function() {
+        $.history.init(historyLoad);
+        $('a.word').click(function() {
+            $.history.load($(this).html());
+            return false;
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+<!DOCTYPE html>
+<html><head>
+    <title>17.7 Putting JavaScript at the End of a Page</title>
+</head>
+
+<body>
+    <h1>17.7 Putting JavaScript at the End of a Page</h1>
+    <p>Lorem ipsum dolor...</p>
+    <script src="../../jquery-1.3.2.min.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            jQuery('p').after('<p>Ut ac dui ipsum...</p>').show();
+        });
+    </script>
+</body></html>
+    
+    
+==================

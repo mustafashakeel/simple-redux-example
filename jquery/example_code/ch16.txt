@@ -1,0 +1,539 @@
+chapter: jQuery, Ajax, Data Formats: HTML, XML,
+  JSON, JSONP
+==================
+(function($) {
+    $(document).ready(function() {
+        $('#update').click(function() {
+            $.ajax({
+                type: 'GET',
+                url: 'hello-ajax.html',
+                dataType: 'html',
+                success: function(html, textStatus) {
+                    $('body').append(html);
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    alert('An error occurred! ' + ( errorThrown ? errorThrown : 
+xhr.status );
+                }
+            });
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+var options = {
+    type: 'GET'
+};
+    
+    
+====================================
+var options = {
+    type: 'GET',
+    url: 'hello-ajax.html',
+    dataType: 'html'
+};
+    
+    
+====================================
+var options = {
+    type: 'GET',
+    url: 'hello-ajax.html',
+    dataType: 'html',
+    error: function(xhr, textStatus, errorThrown) {
+        alert('An error occurred! ' + errorThrown);
+    },
+    success: function(data, textStatus) {
+        $('body').append( data );
+    }
+};
+    
+    
+====================================
+var options = {
+    type: 'GET',
+    url: 'hello-ajax.html',
+    dataType: 'html',
+    complete: function(xhr, textStatus) {
+        // Code to process response
+    }
+};
+    
+    
+====================================
+var options = {
+    type: 'GET',
+    url: 'hello-ajax.html',
+    dataType: 'html',
+    complete: function(xhr, textStatus) {
+        // Code to process response
+    }
+};
+$.ajax( options );
+    
+    
+====================================
+$.ajax({
+    type: 'GET',
+    url: 'hello-ajax.html',
+    dataType: 'html',
+    complete: function(xhr, textStatus) {
+        // Code to process response
+    }
+});
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        $('#update').click(function() {
+            $.ajax({
+                type: 'GET',
+                url: 'hello-ajax.html',
+                dataType: 'html',
+                success: function(html, textStatus) {
+                    $('body').append(html);
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    alert('An error occurred! ' + errorThrown);
+                }
+            });
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        $('#loadingIndicator')
+            .bind('ajaxStart', function() {
+                $(this).show();
+            })
+            .bind('ajaxComplete', function() {
+                $(this).hide();
+            });
+        $.ajaxSetup({
+            cache: true,
+            dataType: 'json',
+            error: function(xhr, status, error) {
+                alert('An error occurred: ' + error);
+            },
+           timeout: 60000, // Timeout of 60 seconds
+            type: 'POST',
+            url: 'ajax-gateway.php'
+        }); // Close $.ajaxSetup()
+    }); // Close .read()
+})(jQuery);
+    
+    
+====================================
+$.ajax({
+    data: {
+        // My request data for the server
+    },
+     success: function(data) {
+          // Now update the user interface
+    }
+});
+    
+    
+====================================
+$.ajax({
+    url: 'another-url.php',
+        data: {
+            // My request data for the server
+        },
+        success: function(data) {
+            // Now update the user interface
+    }
+});
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        $('#loadingIndicator')
+           .ajaxError(function() {
+                // Your code
+            });
+        // Or using bind()
+        $('#loadingIndicator')
+            .bind('ajaxError', function() {
+                // Your code
+            });
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        $('#ajaxStatus')
+            .ajaxStart(function() {
+                $(this).show();
+            })
+            .ajaxStop(function() {
+                $(this).hide();
+            });
+
+        // Start our ajax request when doAjaxButton is clicked
+        $('#doAjaxButton').click(function() {
+            $.ajax({
+                url: 'ajax-gateway.php',
+                   data: { val: "Hello world" },
+                   dataType: 'json',
+                success: function(json) {
+                    // Data processing code
+                    $('body').append( 'Response Value: ' + json.val );
+                }
+            });
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        $('#ajaxStatus')
+            .ajaxStart(function() {
+                $(this).show();
+            })
+            .ajaxStop(function() {
+                $(this).hide();
+            });
+
+        // Start our ajax request when doAjaxButton is clicked
+        $('#doAjaxButton').click(function() {
+            $.ajax({
+                url: 'ajax-gateway.php',
+             data: { val : 'Hello world' },
+             dataType: 'json',
+                success: function(json) {
+                    // Data processing code
+                    $('body').append( 'Response value: ' + json.val );
+                  }
+            });
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+$.ajax({
+    type: 'GET',
+    url: 'ajax-gateway.php',
+    dataType: 'html',
+    complete: function(xhr, textStatus) {
+        // Code to process response
+    }
+});
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        $('#ajaxStatus')
+            .ajaxStart(function() {
+                $(this).show();
+            })
+            .ajaxStop(function() {
+                $(this).hide();
+            });
+
+        // Start our Ajax request when doAjaxButton is clicked
+        $('#doAjaxButton').click(function() {
+            $.ajax({
+                url: 'ajax-gateway.php',
+                complete: function() {
+                    // Data processing code
+                }
+            });
+            $.ajax({
+                   url: 'ajax-data.php',
+                   complete: function() {
+                       // Data-processing code
+                   }
+              });
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        // Start our ajax request when doAjaxButton is clicked
+        $('#doAjaxButton').click(function() {
+            $.ajax({
+                url: 'ajax-gateway.php',
+                  beforeSend: function(xmlHttpRequest) {
+                      xmlHttpRequest.setRequestHeader('X-SampleHeader', 
+'Hello world’);
+                  },
+                complete: function() {
+                    // Data processing code
+                }
+            });
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        $('#ajaxError')
+             .ajaxError(function(evt, xhr, ajaxOptions, error) {
+                $(this)
+                  .html( 'Error: ' + ( xhr ? xhr.status : '' )
+                              + ' ' + ( error ? error :'Unknown' ) )
+                  .show();
+             })
+             .ajaxSuccess(function() {
+                 $(this).hide();
+              });
+
+          $('#ajaxStatus')
+              .ajaxStart(function() {
+                  $(this).show();
+              })
+             .ajaxSend(function() {
+                  $(this).html('Sending request...');
+              })
+               .ajaxStop(function() {
+                  $(this).html('Request completed...');
+                  var t = this;
+                  setTimeout(function() {
+                      $(t).hide();
+                  }, 1500);
+            });
+
+        // Start our ajax request when doAjaxButton is clicked
+        $('#doAjaxButton').click(function() {
+            $.ajax({
+                url: 'ajax-gateway.php',
+                complete: function() {
+                    // Data processing code
+                }
+            });
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+ $(document).ready(function() {
+        $('#contents').load('hello-world.html');
+});
+})(jQuery);
+    
+    
+====================================
+$('#contents').load('hello-world.html');
+    
+    
+====================================
+$('#contents').load('hello-world.html', { hello: 'world' });
+    
+    
+====================================
+$('#contents').load('hello-world.html', { hello: 'world' }, function() {
+    alert('Request completed!');
+});
+    
+    
+====================================
+$.get(
+    'hello-world.html',
+    { hello: 'world' },
+    function(data) {
+        alert('Request completed!');
+    },
+    'html'
+);
+    
+    
+====================================
+$.getJSON(
+    'http://www.flickr.com/services/feeds/photos_public.gne?
+format=json&jsoncallback=?’,
+   function(json) {
+   }
+);
+    
+    
+====================================
+// hello-world.js
+function helloWorld(msg) {
+    alert('Hello world! I have a message for you: ' + msg);
+}
+
+// hello-world.html
+(function($) {
+    $(function() {
+        $.getScript('hello-world.js', function() {
+            helloWorld('It is a beautiful day!');
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        $('<div>Hello World</div>')
+            .append('<a href="http://jquery.com">A Link</a>')
+            .appendTo('body');
+    });
+})(jQuery);
+    
+    
+====================================
+$('<div>Hello World</div>');
+    
+    
+====================================
+$('<div>Hello World</div>')
+    .append('<a href="http://jquery.com">A Link</a>')
+    .appendTo('body');
+    
+    
+====================================
+$('<div>Hello World</div>').width();
+// Returns '0'
+    
+    
+====================================
+<h1 id="title"></h1>
+
+(function($) {
+    $(document).ready(function() {
+        var xml = '<myxml><title>Hello world!</title></myxml>';
+        var title = $.xmlDOM( xml ).find('myxml > title').text();
+        $('#title').html( title );
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        var xml = '<myxml><title>Hello world!</title></myxml>';
+        var title = $.xmlDOM( xml ).find('myxml > title').text();
+        $('#title').html( title );
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        var $xml = $.xmlDOM( '<myxml><title>Hello world!</title></myxml>' );
+        var title = $('myxml > title', $xml).text();
+        $('#title').html( title );
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        var messageObject = { title: 'Hello World!', body: 'It\'s great to be 
+alive!' };
+        var serializedJSON = JSON.stringify( messageObject );
+    });
+})(jQuery);
+    
+    
+====================================
+var messageObject = { title: 'Hello World!', body: 'It\'s great to be alive!' };
+    
+    
+====================================
+var serializedJSON = '{"title":"Hello World!","body":"It\'s great to be alive!"}';
+    
+    
+====================================
+var serializedJSON = JSON.stringify( messageObject );
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        var serializedJSON = '{"title":"Hello World!","body":"It\'s great to be 
+alive!"}';
+        var message = JSON.parse( serializedJSON );
+    });
+})(jQuery);
+    
+    
+====================================
+var serializedJSON = '{"title":"Hello World!","body":"It\'s great to be alive!"}';
+var message = JSON.parse( serializedJSON );
+    
+    
+====================================
+alert( "New Message!\nTitle: " + message.title + "\nBody: " + message.body);
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        var url     = 'http://www.flickr.com/services/feeds/photos_public.gne?
+jsoncallback=?';
+        var params  = { format: 'json' };
+        $.getJSON(url, params, function(json) {
+            if ( json.items ) {
+                $.each( json.items, function(i, n) {
+                    var item = json.items[i];
+                    $('<a href="' + item.link + '"></a>')
+                        .append('<img src="' + item.media.m + '" />')
+                        .appendTo('#photos');
+                    // Display the first 3 photos (returning false will
+                    // Exit the loop
+                    return i < 2;
+                });
+            }
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+{"title":"Hello World!","body":"It's great to be alive!"}
+    
+    
+====================================
+myCallback({"title":"Hello World!","body":"It's great to be alive!"})
+    
+    
+====================================
+function myCallback(json) {
+    alert( json.title );
+}
+    
+    
+====================================
+var url     = 'http://www.flickr.com/services/feeds/photos_public.gne?
+jsoncallback=?';
+var params  = { format: 'json' };
+    
+    
+====================================
+$.getJSON(url, params, function(json) {
+    if ( json.items ) {
+        $.each( json.items, function(i, n) {
+              var item = json.items[i];
+            $('<a href="' + item.link + '"></a>')
+                .append('<img src="' + item.media.m + '" />')
+                .appendTo('#photos');
+            return i < 2;
+        });
+    }
+});
+    
+    
+==================

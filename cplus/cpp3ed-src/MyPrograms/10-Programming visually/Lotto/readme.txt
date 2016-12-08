@@ -1,0 +1,1 @@
+Open Lotto.sln in Visual C++ 2008 Express Edition to automatically build the Debug version of the application.

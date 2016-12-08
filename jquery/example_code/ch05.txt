@@ -1,0 +1,1218 @@
+chapter: Faster, Simpler, More Fun
+==================
+$(document).ready( function() {
+    $('.clicky').click( function() {
+        $(this).addClass('clicked');
+        setTimeout( function() {
+            $(this).removeClass('clicked');
+        }, 1000 );
+     });
+});
+    
+    
+====================================
+$(document).ready( function() {
+    $('.clicky').click( function() {
+        var element = this;
+        $(element).addClass('clicked');
+        setTimeout( function() {
+            $(element).removeClass('clicked');
+        }, 1000 );
+     });
+});
+    
+    
+====================================
+$(document).ready( function() {
+    $('.clicky').click( function() {
+        var $element = $(this);
+        $element.addClass('clicked');
+        setTimeout( function() {
+            $element.removeClass('clicked');
+        }, 1000 );
+     });
+});
+    
+    
+====================================
+function Foo( value ) {
+    this.value = value;
+}
+
+Foo.prototype.alert = function() {
+    alert( this.value );
+};
+
+var foo = new Foo( 'bar' );
+foo.alert();  // 'bar'
+    
+    
+====================================
+<a href="#" id="test" onclick="clicked(this);">Test</a>
+
+function clicked( it ) {
+    alert( it.id );            // 'test'
+    alert( this.id );          // undefined
+    alert( this === window );  // true (what?)
+}
+    
+    
+====================================
+$(document).ready( function() {
+
+    // Set visibility at startup
+    $('#state').toggle( $('#country').val() == 'US' );
+    $('#province').toggle( $('#country').val() == 'CA' );
+
+    // Update visibility when country selector changes via mouse
+    $('#country').change( function() {
+        $('#state').toggle( $(this).val() == 'US' );
+        $('#province').toggle( $(this).val() == 'CA' );
+    });
+
+    // Also update when country selector changes via keyboard
+    $('#country').keyup( function() {
+        $('#state').toggle( $(this).val() == 'US' );
+        $('#province').toggle( $(this).val() == 'CA' );
+    });
+
+});
+    
+    
+====================================
+$(document).ready( function() {
+
+    var $country = $('#country');
+
+    function setVisibility() {
+        var value = $country.val();
+        $('#state').toggle( value == 'US' );
+        $('#province').toggle( value == 'CA' );
+    }
+
+    setVisibility();
+    $country.bind( 'change keyup', setVisibility );
+});
+    
+    
+====================================
+$(document).ready( function() {
+
+    $('#country')
+        .bind( 'change keyup', function() {
+           var value = $(this).val();
+           $('#state').toggle( value == 'US' );
+           $('#province').toggle( value == 'CA' );
+        })
+        .trigger('change');
+
+});
+    
+    
+====================================
+$('#box').addClass('contentBox').children(':header')
+    .addClass('contentTitle').click(function() {
+        $(this).siblings('.contentBody').toggle();
+    }).end().children(':not(.contentTitle)')
+    .addClass('contentBody').end()
+    .append('<div class="contentFooter"></div>')
+    .children('.contentFooter').text('generated content');
+    
+    
+====================================
+$('#box')
+    .addClass('contentBox')
+    .children(':header')
+        .addClass('contentTitle')
+        .click(function() {
+            $(this).siblings('.contentBody').toggle();
+        })
+    .end()
+    .children(':not(.contentTitle)')
+        .addClass('contentBody')
+    .end()
+    .append('<div class="contentFooter"></div>')
+    .children('.contentFooter')
+        .text('generated content');
+    
+    
+====================================
+function htmlEscape( text ) {
+    return text
+        .replace( '&', '&amp;' )
+        .replace( '<', '&lt;' )
+        .replace( '>', '&gt;' );
+}
+    
+    
+====================================
+<div>
+    <div id="one" class="hilite">One</div>
+    <div id="two">Two</div>
+    <div id="three">Three</div>
+    <div id="four">Four</div>
+</div>
+    
+    
+====================================
+// Add the 'hilite' class to div#three, and
+// remove the class from all of its siblings
+// (e.g. div#one)
+
+$('#three').radioClass('hilite');
+    
+    
+====================================
+// Add the 'hilite' class to div#two and
+// div#four, and remove the class from the
+// other siblings (div#one and div#three)
+
+$('#two,#four').radioClass('hilite');
+    
+    
+====================================
+// Remove the specified class from every sibling of the selected
+// element(s), then add that class to the selected element(s).
+// Doing it in that order allows multiple siblings to be selected.
+//
+// Thanks to Ext Core for the idea.
+
+jQuery.fn.radioClass = function( cls ) {
+    return this.siblings().removeClass(cls).end().addClass(cls);
+};
+    
+    
+====================================
+jQuery.fn.radioClass = function( cls ) {
+    return this                // Start chain, will return its result
+        .siblings()            // Select all siblings of selected elements
+            .removeClass(cls)  // Remove class from those siblings
+        .end()                 // Go back to original selection
+        .addClass(cls);        // Add class to selected elements
+};
+    
+    
+====================================
+$.fn = $.prototype;
+    
+    
+====================================
+<span class="reveal">Ready? </span>
+<span class="reveal">On your mark! </span>
+<span class="reveal">Get set! </span>
+<span class="reveal">Go!</span>
+    
+    
+====================================
+$('.reveal').each( function() {
+    $(this).show();
+});
+// That was no better than this simpler version:
+$('.reveal').show();
+    
+    
+====================================
+// Iterate over an array (typically a jQuery object, but can
+// be any array) and call a callback function for each
+// element, with a time delay between each of the callbacks.
+// The callback receives the same arguments as an ordinary
+// jQuery.each() callback.
+jQuery.slowEach = function( array, interval, callback ) {
+    if( ! array.length ) return;
+    var i = 0;
+    next();
+
+    function next() {
+        if( callback.call( array[i], i, array[i] ) !== false )
+            if( ++i < array.length )
+                setTimeout( next, interval );
+    }
+
+    return array;
+};
+// Iterate over "this" (a jQuery object) and call a callback
+// function for each element, with a time delay between each
+// of the callbacks.
+// The callback receives the same arguments as an ordinary
+// jQuery(...).each() callback.
+jQuery.fn.slowEach = function( interval, callback ) {
+    return jQuery.slowEach( this, interval, callback );
+};
+    
+    
+====================================
+// Show an element every half second
+$('.reveal').slowEach( 500, function() {
+    $(this).show();
+});
+    
+    
+====================================
+jQuery.each = function( object, callback ) {
+    var value, i = 0, length = object.length;
+    for(
+        value = object[0];
+        i < length  &&  callback.call( value, i, value ) !== false;
+        value = object[++i]
+    ) {}
+
+    return object;
+};
+    
+    
+====================================
+jQuery.each = function( object, callback ) {
+    for(
+        var i = 0, length = object.length;
+        i < length;
+        ++i
+    ) {
+        var value = object[i];
+        if( callback.call( value, i, value ) === false )
+            break;
+    }
+
+    return object;
+};
+    
+    
+====================================
+// Iterate over an array or jQuery object in reverse order
+jQuery.reverseEach = function( object, callback ) {
+    for( var value, i = object.length;  --i >= 0; ) {
+        var value = object[i];
+        console.log( i, value );
+        if( callback.call( value, i, value ) === false )
+            break;
+    }
+};
+// Iterate over "this" (a jQuery object) in reverse order
+jQuery.fn.reverseEach = function( callback ) {
+    jQuery.reverseEach( this, callback );
+    return this;
+};
+    
+    
+====================================
+doSomething();
+sleep( 1000 );
+doSomethingLater();
+    
+    
+====================================
+// Check or uncheck every checkbox element selected in this jQuery object
+// Toggle the checked state of each one if check is omitted.
+
+jQuery.fn.toggleCheck = function( check ) {
+    return this.toggleAttr( 'checked', true, false, check );
+};
+    
+    
+====================================
+$('.toggleme').toggleCheck( true );
+    
+    
+====================================
+$('.toggleme').toggleCheck( false );
+    
+    
+====================================
+$('.toggleme').toggleCheck();
+    
+    
+====================================
+// For each element selected in this jQuery object,
+// set the attribute 'name' to either 'onValue' or 'offValue'
+// depending on the value of 'on. If 'on' is omitted,
+// toggle the attribute of each element independently
+// between 'onValue' and 'offValue'.
+// If the selected value (either 'onValue' or 'offValue') is
+// null or undefined, remove the attribute.
+jQuery.fn.toggleAttr = function( name, onValue, offValue, on ) {
+
+    function set( $element, on ) {
+        var value = on ? onValue : offValue;
+        return value == null ?
+            $element.removeAttr( name ) :
+            $element.attr( name, value );
+    }
+    return on !== undefined ?
+        set( this, on ) :
+        this.each( function( i, element ) {
+            var $element = $(element);
+            set( $element, $element.attr(name) !== onValue );
+        });
+};
+    
+    
+====================================
+// Enable or disable every input element selected in this jQuery object.
+// Toggle the enable state of each one if enable is omitted.
+
+jQuery.fn.toggleEnable = function( enable ) {
+    return this.toggleAttr( 'disabled', false, true, enable );
+};
+    
+    
+====================================
+// Add or remove an attribute foo="bar".
+// Toggle the presence of the attribute if add is omitted.
+
+jQuery.fn.toggleFoo = function( add ) {
+    return this.toggleAttr( 'foo', 'bar', null, add );
+};
+    
+    
+====================================
+jQuery.fn.toggleCheck = function( on ) {
+    return on !== undefined ?
+        this.attr( 'checked', on ) :
+        this.each( function( i, element ) {
+            var $element = $(element);
+            $element.attr( 'checked', ! $element.attr('checked') );
+        });
+};
+    
+    
+====================================
+var t1 = +new Date;
+// ... do stuff ...
+var t2 = +new Date;
+alert( ( t2 - t1 ) + ' milliseconds' );
+    
+    
+====================================
+(function() {
+
+    var log = [], first, last;
+
+    time = function( message, since ) {
+        var now = +new Date;
+        var seconds = ( now - ( since || last ) ) / 1000;
+        log.push( seconds.toFixed(3) + ': ' + message + '<br />' );
+        return last = +new Date;
+    };
+
+    time.done = function( selector ) {
+        time( 'total', first );
+        $(selector).html( log.join('') );
+    };
+
+    first = last = +new Date;
+})();
+    
+    
+====================================
+// do stuff
+time( 'first' );
+// do more stuff
+time( 'second' );
+// and more
+time( 'third' );
+time.done( '#log' );
+    
+    
+====================================
+<div id="log">
+</div>
+    
+    
+====================================
+<div id="firebugWarning" style="display:none;">
+    Your warning here
+</div>
+
+$(document).ready( function() {
+    if( window.console && console.firebug )
+        $('#firebugWarning').show();
+});
+    
+    
+====================================
+for( var i = 0; i < 10; ++i ) {
+    // do stuff
+    time( 'first' );
+    // do more stuff
+    time( 'second' );
+    // and more
+    time( 'third' );
+}
+time.done( '#log' );
+    
+    
+====================================
+(function() {
+
+    var log = [], index = {}, first, last;
+
+    // Accumulate seconds for the specified message.
+    // Each message string has its own total seconds.
+    function add( message, seconds ) {
+        var i = index[message];
+        if( i == null ) {
+            i = log.length;
+            index[message] = i;
+            log[i] = { message:message, seconds:0 };
+        }
+        log[i].seconds += seconds;
+    }
+
+    time = function( message, since ) {
+        var now = +new Date;
+        add( message, ( now - ( since || last ) ) / 1000 );
+        return last = +new Date;
+    }
+
+    time.done = function( sel ) {
+        time( 'total', first );
+        $(sel).html(
+            $.map( log, function( item ) {
+                return(
+                    item.seconds.toFixed(3) +
+                    ': ' +
+                    item.message + '<br />'
+                );
+            }).join('')
+        );
+    };
+
+    first = last = +new Date;
+})();
+    
+    
+====================================
+<table id="log">
+    <tr><td>Client X:</td><td class="clientX"></td></tr>
+    <tr><td>Client Y:</td><td class="clientY"></td></tr>
+    <tr><td>Page X:</td><td class="pageX"></td></tr>
+    <tr><td>Page Y:</td><td class="pageY"></td></tr>
+    <tr><td>Screen X:</td><td class="screenX"></td></tr>
+    <tr><td>Screen Y:</td><td class="screenY"></td></tr>
+</table>
+    
+    
+====================================
+$('html').mousemove( function( event ) {
+    $('.clientX').html( event.clientX );
+    $('.clientY').html( event.clientY );
+    $('.pageX').html( event.pageX );
+    $('.pageY').html( event.pageY );
+    $('.screenX').html( event.screenX );
+    $('.screenY').html( event.screenY );
+});
+    
+    
+====================================
+var
+    $clientX = $('.clientX'),
+    $clientY = $('.clientY'),
+    $pageX = $('.pageX'),
+    $pageY = $('.pageY'),
+    $screenX = $('.screenX'),
+    $screenY = $('.screenY');
+$('html').mousemove( function( event ) {
+    $clientX.html( event.clientX );
+    $clientY.html( event.clientY );
+    $pageX.html( event.pageX );
+    $pageY.html( event.pageY );
+    $screenX.html( event.screenX );
+    $screenY.html( event.screenY );
+});
+    
+    
+====================================
+var $foo = $('#foo'), foo = $foo[0];
+// Now you can use the jQuery object:
+$foo.show();
+// or the DOM element:
+var id = foo.id;
+    
+    
+====================================
+<div class="foo"></div>
+<div id="bar"></div>
+
+$('.foo')  // Slower
+$('#bar')  // Faster
+    
+    
+====================================
+<table id="log">
+    <tr><td>Client X:</td><td id="clientX"></td></tr>
+    ...
+</table>
+    
+    
+====================================
+$('.clientX')         // Slower
+$('td.clientX')       // May be faster
+$('#log .clientX')    // May be much faster
+$('#log td.clientX')  // Possibly faster in some browsers
+    
+    
+====================================
+{
+    "names": [
+        {
+            "first": "Azzie",
+            "last": "Zalenski",
+            "street": "9554 Niemann Crest",
+            "city": "Quinteros Divide",
+            "state": "VA",
+            "zip": "48786"
+        },
+        // and repeat for 1000 names
+    ]
+}
+    
+    
+====================================
+// Return a sanitized version of text with & < > escaped for HTML
+function esc( text ) {
+    return text
+        .replace( '&', '&amp;' )
+        .replace( '<', '&lt;' )
+        .replace( '>', '&gt;' );
+}
+$(document).ready( function() {
+
+    function fillTable( names ) {
+        $.each( names, function() {
+            $('<tr>')
+                .append( $('<td>').addClass('name').html(
+                    esc(this.first) + ' ' + esc(this.last)
+                ) )
+                .append( $('<td>').addClass('address').html(
+                    esc(this.street) + '<br />' +
+                    esc(this.city) + ', ' +
+                    esc(this.state) + ' ' + esc(this.zip)
+                ) )
+                .appendTo('#nameTable');
+        });
+    }
+
+    $.getJSON( 'names/names-1000.json', function( json ) {
+        fillTable( json.names );
+    });
+});
+    
+    
+====================================
+<table id="nameTable">
+</table>
+    
+    
+====================================
+$(document).ready( function() {
+
+    function fillTable( names ) {
+        // Reduce name lookups with local function name
+        var e = esc;
+        //
+        var html = [], h = −1;
+        html[++h] = '<table id="nameTable">';
+        html[++h] = '<tbody>';
+        for( var name, i = −1;  name = names[++i]; ) {
+            html[++h] = '<tr><td class="name">';
+            html[++h] =     e(name.first);
+            html[++h] =     ' ';
+            html[++h] =     e(name.last);
+            html[++h] = '</td><td class="address">';
+            html[++h] =     e(name.street);
+            html[++h] =     '<br />';
+            html[++h] =     e(name.city);
+            html[++h] =     ', ';
+            html[++h] =     e(name.state);
+            html[++h] =     ' ';
+            html[++h] =     e(name.zip);
+            html[++h] = '</td></tr>';
+        }
+        html[++h] = '</tbody>';
+        html[++h] = '</table>';
+
+        $('#container')[0].innerHTML = html.join('');
+    }
+
+    $.getJSON( 'names/names-1000.json', function( json ) {
+        fillTable( json.names );
+    });
+});
+    
+    
+====================================
+<div id="container">
+</div>
+    
+    
+====================================
+$.each( array, function() {
+    // do stuff with this
+});
+    
+    
+====================================
+$('.lotsOfElements').each( function() {
+    // do stuff with this or $(this)
+});
+    
+    
+====================================
+for( var item, i = −1; item = array[++i] ) {
+    // do stuff with item
+}
+    
+    
+====================================
+var $items = $('.lotsOfElements');
+for( var item, i = −1; item = $item[++i] ) {
+    // do stuff with item (a DOM node)
+}
+    
+    
+====================================
+{
+    "names": [
+        {
+            // ...
+            "zip": "48786"
+        },
+        // and repeat for 1000 names
+    ]
+}
+    
+    
+====================================
+for( var i = 0; i < array.length; i++ ) {
+     var item = array[i];
+    // do stuff with item
+}
+    
+    
+====================================
+for( var i = −1, n = array.length; ++i < n; ) {
+    var item = array[i];
+    // do stuff with item
+}
+    
+    
+====================================
+var i = −1, n = array.length;
+while( ++i < n ) {
+    var item = array[i];
+    // do stuff with item
+}
+    
+    
+====================================
+var i = 0, n = array.length;
+if( i < n ) do {
+    var item = array[i];
+    // do stuff with item
+}
+while( ++i < n );
+    
+    
+====================================
+for( var key in object ) {
+    var item = object[key];
+    // do stuff with item
+}
+    
+    
+====================================
+$('body').each( function( i ) { console.log( i ); });
+    
+    
+====================================
+for( var i in $('body') ) console.log( i ); // BAD
+    
+    
+====================================
+// A typical function wrapper to get a local scope
+(function() {
+    // Find the largest absolute value in an array of numbers
+    function maxMagnitude( array ) {
+        var largest = -Infinity;
+        $.each( array, function() {
+            largest = Math.max( largest, Math.abs(this) );
+        });
+     return largest;
+    }
+    // Other code here calls maxMagnitude on a large array
+})();
+    
+    
+====================================
+// A typical wrapper to get a local scope
+(function() {
+    // Find the largest absolute value in an array of numbers
+    function maxMagnitude( array ) {
+        var abs = Math.abs, max = Math.max;
+        var largest = -Infinity;
+        for( var i = −1, n = array.length; ++i < n; ) {
+            largest = max( largest, abs(array[i]) );
+        }
+        return largest;
+    }
+    // Other code here calls maxMagnitude on a large array
+})();
+    
+    
+====================================
+function fillTable( names ) {
+    var e = esc;
+    // and now call e() in the inner loop instead of esc()
+}
+    
+    
+====================================
+<div class="foo">
+    before
+        <span class="baz" style="display:none;">
+            test
+        </span>
+    after
+</div>
+    
+    
+====================================
+$('.foo').css({ fontsize: '18px' }).find('.bar').show();
+    
+    
+====================================
+// $('.foo').css({ fontsize: '18px' }).find('.bar').show();
+var $foo = $('.foo');
+$foo.css({ fontsize: '18px' });
+var $bar = $foo.find('.bar');
+$bar.show();
+    
+    
+====================================
+$foo.css({ fontSize: '18px' });
+
+$foo.css({ 'font-size': '18px' });
+    
+    
+====================================
+$('.foo').css({ fontSize: '18px' }).find('.baz').show();
+    
+    
+====================================
+// $('.foo').css({ fontsize: '18px' }).find('.bar').show();
+var $foo = $('.foo');
+console.log( $foo );
+$foo.css({ fontsize: '18px' });
+console.log( $foo.css('fontsize') );
+var $bar = $foo.find('.bar');
+console.log( $bar );
+$bar.show();
+    
+    
+====================================
+function delayLog( text ) {
+    setTimeout( "$('#log').show().html(text)", 1000 );
+}
+// ... and somewhere else in the code ...
+delayLog( 'Hello' );
+    
+    
+====================================
+function delayLog( text ) {
+    setTimeout( "alert(text)", 1000 );
+}
+    
+    
+====================================
+function delayLog( text ) {
+    setTimeout( function() {
+        alert(text);
+    }, 1000 );
+}
+    
+    
+====================================
+function delayLog( text ) {
+    setTimeout( function() {
+        $('#log').show().html(text);
+    }, 1000 );
+}
+    
+    
+====================================
+(function(){var l=this,g,y=l.jQuery,p=l.$,o=l.jQuery=l.$=function(E,F)...
+    
+    
+====================================
+<!-- Comment out the minified jQuery -->
+<!--
+<script type="text/javascript"
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js
+"></script>
+-->
+<!-- Use the uncompressed version for testing -->
+<script type="text/javascript"
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script>
+    
+    
+====================================
+// Comment out the minified jQuery
+// google.load( 'jquery', '1.3.2' );
+// Use the uncompressed version for testing
+google.load( 'jquery', '1.3.2', { uncompressed:true });
+    
+    
+====================================
+$('#test').html( 'test' ).show();
+    
+    
+====================================
+var $test = $('#test');
+$test.html( 'test' );
+debugger;
+$test.show();
+    
+    
+====================================
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="superfish.js"></script>
+<script type="text/javascript" src="cycle.js"></script>
+<script type="text/javascript" src="history.js"></script>
+<script type="text/javascript" src="hoverintent.js"></script>
+<script type="text/javascript" src="jcarousel.js"></script>
+<script type="text/javascript" src="thickbox.js"></script>
+<script type="text/javascript" src="validate.js"></script>
+    
+    
+====================================
+$(document).ready( function() {
+    $.getJSON( 'myjson.php?q=test', function( json ) {
+        $('#demo').html( json.foo );
+    });
+});
+    
+    
+====================================
+{
+    "foo": "bar"
+}
+    
+    
+====================================
+<script type="text/javascript"
+
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+<script type="text/javascript" src="plugins.js">
+</script>
+    
+    
+====================================
+<script type="text/javascript" src="allmyscripts.js"></script>
+    
+    
+====================================
+<script type="text/javascript">
+    var myJson = {
+        "foo": "bar"
+    };
+</script>
+    
+    
+====================================
+$(document).ready( function() {
+    $('#demo').html( myJson.foo );
+});
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="en-us" />
+    <title>Menu Demo</title>
+
+    <style type="text/css">
+        .menu {
+            background-color: #ccc;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 10em;
+        }
+        .menu li {
+            margin: 0;
+            padding: 5px;
+        }
+        .menu a {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+<ul class="menu">
+    <li onmouseover="this.style.backgroundColor='#999';"
+        onmouseout="this.style.backgroundColor='transparent';">
+        <a href="download.html">Download</a>
+    </li>
+    <li onmouseover="this.style.backgroundColor='#999';"
+        onmouseout="this.style.backgroundColor='transparent';">
+        <a href="documentation.html">Documentation</a>
+    </li>
+    <li onmouseover="this.style.backgroundColor='#999';"
+        onmouseout="this.style.backgroundColor='transparent';">
+        <a href="tutorials.html">Tutorials</a>
+    </li>
+</ul>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="en-us" />
+    <title>Menu Demo</title>
+
+    <style type="text/css">
+        .menu {
+            background-color: #ccc;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 10em;
+        }
+        .menu li {
+            margin: 0;
+            padding: 5px;
+        }
+        .menu a {
+            color: #333;
+        }
+        .menuHover {
+            background-color: #999;
+        }
+    </style>
+
+    <script type="text/javascript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js">
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready( function() {
+            $('li').hover(
+                function() {
+                    $(this).addClass('menuHover');
+                },
+                function() {
+                    $(this).removeClass('menuHover');
+                });
+        });
+
+    </script>
+</head>
+<body>
+
+<ul class="menu">
+    <li><a href="download.html">Download</a></li>
+    <li><a href="documentation.html">Documentation</a></li>
+    <li><a href="tutorials.html">Tutorials</a></li>
+</ul>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="en-us" />
+    <title>Task List</title>
+
+    <script type="text/javascript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js">
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready( function() {
+            var url = $('form').attr('action');
+            $(':checkbox').click(function() {
+                $.post(url, this.name + '=1');
+                $(this).parent().slideUp(function() {
+                    $(this).remove();
+                });
+            });
+            $(':submit').hide();
+        });
+
+    </script>
+</head>
+<body>
+<form method="post" action="tasklist.html">
+    <ul>
+        <li>
+            <input type="checkbox" name="task1" id="task1" />
+            <label for="task1">Learn jQuery</label>
+        </li>
+        <li>
+            <input type="checkbox" name="task2" id="task2" />
+            <label for="task2">Learn Progressive Enhancement</label>
+        </li>
+        <li>
+            <input type="checkbox" name="task3" id="task3" />
+            <label for="task3">Build Great Websites</label>
+        </li>
+    </ul>
+    <input type="submit" value="Mark Complete" />
+</form>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="en-us" />
+    <title>Dialog Demo</title>
+
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+            width: 500px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 2px 5px;
+        }
+        .dialog {
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #000;
+            width: 400px;
+            padding: 10px;
+        }
+        .dialog h1 {
+            margin: 0 0 10px;
+        }
+        .dialog .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+
+    <script type="text/javascript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js">
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready( function() {
+            function close() {
+                dialog.hide();
+                $('#add-user').focus();
+            }
+
+            var title = $('<h1>Add User</h1>')
+                    .attr('id', 'add-user-title'),
+
+                closeButton = $('<button>close</button>')
+                    .addClass('close')
+                    .click(close)
+                    .appendTo(title),
+
+                content = $('<div/>')
+                    .load('add.html'),
+
+                dialog = $('<div/>')
+                    .attr({
+                        role: 'dialog',
+                        'aria-labelledby': 'add-user-title'
+                    })
+                    .addClass('dialog')
+                    .keypress(function(event) {
+                        if (event.keyCode == 27) {
+                            close();
+                        }
+                    })
+                    .append(title)
+                    .append(content)
+                    .hide()
+                    .appendTo('body');
+
+            $('#add-user').click(function() {
+                var height = dialog.height(),
+                    width = dialog.width();
+
+                dialog
+                    .css({
+                        top: ($(window).height() - height) / 2
+                            + $(document).scrollTop(),
+                        left: ($(window).width() - width) / 2
+                            + $(document).scrollLeft()
+                    })
+                    .show();
+
+                dialog.find('#username').focus();
+
+                return false;
+            });
+        });
+
+    </script>
+</head>
+<body>
+<h1>Users</h1>
+<a id="add-user" href="add.html">add a user</a>
+<table>
+<thead>
+    <tr>
+        <th>User</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>jsmith</td>
+        <td>John</td>
+        <td>Smith</td>
+    </tr>
+    <tr>
+        <td>mrobertson</td>
+        <td>Mike</td>
+        <td>Robertson</td>
+    </tr>
+    <tr>
+        <td>arodriguez</td>
+        <td>Angela</td>
+        <td>Rodriguez</td>
+    </tr>
+    <tr>
+        <td>lsamseil</td>
+        <td>Lee</td>
+        <td>Samseil</td>
+    </tr>
+    <tr>
+        <td>lweick</td>
+        <td>Lauren</td>
+        <td>Weick</td>
+    </tr>
+</tbody>
+</table>
+</body>
+</html>
+    
+    
+==================

@@ -1,0 +1,539 @@
+chapter: Beyond the Basics
+==================
+var urls = [];
+ $("div#post a[href]").each(function(i) {
+    urls[i] = $(this).attr('href');
+});
+
+alert(urls.join(","));
+    
+    
+====================================
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Chapter 3 - Recipe 1 - Looping through a set of selected results</title>
+    <style type="text/css">
+        .even { background-color: #ffffff; }
+        .odd  { background-color: #cccccc; }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" 
+type="text/javascript"></script>
+    <script type="text/javascript">
+        (function($){
+            $(document).ready(function() {
+                $("ul > li").each(function(i) {
+                    if (i % 2 == 1)
+                    {
+                        $(this).addClass("odd");
+                    }
+                    else
+                    {
+                        $(this).addClass("even");
+                    }
+                });
+            });
+        })(jQuery);
+    </script>
+</head>
+<body>
+    <h2>Family Members</h2>
+    <ul>
+        <li>Ralph</li>
+        <li>Hope</li>
+        <li>Brandon</li>
+        <li>Jordan</li>
+        <li>Ralphie</li>
+    </ul>
+</body>
+</html>
+    
+    
+====================================
+$("ul > li:odd").addClass("odd");
+    
+    
+====================================
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Chapter 3 - Recipe 2 - Reducing the selection set to specified item</title>
+    <script type="text/javascript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        (function($){
+            $(document).ready(function(){
+                $("ol#east > li").eq(7).css("border-bottom", "1px solid #000000");
+                $("ol#west > li").eq(7).css("border-bottom", "1px solid #000000");
+            });
+        })(jQuery);
+    </script>
+</head>
+<body>
+    <h2>Eastern Conference</h2>
+    <ol id="east">
+        <li>Boston Bruins</li>
+        <li>Washington Capitals</li>
+        <li>New Jersey Devils</li>
+        <li>Pittsburgh Penguins</li>
+        <li>Philadelphia Flyers</li>
+        <li>Carolina Hurricanes</li>
+        <li>New York Rangers</li>
+        <li>Montreal Canadians</li>
+        <li>Florida Panthers</li>
+        <li>Buffalo Sabres</li>
+        <li>Ottawa Senators</li>
+        <li>Toronto Maple Leafs</li>
+        <li>Atlanta Thrashers</li>
+        <li>Tampa Bay Lightning</li>
+        <li>New York Islanders</li>
+    </ol>
+
+    <h2>Western Conference</h2>
+    <ol id="west">
+        <li>San Jose Sharks</li>
+        <li>Detroit Red Wings</li>
+        <li>Vancouver Canucks</li>
+        <li>Chicago Blackhawks</li>
+        <li>Calgary Flames</li>
+        <li>St. Louis Blues</li>
+        <li>Columbus Blue Jackets</li>
+        <li>Anaheim Ducks</li>
+        <li>Minnesota Wild</li>
+        <li>Nashville Predators</li>
+        <li>Edmonton Oilers</li>
+        <li>Dallas Stars</li>
+        <li>Phoenix Coyotes</li>
+        <li>Los Angeles Kings</li>
+        <li>Colorado Avalanche</li>
+    </ol>
+</body>
+</html>
+    
+    
+====================================
+$("li").css("background-color","#CCCCCC").eq(0).css("background-color","#ff0000");
+    
+    
+====================================
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Chapter 3 - Recipe 3 - Converting a selected jQuery object into a 
+raw DOM object</title>
+    <script type="text/javascript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        (function($){
+            $(document).ready(function(){
+                var inner = $("div")[0].innerHTML;
+                alert(inner);
+            });
+        })(jQuery);
+    </script>
+</head>
+<body>
+    <div>
+        <p>
+            jQuery, the write less, do more JavaScript library.  Saving the day 
+for web developers since 2006.
+        </p>
+    </div>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Chapter 3 - Recipe 3 - Converting a selected jQuery object into a raw DOM 
+object</title>
+    <script type="text/javascript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript">
+    <!--
+        (function($){
+            $(document).ready(function(){
+                var lis = $("ol li").get().reverse();
+                $("ol").empty();
+                $.each(lis, function(i){
+                   $("ol").append("<li>" + lis[i].innerHTML + "</li>");
+                });
+            });
+        })(jQuery);
+    //-->
+    </script>
+</head>
+<body>
+    <h2>New York Yankees - Batting Line-up</h2>
+    <ol>
+        <li>Jeter</li>
+        <li>Damon</li>
+        <li>Teixeira</li>
+        <li>Posada</li>
+        <li>Swisher</li>
+        <li>Cano</li>
+        <li>Cabrera</li>
+        <li>Molina</li>
+        <li>Ransom</li>
+    </ol>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Chapter 3 - Recipe 4 - Getting the index of an item in a selection</title>
+    <script type="text/javascript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript">
+    <!--
+        (function($){
+            $(document).ready(function(){
+                $("div").click(function() {
+                    alert("You clicked on div with an index of " + 
+$("div").index(this));
+                });
+            });
+        })(jQuery);
+    //-->
+    </script>
+</head>
+<body>
+    <div>click me</div>
+    <div class="test">test</div>
+    <div>click me</div>
+</body>
+</html>
+    
+    
+====================================
+var test = $("div.test");
+
+$("div").each(function(i){
+    if ($(this).index(test) >= 0)
+    {
+        //do something
+    }
+    else
+    {
+        //do something else
+    }
+});
+    
+    
+====================================
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Chapter 3 - Recipe 5 - Making a unique array of values from an existing 
+array</title>
+    <script type="text/javascript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript">
+    <!--
+        (function($){
+            $(document).ready(function(){
+                var arr = $.map($("LI"), function(item, index){
+                    while (index < 3)
+                    {
+                        return $(item).html();
+                    }
+                    return null;
+                });
+
+                $(document.body).append("<span>The first three authors are: " + 
+arr.join(", ") + "</span>");
+            });
+        })(jQuery);
+    //-->
+    </script>
+</head>
+<body>
+    <h1>jQuery Cookbook Authors</h1>
+    <ol>
+        <li>John Resig</li>
+        <li>Cody Lindley</li>
+        <li>James Padolsey</li>
+        <li>Ralph Whitbeck</li>
+        <li>Jonathan Sharp</li>
+        <li>Michael Geary</li>
+        <li>Scott González</li>
+        <li>Rebecca Murphey</li>
+        <li>Remy Sharp</li>
+        <li>Ariel Flesler</li>
+        <li>Brian Cherne</li>
+        <li>Jörn Zaefferer</li>
+        <li>Mike Hostetler</li>
+        <li>Nathan Smith</li>
+        <li>Richard D. Worth</li>
+        <li>Maggie Wachs</li>
+        <li>Scott Jehl</li>
+        <li>Todd Parker</li>
+        <li>Patty Toland</li>
+        <li>Rob Burns</li>
+    </ol>
+</body>
+</html>
+    
+    
+====================================
+$.map([1,2,3], function(n,i) { return n+i;});
+
+//Output: [1,3,5]
+    
+    
+====================================
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Chapter 3 - Recipe 6 - Performing an action on a subset of the selected 
+set</title>
+    <script type="text/javascript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript">
+    <!--
+        (function($){
+            $(document).ready(function(){
+
+  $("p").slice(1,3).wrap("<i></i>");
+            });
+        })(jQuery);
+    //-->
+   </script>
+</head>
+<body>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget nibh ut 
+tortor egestas pharetra. Nullam a hendrerit urna. Aenean augue arcu, vestibulum eget 
+faucibus nec, auctor vel velit. Fusce eget velit non nunc auctor rutrum id et ante. 
+Donec nec malesuada arcu. Suspendisse eu nibh nulla, congue aliquet metus. Integer 
+porta dignissim magna, eu facilisis magna luctus ac. Aliquam convallis condimentum 
+purus, at lacinia nisi semper volutpat. Nulla non risus justo. In ac elit vitae elit 
+posuere adipiscing.
+    </p>
+    <p>
+        Aliquam gravida metus sit amet orci facilisis eu ultricies risus iaculis. Nunc 
+tempus tristique magna, molestie adipiscing nibh bibendum vel. Donec sed nisi luctus 
+sapien scelerisque pretium id eu augue. Mauris ipsum arcu, feugiat non tempor 
+tincidunt, tincidunt sit amet turpis. Vestibulum scelerisque rutrum luctus. Curabitur 
+eu ornare nisl. Cras in sem ut eros consequat fringilla nec vitae felis. Nulla 
+facilisi. Mauris suscipit feugiat odio, a condimentum felis luctus in. Nulla interdum 
+dictum risus, accumsan dignissim tortor ultricies in. Duis justo mauris, posuere vel 
+convallis ut, auctor non libero. Ut a diam magna, ut egestas dolor. Nulla convallis, 
+orci in sodales blandit, lorem augue feugiat nulla, vitae dapibus mi ligula quis 
+ligula. Aenean mattis pulvinar est quis bibendum.
+    </p>
+    <p>
+        Donec posuere pulvinar ligula, nec sagittis lacus pharetra ac. Cras nec 
+tortor mi. Pellentesque et magna vel erat consequat commodo a id nunc. Donec velit 
+elit, vulputate nec tristique vitae, scelerisque ac sem. Proin blandit quam ut magna 
+ultrices porttitor. Fusce rhoncus faucibus tincidunt. Cras ac erat lacus, dictum 
+elementum urna. Nulla facilisi. Praesent ac neque nulla, in rutrum ipsum. Aenean 
+imperdiet, turpis sit amet porttitor hendrerit, ante dui eleifend purus, eu fermentum 
+dolor enim et elit.
+    </p>
+    <p>
+        Suspendisse facilisis molestie hendrerit. Aenean congue congue sapien, ac 
+luctus nulla rutrum vel. Fusce vitae dui urna. Fusce iaculis mattis justo sit amet 
+varius. Duis velit massa, varius in congue ut, tristique sit amet lorem. Curabitur 
+porta, mauris non pretium ultrices, justo elit tristique enim, et elementum tellus 
+enim sit amet felis. Sed sollicitudin rutrum libero sit amet malesuada. Duis vitae 
+gravida purus. Proin in nunc at ligula bibendum pharetra sit amet sit amet felis. 
+Integer ut justo at massa ullamcorper sagittis. Mauris blandit tortor lacus, 
+convallis iaculis libero. Etiam non pellentesque dolor. Fusce ac facilisis ipsum. 
+Suspendisse eget ornare ligula. Aliquam erat volutpat. Aliquam in porttitor purus.
+    </p>
+    <p>
+        Suspendisse facilisis euismod purus in dictum. Vivamus ac neque ut sapien 
+fermentum placerat. Sed malesuada pellentesque tempor. Aenean cursus, metus a 
+lacinia scelerisque, nulla mi malesuada nisi, eget laoreet massa risus eu felis. 
+Vivamus imperdiet rutrum convallis. Proin porta, nunc a interdum facilisis, nunc dui 
+aliquet sapien, non consectetur ipsum nisi et felis. Nullam quis ligula nisi, sed 
+scelerisque arcu. Nam lorem arcu, mollis ac sodales eget, aliquet ac eros. Duis 
+hendrerit mi vitae odio convallis eget lobortis nibh sodales. Nunc ut nunc vitae 
+nibh scelerisque tempor at malesuada sapien. Nullam elementum rutrum odio nec aliquet.
+    </p>
+</body>
+</html>
+    
+    
+====================================
+<script type="text/javascript" 
+src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.3/prototype.js"></script>
+<script type="text/javascript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    
+    
+====================================
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Chapter 3 - Recipe 7 - Configuring jQuery to free up a conflict with 
+another library</title>
+
+    <script type="text/javascript" 
+src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.3/prototype.js"></script>
+    <script type="text/javascript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript">
+    <!--
+        jQuery.noConflict();
+
+        // Use jQuery via jQuery(...)
+        jQuery(document).ready(function(){
+          jQuery("div#jQuery").css("font-weight","bold");
+        });
+
+        // Use Prototype with $(...), etc.
+        document.observe("dom:loaded", function() {
+            $('prototype').setStyle({
+               fontSize: '10px'
+            });
+        });
+    //-->
+   </script>
+
+</head>
+<body>
+    <div id="jQuery">Hello, I am a jQuery div</div>
+    <div id="prototype">Hello, I am a Prototype div</div>
+</body>
+</html>
+    
+    
+====================================
+     var j = jQuery.noConflict();
+
+     j(document).ready(function(){
+       j("div#jQuery").css("font-weight","bold");
+     });
+    
+    
+====================================
+    jQuery.noConflict();
+
+    (function($){
+        $("div#jQuery").css("font-weight","bold");
+    })(jQuery);
+    
+    
+====================================
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Chapter 3 - Recipe 8 - Adding Functionality with Plugins</title>
+    <style type="text/css">
+        .pics {
+            height:  232px;
+            width:   232px;
+            padding: 0;
+            margin:  0;
+        }
+
+        .pics img {
+            padding: 15px;
+            border:  1px solid #ccc;
+            background-color: #eee;
+            width:  200px;
+            height: 200px;
+            top:  0;
+            left: 0
+        }
+    </style>
+    <script type="text/javascript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <!--Now include your plugin declarations after you've declared jQuery on the page-->
+    <script type="text/javascript" src="scripts/2.8/jquery.cycle.all.min.js?
+v2.60"></script>
+    <script type="text/javascript">
+    <!--
+        (function($){
+            $(document).ready(function(){
+                $('.pics').cycle('fade');
+            });
+        })(jQuery);
+    //-->
+    </script>
+
+</head>
+<body>
+    <div class="pics">
+        <img src="images/2.8/beach1.jpg" width="200" height="200" alt="Beach 1" />
+        <img src="images/2.8/beach2.jpg" width="200" height="200" alt="Beach 2" />
+        <img src="images/2.8/beach3.jpg" width="200" height="200" alt="Beach 3" />
+    </div>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Chapter 3 - Recipe 9 - Determining the exact query that was used</title>
+    <script type="text/javascript" 
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript">
+    <!--
+        (function($){
+            $.fn.ShowQuery = function(i) {
+                alert("$(\""+ $(this).selector + "\", " + $(this).context +")");
+                if (i < 3)
+                {
+                    $($(this).selector, $(this).context).ShowQuery(i+1);
+                }
+            };
+            $("div").ShowQuery(1);
+        })(jQuery);
+    //-->
+    </script>
+</head>
+<body>
+    <div>
+        This is a div.
+    </div>
+</body>
+</html>
+    
+    
+====================================
+$("div").find("a").selector;
+
+//returns: "div a"
+    
+    
+==================

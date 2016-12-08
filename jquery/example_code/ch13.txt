@@ -1,0 +1,1110 @@
+chapter: Interface Components from Scratch
+==================
+// Does element exist?
+if (!$('#foobar').length) {
+
+ // If not, exit.
+ return;
+}
+    
+    
+====================================
+// Nofollow.
+this.blur();
+return false;
+    
+    
+====================================
+// Kick things off.
+$(document).ready(function() {
+ init_foobar();
+});
+    
+    
+====================================
+<script type="text/javascript">
+/* <![CDATA[ */
+document.write('<link rel="stylesheet" type="text/css" href="preload.css" />');
+/* ]]> */
+</script>
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="false" />
+<title>jQuery Cookbook - Ch.13 - Creating Custom Tooltips</title>
+<link rel="stylesheet" type="text/css" href="../_common/basic.css" />
+<link rel="stylesheet" type="text/css" href="tooltip.css" />
+<script type="text/javascript" src="../_common/jquery.js"></script>
+<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body>
+<div id="container">
+  <p>
+    <span class="tooltip" title="This is my title. There are many like it, but 
+        this one is mine. You will see it as you hover your mouse over me.">
+      Mouse over me to read my title in a tooltip!
+    </span>
+  </p>
+  <p>
+    <span class="tooltip" title="This is more content that will appear in a 
+        tooltip. Don't be alarmed, because this is only a test of a tooltip.">
+      Guess what? I have a tooltip too. Please read it.
+    </span>
+  </p>
+</div>
+</body>
+</html>
+    
+    
+====================================
+// Initialize.
+function init_tooltip() {
+
+  // Does element exist?
+  if (!$('.tooltip').length) {
+
+    // If not, exit.
+    return;
+  }
+
+  // Insert tool tip (hidden).
+  $('body').append('<div id="tooltip_outer"><div id="tooltip_inner"></div></div>');
+
+  // Empty variables.
+  var $tt_title, $tt_alt;
+
+  var $tt = $('#tooltip_outer');
+  var $tt_i = $('#tooltip_inner');
+
+  // Watch for hover.
+  $('.tooltip').hover(function() {
+
+    // Store title, empty it.
+    if ($(this).attr('title')) {
+      $tt_title = $(this).attr('title');
+      $(this).attr('title', '');
+    }
+
+    // Store alt, empty it.
+    if ($(this).attr('alt')) {
+      $tt_alt = $(this).attr('alt');
+      $(this).attr('alt', '');
+    }
+
+    // Insert text.
+    $tt_i.html($tt_title);
+
+    // Show tool tip.
+    $tt.show();
+  },
+  function() {
+
+    // Hide tool tip.
+    $tt.hide();
+
+    // Empty text.
+    $tt_i.html('');
+
+    // Fix title.
+    if ($tt_title) {
+      $(this).attr('title', $tt_title);
+    }
+
+    // Fix alt.
+    if ($tt_alt) {
+      $(this).attr('alt', $tt_alt);
+    }
+
+  // Watch for movement.
+  }).mousemove(function(ev) {
+
+    // Event coordinates.
+    var $ev_x = ev.pageX;
+    var $ev_y = ev.pageY;
+
+    // Tool tip coordinates.
+    var $tt_x = $tt.outerWidth();
+    var $tt_y = $tt.outerHeight();
+
+    // Body coordinates.
+    var $bd_x = $('body').outerWidth();
+    var $bd_y = $('body').outerHeight();
+
+    // Move tool tip.
+    $tt.css({
+      'top': $ev_y + $tt_y > $bd_y ? $ev_y − $tt_y : $ev_y,
+      'left': $ev_x + $tt_x + 20 > $bd_x ? $ev_x − $tt_x − 10 : $ev_x + 15
+    });
+  });
+}
+
+// Kick things off.
+$(document).ready(function() {
+  init_tooltip();
+});
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="false" />
+<title>jQuery Cookbook - Ch.13 - Navigating a File Tree Expander</title>
+<link rel="stylesheet" type="text/css" href="../_common/basic.css" />
+<link rel="stylesheet" type="text/css" href="tree.css" />
+<script type="text/javascript">
+/* <![CDATA[ */
+document.write('<link rel="stylesheet" type="text/css" href="preload.css" />');
+/* ]]> */
+</script>
+<script type="text/javascript" src="../_common/jquery.js"></script>
+<script type="text/javascript" src="tree.js"></script>
+</head>
+<body>
+<div id="container">
+  <p class="tree_controls">
+    <a href="#" class="expand_all">Expand all</a> ~
+    <a href="#" class="collapse_all">Collapse all</a>
+  </p>
+  <ul class="tree">
+    <li>
+      <a href="#" class="tree_trigger">&nbsp;</a> Primary
+      <ul class="tree_expanded">
+        <li>
+          <a href="#" class="tree_trigger">&nbsp;</a> Secondary
+          <ul class="tree_expanded">
+            <li>
+              <a href="#" class="tree_trigger">&nbsp;</a> Tertiary
+              <ul>
+                <li>
+                  <span class="tree_slug">&nbsp;</span> Quaternary
+                </li>
+                <li>
+                  <span class="tree_slug">&nbsp;</span> Quaternary
+                </li>
+                <li>
+                  <span class="tree_slug">&nbsp;</span> Quaternary
+                </li>
+                <li>
+                  <span class="tree_slug">&nbsp;</span> Quaternary
+                </li>
+                <li>
+                  <span class="tree_slug">&nbsp;</span> Quaternary
+                </li>
+              </ul>
+              ...
+            </li>
+            ...
+          </ul>
+          ...
+        </li>
+        ...
+      </ul>
+      ...
+    </li>
+    ...
+  </ul>
+</div>
+...
+</body>
+</html>
+    
+    
+====================================
+// Initialize.
+function init_tree() {
+
+  // Does element exist?
+  if (!$('ul.tree').length) {
+
+    // If not, exit.
+    return;
+  }
+
+  // Expand and collapse.
+  $('p.tree_controls a.expand_all, p.tree_controls a.collapse_all').click(function() {
+
+    // Look at the class.
+    if ($(this).hasClass('expand_all')) {
+        $(this).parent('p').next('ul').find('a.tree_trigger')
+               .addClass('trigger_expanded')
+               .end().find('ul').addClass('tree_expanded');
+        return false;
+    } else {
+        $(this).parent('p').next('ul').find('a.tree_trigger')
+               .removeClass('trigger_expanded')
+               .end().find('ul').removeClass('tree_expanded');
+    }
+
+    // Nofollow.
+    this.blur();
+    return false;
+  });
+
+  // Listen for tree clicks.
+  $('ul.tree a.tree_trigger').live('click', function() {
+
+    // Is the next <ul> hidden?
+    if ($(this).next('ul').is(':hidden')) {
+      $(this).addClass('trigger_expanded').next('ul')
+             .addClass('tree_expanded');
+    } else {
+      $(this).removeClass('trigger_expanded').next('ul')
+             .removeClass('tree_expanded');
+    }
+
+    // Nofollow.
+    this.blur();
+    return false;
+  });
+
+  // Add class for last <li>.
+  $('ul.tree li:last-child').addClass('last');
+
+  // Change state of trigger.
+  $('ul.tree_expanded').prev('a').addClass('trigger_expanded');
+}
+
+// Kick things off.
+$(document).ready(function() {
+  init_tree();
+});
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="false" />
+<title>jQuery Cookbook - Ch.13 - Expanding an Accordion</title>
+<link rel="stylesheet" type="text/css" href="../_common/basic.css" />
+<link rel="stylesheet" type="text/css" href="accordion.css" />
+<script type="text/javascript">
+/* <![CDATA[ */
+document.write('<link rel="stylesheet" type="text/css" href="preload.css" />');
+/* ]]> */
+</script>
+<script type="text/javascript" src="../_common/jquery.js"></script>
+<script type="text/javascript" src="accordion.js"></script>
+</head>
+<body>
+<div id="container">
+  <dl class="accordion">
+    <dt>
+      <a href="#"><span></span> Title goes here</a>
+    </dt>
+    <dd>
+      <p>
+        Lorem ipsum...
+      </p>
+    </dd>
+    <dt>
+      <a href="#"><span></span> Title goes here</a>
+    </dt>
+    <dd>
+      <p>
+        Lorem ipsum...
+      </p>
+    </dd>
+    <dt>
+      <a href="#"><span></span> Title goes here</a>
+    </dt>
+    <dd>
+      <p>
+        Lorem ipsum...
+      </p>
+    </dd>
+  </dl>
+  ...
+</div>
+</body>
+</html>
+    
+    
+====================================
+// Initialize.
+function init_accordion() {
+
+  // Does element exist?
+  if (!$('dl.accordion').length) {
+
+    // If not, exit.
+    return;
+  }
+
+  // Gather all accordions.
+  $('dl.accordion').each(function() {
+
+    // Reveal first accordion item.
+    $(this).find('dt:first a').addClass('accordion_expanded')
+           .end().find('dd:first').show();
+
+    // Added to round corners via CSS.
+    $(this).find('dt:last').addClass('last');
+  });
+
+  // Event listener for click.
+  $('dl.accordion dt a').click(function() {
+
+    // Get parent <dl>.
+    var $dl = $(this).parents('dl:first');
+
+    // Get the next <dd>.
+    var $dd = $(this).parent('dt').next('dd');
+
+    // Class final <dt>.
+    function findLast() {
+      if ($dl.find('dd:last').is(':hidden')) {
+        $dl.find('dt:last').addClass('last');
+      }
+    }
+
+    // Is it visible?
+    if ($dd.is(':hidden')) {
+
+      // Expand the <dd>, hide others.
+      $dd.slideDown('fast').siblings('dd:visible').slideUp('fast', findLast);
+
+      // Change arrow state, remove class="last" from <dt>.
+      $(this).addClass('accordion_expanded').parent('dt')
+             .removeClass('last').siblings('dt').find('a')
+             .removeClass('accordion_expanded');
+    }
+
+    // Nofollow.
+    this.blur();
+    return false;
+  });
+}
+
+// Kick things off.
+$(document).ready(function() {
+  init_accordion();
+});
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="false" />
+<title>jQuery Cookbook - Ch.13 - Tabbing Through a Document</title>
+<link rel="stylesheet" type="text/css" href="../_common/basic.css" />
+<link rel="stylesheet" type="text/css" href="tabs.css" />
+<script type="text/javascript">
+/* <![CDATA[ */
+document.write('<link rel="stylesheet" type="text/css" href="preload.css" />');
+/* ]]> */
+</script>
+<script type="text/javascript" src="../_common/jquery.js"></script>
+<script type="text/javascript" src="tabs.js"></script>
+</head>
+<body>
+<div id="container">
+  <ul class="tabs">
+    <li>
+      <a href="#tab_content_primary_01" class="current">Tab Link 01</a>
+    </li>
+    <li>
+      <a href="#tab_content_primary_02">Tab Link 02</a>
+    </li>
+    <li>
+      <a href="#tab_content_primary_03">Tab Link 03</a>
+    </li>
+    <li>
+      <a href="#tab_content_primary_04">Tab Link 04</a>
+    </li>
+    <li>
+      <a href="#tab_content_primary_05">Tab Link 05</a>
+    </li>
+  </ul>
+  <div class="tab_content_wrap">
+    <div id="tab_content_primary_01" class="tab_content">
+      <p>
+        <strong>Content Area 01</strong>
+      </p>
+      <p>
+        Lorem ipsum...
+      </p>
+    </div>
+    <div id="tab_content_primary_02" class="tab_content">
+      <p>
+        <strong>Content Area 02</strong>
+      </p>
+      <p>
+        Duis ultricies ante...
+      </p>
+    </div>
+    <div id="tab_content_primary_03" class="tab_content">
+      <p>
+        <strong>Content Area 03</strong>
+      </p>
+      <p>
+        Morbi fringilla...
+      </p>
+    </div>
+    <div id="tab_content_primary_04" class="tab_content">
+      <p>
+        <strong>Content Area 04</strong>
+      </p>
+      <p>
+        Sed tempor...
+      </p>
+    </div>
+    <div id="tab_content_primary_05" class="tab_content">
+      <p>
+        <strong>Content Area 05</strong>
+      </p>
+      <p>
+        Nulla facilisi...
+      </p>
+    </div>
+  </div>
+  ...
+</div>
+</body>
+</html>
+    
+    
+====================================
+// Initialize.
+function init_tabs() {
+
+  // Does element exist?
+  if (!$('ul.tabs').length) {
+
+    // If not, exit.
+    return;
+  }
+
+  // Reveal initial content area(s).
+ $('div.tab_content_wrap').each(function() {
+    $(this).find('div.tab_content:first').show();
+  });
+
+  // Listen for click on tabs.
+  $('ul.tabs a').click(function() {
+
+    // If not current tab.
+    if (!$(this).hasClass('current')) {
+
+      // Change the current indicator.
+      $(this).addClass('current').parent('li').siblings('li')
+             .find('a.current').removeClass('current');
+
+      // Show target, hide others.
+      $($(this).attr('href')).show().siblings('div.tab_content').hide();
+    }
+
+    // Nofollow.
+    this.blur();
+    return false;
+  });
+}
+
+// Kick things off.
+$(document).ready(function() {
+  init_tabs();
+});
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="false" />
+<title>jQuery Cookbook - Ch.13 - Displaying a Simple Modal Window</title>
+<link rel="stylesheet" type="text/css" href="../_common/basic.css" />
+<link rel="stylesheet" type="text/css" href="modal.css" />
+<script type="text/javascript" src="../_common/jquery.js"></script>
+<script type="text/javascript" src="modal.js"></script>
+</head>
+<body>
+<div id="container">
+  <a href="#modal_anchor" class="modal">In-page</a>
+  | <a href="modal_markup.html#load_me" class="modal">Remote markup</a>
+  | <a href="modal_text.txt" class="modal">Remote text</a>
+  | <a href="../_common/photo_1.jpg" class="modal" title="Baltic Sea - Estonia">Image 
+file</a>.
+  <br />
+  <br />
+  <select><option>-- SHOULD BE OVERLAPPED IN IE6 --</option></select>
+  <br />
+  <br />
+  <div id="modal_anchor">
+    <p>
+      This content will be copied into the modal window, if its #anchor is targeted.
+    </p>
+  </div>
+  Lots of line breaks, to simulate scrolling content...
+  <br />
+  It's the end of the world, as we know it, and I feel fine.
+</div>
+</body>
+</html>
+    
+    
+====================================
+// Initialize.
+function init_modal() {
+
+  // Does element exist?
+  if (!$('a.modal').length) {
+
+    // If not, exit.
+    return;
+  }
+
+  // Detect IE6 (boolean).
+  var $IE6 = typeof document.addEventListener !== 'function' && !window.XMLHttpRequest;
+
+  // Do some math.
+  function sizeModal() {
+
+    // Modal dimensions.
+    var $modal = $('#modal_window');
+    var $modal_width = $modal.outerWidth();
+    var $modal_height = $modal.outerHeight();
+    var $modal_top = '-' + Math.floor($modal_height / 2) + 'px';
+    var $modal_left = '-' + Math.floor($modal_width / 2) + 'px';
+
+    // Set modal.
+    $('#modal_window').css('margin-top', $modal_top) 
+                      .css('margin-left', $modal_left);
+  }
+
+  /* For IE6. */
+  function positionModal() {
+    // Force modal into place.
+    $('#modal_wrapper').css('top', $(document).scrollTop() + 'px');
+  }
+
+  // Reveal the modal.
+  function showModal() {
+    if ($IE6) {
+      positionModal();
+    }
+
+    // Unveil the wrapper.
+    $('#modal_wrapper').show();
+
+    // Size it.
+    sizeModal();
+
+    // Reveal modal window.
+    $('#modal_window').css('visibility', 'visible').show();
+
+    // Resize as images load.
+    $('#modal_content img').each(function() {
+      $(this).load(function() {
+        $(this).removeClass('modal_placeholder').show();
+        sizeModal();
+      });
+    });
+  }
+
+  // Insert modal at end of </body>.
+  $('body').append(' 
+                    <div id="modal_wrapper"> 
+                      <!--[if IE 6]> 
+                        <iframe id="modal_iframe"></iframe> 
+                      <![endif]--> 
+                      <div id="modal_overlay"></div> 
+                      <div id="modal_window"> 
+                        <div id="modal_bar"> 
+                          <strong>Modal window</strong> 
+                          <a href="#" id="modal_close">Close</a> 
+                        </div> 
+                        <div id="modal_content"></div> 
+                    </div> 
+  ');
+
+  // Look for modal links.
+  $('a.modal').click(function() {
+
+    // Check the href="..."
+    var $the_link = $(this).attr('href');
+
+    // Determine link target.
+    if ($the_link.match(/^#./)) {
+
+      // Assume #anchor content.
+      $('#modal_content').html($($(this).attr('href')).html());
+      showModal();
+
+    } else if ($the_link.match(/.jpg$/) || 
+               $the_link.match(/.png$/) || 
+               $the_link.match(/.gif$/)) {
+
+      // Assume image content.
+      $('#modal_content').html('
+        <p id="modal_image_wrapper"> 
+          <img src="' + $the_link + '" class="modal_placeholder" /> 
+        </p> 
+      ');
+      showModal();
+
+    } else {
+
+      // Assume external Ajax content.
+      $('#modal_content').load($(this).attr('href') 
+                         .replace('#', ' #'), '', showModal);
+    }
+
+    // Determine modal title.
+    if ($(this).attr('title')) {
+
+      // Insert title.
+      $('#modal_bar strong').html($(this).attr('title'));
+
+    } else if ($(this).html() !== '') {
+
+      // Insert link text.
+      $('#modal_bar strong').html($(this).html());
+    }
+
+    // Nofollow.
+    this.blur();
+    return false;
+  });
+
+  // Hide modal elements.
+  $('#modal_overlay, #modal_close').click(function() {
+
+    // Hide the modal.
+    $('#modal_wrapper').hide();
+
+    // Hide, because images might load later.
+    $('#modal_window').css('visibility', 'hidden');
+
+    // Unbind image listeners.
+    $('#modal_content img').each(function() {
+      $(this).unbind();
+    });
+
+    // Destroy modal content.
+    $('#modal_content').html('');
+
+    // Reset modal title.
+    $('#modal_bar strong').html('Modal window');
+
+    // Nofollow.
+    this.blur();
+    return false;
+  });
+
+  // Listen for browser scroll, if IE6.
+  if ($IE6) {
+    $(window).scroll(function() {
+      if ($('#modal_wrapper').is(':visible')) {
+        positionModal();
+      }
+    });
+  }
+}
+
+// Kick things off.
+$(document).ready(function() {
+  init_modal();
+});
+    
+    
+====================================
+<!--[if IE 6]><iframe id="modal_iframe"></iframe><![endif]-->
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="false" />
+<title>jQuery Cookbook - Ch.13 - Building Drop-Down Menus</title>
+<link rel="stylesheet" type="text/css" href="../_common/basic.css" />
+<link rel="stylesheet" type="text/css" href="dropdown.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="../_common/jquery.js"></script>
+<script type="text/javascript" src="dropdown.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="container">
+  <ul class="dropdown">
+    <li class="dropdown_trigger">
+      <a href="#">Nav Item</a>
+      <ul>
+        <li>
+          <a href="#">Subitem</a>
+        </li>
+        <li>
+          <a href="#">Subitem</a>
+        </li>
+        <li>
+          <a href="#">Subitem</a>
+        </li>
+        <li>
+          <a href="#">Subitem</a>
+        </li>
+        <li>
+          <a href="#">Subitem</a>
+        </li>
+      </ul>
+    </li>
+    ...
+  </ul>
+  <p>
+    This text is just here to show that the menu overlaps the content below it.
+  </p>
+  ...
+</div>
+</body>
+</html>
+    
+    
+====================================
+// Initialize.
+function init_dropdown() {
+
+  // Does element exist?
+  if (!$('ul.dropdown').length) {
+
+    // If not, exit.
+    return;
+  }
+
+  // Add listener for hover.
+  $('ul.dropdown li.dropdown_trigger').hover(function() {
+
+    // Show subsequent <ul>.
+    $(this).find('ul').fadeIn(1);
+  },
+  function() {
+
+    // Hide subsequent <ul>.
+    $(this).find('ul').hide();
+  });
+}
+
+// Kick things off.
+$(document).ready(function() {
+  init_dropdown();
+});
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="false" />
+<title>jQuery Cookbook - Ch.13 - Cross-fading Rotating Images</title>
+<link rel="stylesheet" type="text/css" href="../_common/basic.css" />
+<link rel="stylesheet" type="text/css" href="rotator.css" />
+<script type="text/javascript">
+/* <![CDATA[ */
+document.write('<link rel="stylesheet" type="text/css" href="preload.css" />');
+/* ]]> */
+</script>
+<script type="text/javascript" src="../_common/jquery.js"></script>
+<script type="text/javascript" src="rotator.js"></script>
+</head>
+<body>
+<div id="container">
+  <div id="rotator_wrapper">
+    <ul id="rotator">
+      <li id="photo_1">
+        <img src="../_common/photo_1.jpg" alt="Photo" />
+      </li>
+      <li id="photo_2">
+        <img src="../_common/photo_2.jpg" alt="Photo" />
+      </li>
+      <li id="photo_3">
+        <img src="../_common/photo_3.jpg" alt="Photo" />
+      </li>
+      <li id="photo_4">
+        <img src="../_common/photo_4.jpg" alt="Photo" />
+      </li>
+      <li id="photo_5">
+        <img src="../_common/photo_5.jpg" alt="Photo" />
+      </li>
+    </ul>
+    <ul id="rotator_controls">
+      <li>
+        <a href="#photo_1" class="current">1</a>
+      </li>
+      <li>
+        <a href="#photo_2">2</a>
+      </li>
+      <li>
+        <a href="#photo_3">3</a>
+      </li>
+      <li>
+        <a href="#photo_4">4</a>
+      </li>
+      <li>
+        <a href="#photo_5">5</a>
+      </li>
+    </ul>
+    <a href="#" id="rotator_play_pause">PAUSE</a>
+  </div>
+</div>
+</body>
+</html>
+    
+    
+====================================
+// Initialize.
+function init_rotator() {
+
+  // Does element exist?
+  if (!$('#rotator').length) {
+
+    // If not, exit.
+    return;
+  }
+
+  // Rotate speed.
+  var speed = 2000;
+
+  // Pause setting.
+  var pause = false;
+
+  // Rotator function.
+  function rotate(element) {
+
+    // Stop, if user has interacted.
+    if (pause) {
+      return;
+    }
+
+    // Either the next /first <li>.
+    var $next_li = $(element).next('li').length ? 
+                   $(element).next('li') : 
+                   $('#rotator li:first');
+
+    // Either next / first control link.
+    var $next_a = $('#rotator_controls a.current').parent('li').next('li').length ? 
+                  $('#rotator_controls a.current').parent('li').next('li').find('a') : 
+                  $('#rotator_controls a:first');
+
+    // Animate.
+    $('#rotator_controls a.current').removeClass('current');
+    $next_a.addClass('current');
+
+    // Continue.
+    function doIt() {
+      rotate($next_li);
+    }
+
+    // Fade out <li>.
+    $(element).fadeOut(speed);
+
+    // Show next <li>.
+    $($next_li).fadeIn(speed, function() {
+
+      // Slight delay.
+      setTimeout(doIt, speed);
+    });
+  }
+
+  // Add click listeners for controls.
+  $('#rotator_controls a').click(function() {
+
+    // Change button text.
+    $('#rotator_play_pause').html('PLAY');
+
+    // Show target, hide other <li>.
+    $($(this).attr('href')).show().siblings('li').hide();
+
+    // Add class="current" and remove from all others.
+    $(this).addClass('current').parent('li').siblings('li')
+           .find('a').removeClass('current');;
+
+    // Pause animation.
+    pause = true;
+
+    // Nofollow.
+    this.blur();
+    return false;
+  });
+
+  // Pause / Play the animation.
+  $('#rotator_play_pause').click(function() {
+
+    // What does the button say?
+    if ($(this).html() === 'PAUSE') {
+
+      // Stop rotation.
+      pause = true;
+
+      // Change the text.
+      $(this).html('PLAY');
+
+    } else {
+
+      // Remove class="pause".
+      pause = false;
+
+      // Start the rotation.
+      rotate('#rotator li:visible:first');
+
+      // Change the text.
+      $(this).html('PAUSE');
+    }
+
+    // Nofollow.
+    this.blur();
+    return false;
+  });
+
+  // Hide all but first <li>.
+  $('#rotator li:first').siblings('li').hide();
+
+  // Wait for page load.
+  $(window).load(function() {
+
+    // Begin rotation.
+    rotate($('#rotator li:visible:first'));
+  });
+}
+
+// Kick things off.
+$(document).ready(function() {
+  init_rotator();
+});
+    
+    
+====================================
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="false" />
+<title>jQuery Cookbook - Ch.13 - Sliding Panels</title>
+<link rel="stylesheet" type="text/css" href="../_common/basic.css" />
+<link rel="stylesheet" type="text/css" href="panels.css" />
+<script type="text/javascript" src="../_common/jquery.js"></script>
+<script type="text/javascript" src="panels.js"></script>
+</head>
+<body>
+<div id="container">
+  <ul class="panels">
+    <li>
+      <a href="#">1</a>
+    </li>
+    <li>
+      <a href="#">2</a>
+    </li>
+    <li>
+      <a href="#">3</a>
+    </li>
+    <li>
+      <a href="#">4</a>
+    </li>
+    <li>
+      <a href="#">5</a>
+    </li>
+  </ul>
+  <ul class="panels">
+    <li>
+      <a href="#">A</a>
+    </li>
+    <li>
+      <a href="#">B</a>
+    </li>
+    <li>
+      <a href="#">C</a>
+    </li>
+    <li>
+      <a href="#">D</a>
+    </li>
+    <li>
+      <a href="#">E</a>
+    </li>
+  </ul>
+</div>
+</body>
+</html>
+    
+    
+====================================
+// Initialize.
+function init_panels() {
+
+  // Does element exist?
+  if (!$('ul.panels').length) {
+
+    // If not, exit.
+    return;
+  }
+
+  // Animation speed.
+  var speed = 200;
+
+  // Add class for last <li>.
+  $('ul.panels li:last-child').addClass('last');
+
+  // Begin with mouseover.
+  $('ul.panels li').hover(function() {
+
+    // Alter target <li>.
+    $(this).stop().animate({
+      width: '360px',
+      fontSize: '150px'
+
+    // Speed.
+    }, speed)
+
+    // Alter sibling <li>.
+    .siblings('li').stop().animate({
+      width: '135px',
+      fontSize: '50px'
+
+    // Speed.
+    }, speed);
+  },
+
+  // End with mouseout.
+  function() {
+
+    // Restore target <li>.
+    $(this).stop().animate({
+      width: '180px',
+      fontSize: '100px'
+
+    // Speed.
+    }, speed)
+
+    // Restore sibling <li>.
+    .siblings('li').stop().animate({
+      width: '180px',
+      fontSize: '100px'
+
+    // Speed.
+    }, speed);
+  });
+}
+
+// Kick things off.
+$(document).ready(function() {
+  init_panels();
+});
+    
+    
+==================

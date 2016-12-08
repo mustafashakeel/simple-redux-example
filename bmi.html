@@ -1,0 +1,586 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head> 
+	 <title>Calculate Your BMI - Metric BMI Calculator</title>
+	 <link rel="shortcut icon" href="/favicon.ico">	 
+	 <link rel="stylesheet" href="/styles/globalstyle.css" type="text/css">
+	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	 <meta name="keywords"
+	 content="NHLBI, body mass index, bmi, weight, obesity, overweight, heart disease, stroke">
+	 <meta name="description"
+	 content="Metric Body Mass Index calculator.">
+	 <!-- Meta Data: Ownership -->
+<meta name="Owner" content="raschkam">
+<meta name="Approver" content="knightlm">
+<meta name="Editor" content="mchalek">
+<meta name="Audience" content="Public;Health Pros;Researchers;Partners;NHLBI staff">
+<meta name="Last.Revised" content="7/6/2016">
+<meta name="Date.Published" content="1/18/2013" >
+<meta name="Language" content="">
+
+
+ <style type="text/css">
+<!--
+	@import "/health/educational/lose_wt/styles/aimstyle.css";
+-->
+   </style> 
+   
+ <script language="Javascript" type="text/javascript">
+<!--
+function cal_bmi(kg, htc){
+
+
+   m = htc/100;
+   h2 = m * m;
+
+   bmi = kg/h2;
+
+
+   f_bmi = Math.floor(bmi);
+
+   diff  = bmi - f_bmi;
+   diff = diff * 10;
+
+   diff = Math.round(diff);
+   if (diff == 10){
+      // Need to bump up the whole thing instead
+      f_bmi += 1;
+      diff = 0;
+   }
+   bmi = f_bmi + "." + diff;
+
+   return bmi;
+}
+function compute(){
+   var f = self.document.forms[1];
+
+   // Set up variables for calculation
+   w = f.kg.value;
+//   i = parseInt(f.htc.value);
+   i = f.htc.value;
+
+   // Do validation checking to ensure existence of values
+
+   if (!chkw(i)){
+     alert("Please enter a number for your height.");
+     f.htc.focus();
+     return;
+   }
+   if (!chkw(w)){
+     alert("Please enter a number for your weight.");
+     f.kg.focus();
+     return;
+   }
+
+   f.bmi.value = cal_bmi(w, i);
+   f.bmi.focus();
+}
+function chkw(w){
+  // if (isNaN(parseInt(w))){
+   if (isNaN(w)){
+	  return false;
+   } else if (w < 0){
+  return false;
+  }
+  else{
+  return true;
+  }
+}
+// -->
+</script>
+   
+ <style type="text/css">
+<!--
+
+-->
+     </style>  
+   
+   
+   
+ </head> 
+ 
+<body> <div class="container">
+
+<!--allows for spacing above and below date-->
+<table width="1002px" summary="layout table">
+ <tr> 
+  <td> 
+   <!-- Header Include File -->
+  <script language="JavaScript" type="text/javascript" src="/inc/javascript/setOmn.js"></script> 
+  <!-- Text Sizer Javascript --> 
+  <script language="JavaScript" type="text/javascript" src="/js/textsizer.js"></script> 
+  <!-- Filtered Search JavaScript --> 
+  <link id="slideshow-css" rel="stylesheet" href="/web_resources/css/superfish.css" type="text/css"> 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> 
+  <script type="text/javascript" src="/web_resources/js/superfish.js"></script> 
+  <script type="text/javascript" src="/js/gsa.js"></script> 
+  <script type="text/javascript" src="/inc/javascript/send-analytics.js"></script> 
+  <script type="text/javascript">
+$(document).ready(function() {
+		$('ul.sf-menu').superfish({
+		animation: {opacity:'show'},
+		speed: 'fast',
+		speedOut: 'fast',
+		delay:150,
+		autoArrows: false,
+		cssArrows: false,
+		dropShadows: true,
+		disableHI: true
+});
+var sourceSwap = function (activeImage) {
+	var newSource = activeImage.attr('title');
+    activeImage.attr('title', activeImage.attr('src'));
+    activeImage.attr('src', newSource);
+}
+var checkActiveImage = function () {
+    var myUl = $(this).closest('ul').attr('class');
+    var navImage = $(this).closest('ul').prev().children('img');
+    var navImageClass = $(this).closest('ul').prev().children('img').attr('class');
+	if(navImageClass == 'inactiveMainNav'){
+		sourceSwap(navImage);
+	};
+}
+
+	$('.inactiveMainNav').hover(
+		function() {
+			var myActiveImage = $(this);
+			sourceSwap(myActiveImage);
+		},
+		function() {
+			var myActiveImage = $(this);
+			sourceSwap(myActiveImage);
+		});
+		
+    $('.mainNavDropdown').hover(checkActiveImage,checkActiveImage);
+
+
+            $(".dropdown img.flag").addClass("flagvisibility");
+
+            $(".dropdown dt a").click(function() {
+                $(".dropdown dd ul").toggle();
+            });
+                        
+            $(".dropdown dd ul li a").click(function() {
+                var text = $(this).html();
+                $(".dropdown dt a span").html(text);
+                $(".dropdown dd ul").hide();
+               
+				newsearch(getSelectedValue("sample"));
+            });
+                        
+            function getSelectedValue(id) {
+                return $("#" + id).find("dt a span.value").html();
+            }
+
+            $(document).bind('click', function(e) {
+                var $clicked = $(e.target);
+                if (! $clicked.parents().hasClass("dropdown"))
+                    $(".dropdown dd ul").hide();
+            });
+
+
+            $("#flagSwitcher").click(function() {
+                $(".dropdown img.flag").toggleClass("flagvisibility");
+            });
+        });
+ </script>
+  <div id="Header">
+    <!-- Neccessary for 508 Compliance; don't alter -->
+    <span style="font-size:0px; position:absolute; margin-top:-500px"><a href="#content">Skip to content past banner and navigation links</a></span>
+
+	<!-- HHS Banner -->
+	<div id="banner" style="background: url(/web_resources/images/nih-branded-assets/banner-bckgn.png) no-repeat left top;">
+    <ul id="institutes">
+    <li><img src="/web_resources/images/nih-branded-assets/banner-hhs.gif" border="none" alt="HHS logo" align="absmiddle" /> <a href="http://www.hhs.gov/">U.S. Department of Health &amp; Human Services</a></li>
+    <li class="last"><img src="/web_resources/images/nih-branded-assets/banner-nihlogo.png" border="none" alt="NIH logo" align="absmiddle" /> <a href="http://www.nih.gov/">National Institutes of Health</a></li></ul>
+
+    <ul id="utilities">
+    <li><a href="/about/contact/index.htm">Contact Us</a></li>
+    <li><a href="/news/subscribe/"><img src="/web_resources/images/nih-branded-assets/gov-delivery-icon.gif" border="none" alt="E-Mail update icon" align="absmiddle" />Get Email Alerts</a></li>
+	<li class="last"><a href="javascript:smallerFont();" title="Reduce Text Size"><img src="/web_resources/images/nih-branded-assets/sizer-less.gif" border="0" alt="Reduce Text Size" align="absmiddle" /></a> <a href="javascript:largerFont();" title="Enlarge Text Size"><img src="/web_resources/images/nih-branded-assets/sizer-more.gif" alt="Enlarge Text Size" border="0" align="absmiddle" /></a> Font Size &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li></ul></div>
+
+	<div class="Logo"><a href="/index.htm"><img src="/web_resources/images/nih-branded-assets/nhlbi-logo.gif" alt="National Heart Lung and Blood Institute Logo" border="0"></a></div>
+	</div>
+	
+    <div id="srchbox_thin_box">
+     <form action="/search" NAME="search" onSubmit="return recordToNavSearch('TopNavSearch');">
+     <p class="accessiblesrch"><a href="/search1/index.htm">Accessible Search Form</a></p>
+     
+     <label for="searchbox" style="z-index:-1;position:relative;margin:-50px;font-size:0px; color:#ffffff">Search the NHLBI, use radio buttons below to select whole site or Disease and Conditions Index only</label>
+     <p><input class="sb_input" TITLE="Enter a Keyword Search" NAME="q" ID="searchbox" VALUE="" type="text"/>  
+        <input class="sb_search" style="background: url(/web_resources/images/nih-branded-assets/search-btn.gif) no-repeat left top;" type="submit" value=""/></p>
+ 
+     <dl id="sample" class="dropdown">
+        <dt id="filter_box"><A href="#" style="background:#ddd url(/web_resources/images/arrow.png) no-repeat scroll right center;"><SPAN style="font-size: 10px">NHLBI Entire Site</SPAN></A>
+		</dt>
+        <dd>
+            <ul>
+			<!-- for some reason the list-style-type and font-size are not being taken from the CSS, so doing inline -->
+            <li style="list-style-type: none;"><a href="#"><span style="font-size:8pt">NHLBI Entire Site</span><span class="value">1</span></a></li>
+            <li style="list-style-type: none;"><a href="#"><span style="font-size:8pt">Health Topics</span><span class="value">2</span></a></li>
+	        <li style="list-style-type: none;"><a href="#"><span style="font-size:8pt">News &amp; Resources</span><span class="value">3</span></a></li>
+            <li style="list-style-type: none;"><a href="#"><span style="font-size:8pt">Intramural Research</span><span class="value">4</span></a></li>
+			</ul>
+        </dd>
+	 </dl>
+    	
+        <span id="result"></span> 
+ 		<input type="hidden" name="site" value="NHLBI_Public">         
+        <input type="hidden" name="client" value="Drupal_frontend">
+	 	<input type="hidden" name="proxystylesheet" value="Drupal_frontend">
+	 	<input type="hidden" NAME="output" VALUE="xml_no_dtd">
+		<input type="hidden" name="oe" value="ISO-8859-1">
+		<input type="hidden" NAME="getfields" VALUE="description.keywords">
+        </form>
+		
+</div>           
+<div class="TopNav" >
+<ul class="sf-menu">
+	<li class='topLevel'><a href="/health/index.htm"><img class="inactiveMainNav" src="/web_resources/images/navigation_images/inactive-public-navon-image.png" title="/web_resources/images/navigation_images/active-public-navon-image.png" id="img_a1888" alt="Public" border="0" padding="0"></a><ul class="mainNavDropdown"><li><A class="mainDropdownLink" href="/health/health-topics/by-category/">Health Topics</a></li><li><a class="mainDropdownLink" href="/health/educational/">Educational Campaigns and Programs</a></li><li><a class="mainDropdownLink" href="/health/resources/">Resources</a></li><li><a class="mainDropdownLink" href="/health/contact.htm">Contact the Health Information Center</a></li></ul></li><li class='topLevel'><a href="/health-pro/index.htm"><img class="inactiveMainNav" src="/web_resources/images/navigation_images/inactive-healthprofessionals-navon-image.jpg" title="/web_resources/images/navigation_images/active-healthprofessionals-navon-image.jpg" id="img_a1894" alt="Health Professionals" border="0" padding="0"></a><ul class="mainNavDropdown"><li><A class="mainDropdownLink" href="/health-pro/guidelines/index.htm">Systematic Evidence Reviews & Clinical Practice Guidelines</a></li><li><a class="mainDropdownLink" href="/health-pro/resources/index.htm">Resources</a></li><li><a class="mainDropdownLink" href="/health-pro/continuing-ed/index.htm">Continuing Education</a></li></ul></li><li class='topLevel'><a href="/research/index.htm"><img class="inactiveMainNav" src="/web_resources/images/navigation_images/inactive-researchers-navon-image.jpg" title="/web_resources/images/navigation_images/active-researchers-navon-image.jpg" id="img_a1892" alt="Researchers" border="0" padding="0"></a><ul class="mainNavDropdown"><li><A class="mainDropdownLink" href="/research/funding/">Funding</a></li><li><a class="mainDropdownLink" href="/research/training/">Training & Career Development</a></li><li><a class="mainDropdownLink" href="/research/intramural/index.html">Division of Intramural Research</a></li><li><a class="mainDropdownLink" href="/research/resources/index.htm">Research Resources</a></li><li><a class="mainDropdownLink" href="/research/reports/index.htm">Scientific Reports</a></li><li><a class="mainDropdownLink" href="/research/tt/index.htm">Technology Transfer</a></li></ul></li><li class='topLevel'><a href="/studies/index.htm"><img class="inactiveMainNav" src="/web_resources/images/navigation_images/inactive-clinicaltrials-navon-image.jpg" title="/web_resources/images/navigation_images/active-clinicaltrials-navon-image.jpg" id="img_a1146" alt="Clinical Trials" border="0" padding="0"></a><ul class="mainNavDropdown"><li><A class="mainDropdownLink" href="/studies/clinicaltrials/">What are Clinical Trials?</a></li><li><a class="mainDropdownLink" href="/childrenandclinicalstudies/index.php">Children & Clinical Studies</a></li><li><a class="mainDropdownLink" href="/studies/nhlbi-trials/">NHLBI Trials</a></li><li><A class="mainDropdownLink" href="/studies/websites.htm">Clinical Trial Websites</a></li></ul></li><li class='topLevel'><a href="/news/"><img class="inactiveMainNav" src="/web_resources/images/navigation_images/inactive-newsandresources-navon-image.png" title="/web_resources/images/navigation_images/active-newsandresources-navon-image.png" id="img_a1891" alt="News and Resources" border="0" padding="0"></a><ul class="mainNavDropdown"><li><A class="mainDropdownLink" href="/news/press-releases/">Press Releases</a></li><li><a class="mainDropdownLink" href="/news/spotlight/">Spotlight On Research</a></li><li><a class="mainDropdownLink" href="/news/news-mentions/">NHLBI In The News</a></li><li><a class="mainDropdownLink" href="/news/events/">Events</a></li><li><a class="mainDropdownLink" href="/news/spokespeople/">Spokespeople</a></li><li><a class="mainDropdownLink" href="/news/subscribe/">Email Alerts</a></li><li><a class="mainDropdownLink" href="/new/enewsletter/index.htm">E-Newsletters</a></li></ul></li><li class='topLevel'><a href="/about/index.htm"><img class="inactiveMainNav" src="/web_resources/images/navigation_images/inactive-aboutnhlbi-navon-images.jpg" title="/web_resources/images/navigation_images/active-aboutnhlbi-navon-images.jpg" id="img_a1134" alt="About NHLBI" border="0" padding="0"></a><ul class="mainNavDropdown"><li><A class="mainDropdownLink" href="/about/org/">Organization</a></li><li><a class="mainDropdownLink" href="/about/directorscorner/">NHLBI Director</a></li><li><a class="mainDropdownLink" href="/about/documents/">Budget, Planning, & Legislative</a></li><li><a class="mainDropdownLink" href="/about/committees/">Advisory Committees</a></li><li><a class="mainDropdownLink" href="/about/contact/">Contact Us</a></li></ul></li>
+</ul>
+</div> <!-- TopNav -->
+ 
+  <script type="text/javascript" src="/js/gsa_drupal.js"></script>
+  </td>
+ </tr>
+ <tr> 
+  <td> <table width="995px" border="0" cellpadding="0" cellspacing="0"
+			 summary="layout table" style="margin-left:5px;">
+    <tr> 
+     <td colspan="2"> <div id="Breadcrumbs"> 
+      <a href="/index.htm">Home</a> &raquo; <a href="/health/index.htm">Health Information for the Public</a> &raquo; <a href="/health/educational/">Educational Campaigns &amp; Programs</a> &raquo; <a href="/health/educational/lose_wt/">Aim for a Healthy Weight</a> &raquo; <a href="/health/educational/lose_wt/BMI/">Healthy Weight Tools</a> &raquo; BMI Calculator (Metric)
+       <!--breadcrumbs end--></div>
+      </td>
+    </tr>
+    <tr valign="top"> 
+     <td bgcolor="#FFFFFF" width="200"><br /><a href="#content"
+					 name="skip"><img src="/files/images/spacer.gif" width="200" height="1" border="0"
+					 alt="Skip left side navigation and go to content"></a>
+     <div id="leftside"> <a href="/health/educational/lose_wt/index.htm"><img src="/health/educational/lose_wt/images/AimLogo.gif" alt="Aim for a Healthy Weight" width="193" height="102" border="0" /></a>
+    <div id="leftnav">
+        <ul>
+            <li><a href="/health/educational/lose_wt/index.htm">Home</a></li>
+            <li><a href="/health/educational/lose_wt/risk.htm">Assessing Your Weight and Health Risk</a></li>
+            <li><a href="/health/educational/lose_wt/control.htm">Control Your Weight</a></li>
+            <li><a href="/health/educational/lose_wt/eat/index.htm">Eat Right</a></li>
+            <li><a href="/health/educational/lose_wt/physical.htm">Be Physically Active</a></li>
+            <li><a href="/health/educational/lose_wt/BMI/index.htm">Healthy Weight Tools</a>
+                <ul>
+                    <li><a HREF="/health/educational/lose_wt/BMI/bmicalc.htm">BMI Calculator</a></li>
+                    <li><a HREF="/health/educational/lose_wt/menuplanner.html">Menu Plans</a></li>
+                    <li><a HREF="/health/educational/wecan/eat-right/distortion.htm">Portion Distortion</a></li>
+                </ul>
+            </li>
+            <li><a href="/health/educational/lose_wt/recommen.htm">Key Recommendations</a></li>
+            <li><a href="/health/educational/wecan/index.htm">Healthy Weight Resources for Parents/Families<br />
+                (<em>We Can!</em>)</a></li>
+            <li class="last"><a href="/health/educational/lose_wt/profmats.htm">Health Professional Resources</a></li>
+        </ul>
+    </div>
+</div>
+</td>
+     <td width="795"><div id="aimtxt"><br />
+     <table border="0" cellpadding="4" cellspacing="0"
+					 summary="layout table">
+       <tr valign="top"> 
+        <td width="795" style="padding-left:28px; padding-right:28px; "> 
+         <a name="content"></a> 
+         <!--Start Body Text-->
+         
+         
+         
+         
+          <h1>Calculate Your Body Mass Index</h1>
+                  <p>Body mass index (BMI) is a measure
+						  of body fat based on height and weight that applies to  adult men
+					  and women. </p> 
+        <ul> 
+						  <li>Enter your weight and height using <a href="bmicalc.htm">standard</a> or
+							 metric measures. </li> 
+						  <li>Select &quot;Compute BMI&quot; and your BMI will appear below. </li> 
+					  </ul> 
+                  
+                  <table summary="This table is used for layout purposes only." style="margin:auto;" class="bmibkg" width="520"> 
+		<tr> 
+		  <td> 
+			 <form name="bmi_input"> 
+				<table border="0" cellpadding="4" cellspacing="0" width="510"
+				 summary="This table is used for layout purposes only."> 
+				  <tr> 
+                  <td width="250" valign="top" style="margin:auto;"> 
+						<p align="center"><strong><a
+						  href="bmi-m_sp.htm">Espa&ntilde;ol</a></strong></p> 
+                          
+                          <table border="0" cellpadding="0" cellspacing="0" width="200"
+						 summary="This table is used for layout purposes only." class="bmiCalc" style="margin:auto;"> 
+						  <tr> 
+							 <td bgcolor="#6F48B3" width="200" colspan="3"> 
+								<table width="209" border="0" cellpadding="0"
+								 cellspacing="0" summary="This table is used for layout purposes only."> 
+								  <tr> 
+									 <td bgcolor="#FFFFFF"><a href="bmicalc.htm">
+										<img src="images/bmi-m_01.gif" border="0" alt="View Standard Measurements"
+										 width="105" height="28"></a></td> 
+									 <td bgcolor="#FFFFFF">
+										<img src="images/bmi-m_02.gif" border="0" alt="Metric Measurements" width="104"
+										 height="28"></td> 
+								  </tr> 
+								</table>
+                      <!-- End ImageReady Slices --></td> 
+						  </tr> 
+						  <tr> 
+							 <td bgcolor="#6F48B3" width="13">
+								<img border="0" src="/files/images/spacer.gif" width="12" height="1" alt=" "></td> 
+							 <td bgcolor="#6F48B3" width="184"> 
+								<table border="0" cellspacing="0" width="185"
+								 bgcolor="#FFFFFF" cellpadding="2"
+								 summary="This table is used for layout purposes only."> 
+								  <tr> 
+									 <td width="50%" style="text-align:right;"><b><label for="htc">Your
+										Height:</label></b></td> 
+									 <td width="50%" align="left">
+										<input type="text" name="htc" size="5" id="htc"></td> 
+								  </tr> 
+								  <tr> 
+									 <td width="50%">&nbsp;</td> 
+									 <td width="50%" align="left"><b> (centimeters)</b></td> 
+								  </tr> 
+								  <tr> 
+									 <td width="50%" colspan="2"><img
+										src="/files/images/spacer.gif" width="1" height="6" border="0" alt=" "></td> 
+								  </tr> 
+								  <tr> 
+									 <td width="50%" style="text-align:right;"><b><label for="kg">&nbsp;Your
+										Weight:</label></b></td> 
+									 <td width="50%" align="left">
+										<input type="text" name="kg" size="5" id="kg"></td> 
+								  </tr> 
+								  <tr> 
+									 <td width="50%">&nbsp;</td> 
+									 <td width="50%" align="left"><b> (kilograms)</b></td> 
+								  </tr> 
+								  <tr> 
+									 <td colspan="2" align="center" class="colcenter" style="padding-top:5px;"><span class="colcenter" style="padding-top:5px;">
+									   <input type="button" value="Compute BMI" onClick="self.compute();" />
+									 </span></td> 
+								  </tr> 
+								  <tr> 
+									 <td colspan="2" align="center" class="colcenter"> 
+										<table cellspacing="0" cellpadding="0" border="0"
+										 width="150" summary="This table is used for layout purposes only."> 
+										  <tr> 
+											 <td align="LEFT" width="122" colspan="3"
+											  style="background-image: url(images/oeilogo.gif); background-repeat: no-repeat; background-position: center top"
+											  height="201"> 
+												<div
+												 style="margin-left: 45px; margin-top: -3px"><label for="yourbmi"><span
+												  style="font-size: .9em; font-weight:bold;"> Your
+												  BMI:</span></label><br><input name="bmi" type="text" size="4" id="yourbmi"
+												  style="text-align: center"></div></td> 
+										  </tr> 
+										</table></td> 
+								  </tr> 
+								</table>
+                                </td> 
+							 <td bgcolor="#6F48B3" width="13">
+								<img border="0" src="/files/images/spacer.gif" width="12" height="1" alt=" "></td> 
+						  </tr> 
+						  <tr>
+                            <td bgcolor="#6F48B3" colspan="3" width="100%"
+							  align="center">&nbsp;</td>
+                          </tr>
+						</table>
+                          
+                          
+                          
+						</td>
+                  <td valign="top"> 
+						
+						<p><b>BMI Categories: </b><br> 
+						Underweight = &lt;18.5<br> 
+						  Normal weight = 18.5&ndash;24.9 <br> 
+						 Overweight = 25&ndash;29.9 <br> 
+						  Obesity = BMI of 30 or greater </p> 
+						
+						<p><a
+						  href="bmi_tbl.htm"><strong>The BMI
+						  Tables</strong></a></p> 
+                 
+                        
+                        
+                        
+                        <p><a href="/health/educational/lose_wt/index.htm"><strong>Aim for a Healthy Weight</strong></a>:<br>
+                      
+                          <a href="/health/educational/lose_wt/risk.htm#limitations">Limitations of the BMI</a><br>
+                          <a href="/health/educational/lose_wt/risk.htm">Assessing Your Risk</a> <br>
+                          <a href="/health/educational/lose_wt/control.htm">Controlling Your Weight</a><br>
+                          <a href="/health/educational/lose_wt/eat/recipes.htm">Recipes</a></p>
+                          <p>Download the BMI calculator app today (available for <a href="https://itunes.apple.com/at/app/nhlbi-bmi-calculator/id446441346?l=en&mt=8">iPhone</a><a href="/about/contact/link-disclaimer.htm"><img src="/files/images/external-link.png" alt="external disclaimer"></a> and <a href="https://play.google.com/store/apps/details?id=gov.nih.nhlbi.bmicalc&hl=en">Android</a><a href="/about/contact/link-disclaimer.htm"><img src="/files/images/external-link.png" alt="external disclaimer"></a>).</p>
+                      <!-- <p><img src="images/phoneicon.gif" alt=" " style="padding-top:5px; padding-right:5px;" align="left"><a href="https://itunes.apple.com/us/app/nhlbi-bmi-calculator/id446441346?mt=8"><strong>Download the BMI <br />
+                        Calculator iPhone App</strong></a></p> -->
+                      
+                      
+                      </td> 
+				  </tr> 
+				</table> </form>			 </td> 
+		</tr> 
+	 </table>
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         <!--End Body Text--></td>
+       
+       </tr>
+       <!--RIGHT-HAND COLUMN -->
+     </table>
+     <!--END Aimtxt --></div></td>
+    </tr>
+    
+  </table></td>
+ </tr>
+</table>
+<br />
+<html>
+ <head>
+ <!--Digital Analytics Program (DAP) Tracking Code  DO NOT REMOVE   --->
+ <script async type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=HHS&subagency=NIH"></script>
+
+
+ <!-- Start of Woopra Code --> 
+<script>
+    (function () {
+        var t, i, e, n = window, o = document, a = arguments, s = "script", r = ["config", "track", "identify", "visit", "push", "call", "trackForm", "trackClick"], c = function () { var t, i = this; for (i._e = [], t = 0; r.length > t; t++) (function (t) { i[t] = function () { return i._e.push([t].concat(Array.prototype.slice.call(arguments, 0))), i } })(r[t]) }; for (n._w = n._w || {}, t = 0; a.length > t; t++) n._w[a[t]] = n[a[t]] = n[a[t]] || new c; i = o.createElement(s), i.async = 1, i.src = "//static.woopra.com/js/w.js", e = o.getElementsByTagName(s)[0], e.parentNode.insertBefore(i, e)
+    })("woopra");
+
+    woopra.config({
+        domain: 'nhlbi.nih.gov'
+    });
+    woopra.track(); 
+</script> 
+<!-- End of Woopra Code -->
+
+ <!-- Start of AT Internet Code --> 
+<script type="text/javascript" src="//tag.aticdn.net/574333/smarttag.js"></script>
+ <!-- End of AT Internet Code --> 
+
+ </head>
+ <body>
+  <a href="#content" class="invisible">Skip footer links and go to content</a> 
+  <div id="SMBar" style="margin-top: 20px;"> 
+   <div style="padding-top:5px"> 
+    <a class="socialbar" target="_blank" href="http://twitter.com/nih_nhlbi"><img src="/images/socialmedia/twitter.jpg" border="none" alt="Twitter icon" align="absbottom">Twitter</a> 
+    <a href="/about/contact/link-disclaimer.htm" target="_blank"><img src="/files/images/external-link.png" alt="external disclaimer"></a> 
+    <a class="socialbar" target="_blank" href="http://www.facebook.com/nhlbi"><img src="/images/socialmedia/facebook.gif" border="none" alt="Facebook icon" align="absbottom">Facebook</a> 
+    <a href="/about/contact/link-disclaimer.htm" target="_blank"><img src="/files/images/external-link.png" alt="external disclaimer"></a> 
+    <a class="socialbar" target="_blank" href="http://www.youtube.com/user/NHLBI"><img src="/images/socialmedia/youtube.gif" border="none" alt="YouTube icon" align="absbottom">YouTube</a> 
+    <a href="/about/contact/link-disclaimer.htm" target="_blank"><img src="/files/images/external-link.png" alt="external disclaimer"></a> 
+    <a class="socialbar" target="_blank" href="https://plus.google.com/113899268109187982154" rel="publisher"><img src="/images/socialmedia/googleplus.jpg" border="none" alt="Google+ icon" align="absbottom">Google+</a> 
+    <a href="/about/contact/link-disclaimer.htm" target="_blank"><img src="/files/images/external-link.png" alt="external disclaimer"></a> 
+   </div> 
+  </div> 
+  <div id="Footer"> 
+   <div class="footer-line1"> 
+    <a class="Footernav" href="/search1/">SEARCH</a> | 
+    <a class="Footernav" href="/about/site-index.htm">SITE INDEX</a> | 
+    <a class="Footernav" href="/about/contact/nhlbi508form.htm">ACCESSIBILITY</a> | 
+    <a class="Footernav" href="/about/contact/privacy.htm">PRIVACY STATEMENT</a> | 
+    <a class="Footernav" href="/about/contact/foia.htm">FOIA</a> | 
+    <a class="Footernav" href="http://oig.hhs.gov/">OIG</a> | 
+    <a class="Footernav" href="/about/contact/index.htm">CONTACT US</a> 
+   </div> 
+   <div class="footer-line2"> 
+    <a href="http://www.nih.gov">National Institutes of Health</a> 
+    <a href="http://www.dhhs.gov">Department of Health and Human Services</a> 
+    <a href="http://www.usa.gov/index.shtml">USA.gov</a> 
+   </div> 
+  </div> 
+  <!-- SiteCatalyst code version: H.22.1.
+Copyright 1996-2010 Adobe, Inc. All Rights Reserved
+More info Available at http://www.omniture.com --> 
+  <script language="JavaScript" type="text/javascript" src="/channel_code_02_24_11.js"></script> 
+  <script language="JavaScript" type="text/javascript" src="/s_code_SEMPHONIC_02_24_11.js"></script> 
+  <script language="JavaScript" type="text/javascript">
+	/* You may give each page an identifying name, server, and channel on the next lines. */
+	
+	/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+	var s_code=s.t();if(s_code)document.write(s_code)
+	if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+	
+  </script> 
+  <noscript> 
+   <img src="http://nhlbi.122.2o7.net/b/ss/nhlbiglobal/1/H.22.1--NS/0?[AQB]&amp;cdp=3&amp;[AQE]" height="1" width="1" border="0" alt=""> 
+  </noscript> 
+  <!-- End SiteCatalyst code version: H.22.1. --> 
+  <!-- Foresee code 2/15/2012  FQ 
+<script type="text/javascript" src="/foresee/foresee-trigger.js"></script> --> 
+  <!-- Survey code 1/25/2015  Latest code given by Foresee  --> 
+  <script language="JavaScript" type="text/javascript">
+    // DO NOT MODIFY BELOW THIS LINE *****************************************
+    ; (function (g) {
+
+        var myHostname = window.location.hostname;
+        var splitHostname = myHostname.split('.');
+        var mysubdomain = splitHostname[0];
+        //window.console&&console.log('mysubdomain is ' + mysubdomain);
+        if ((mysubdomain == 'www') | (mysubdomain == 'nhlbi') | (mysubdomain == 'wcms')) {
+            var myGatewaySrc = '//gateway.answerscloud.com/nhlbi-gov/production/gateway.min.js';
+        }
+        else {
+            var myGatewaySrc = '//gateway.answerscloud.com/nhlbi-gov/staging/gateway.min.js';
+        };
+        // window.console&&console.log('myGatewaySrc is ' + myGatewaySrc);
+        var d = document, i, am = d.createElement('script'), h = d.head || d.getElementsByTagName("head")[0],
+                aex = {
+                    "src": myGatewaySrc,
+                    "type": "text/javascript",
+                    "async": "true",
+                    "data-vendor": "acs",
+                    "data-role": "gateway"
+                };
+        for (var attr in aex) { am.setAttribute(attr, aex[attr]); }
+        h.appendChild(am);
+        g['acsReady'] = function () { var aT = '__acsReady__', args = Array.prototype.slice.call(arguments, 0), k = setInterval(function () { if (typeof g[aT] === 'function') { clearInterval(k); for (i = 0; i < args.length; i++) { g[aT].call(g, function (fn) { return function () { setTimeout(fn, 1) }; } (args[i])); } } }, 50); };
+    })(window);
+    // DO NOT MODIFY ABOVE THIS LINE *****************************************
+</script> 
+
+
+<!-- Piwik This is the free trial tag code for Piwik 7/12/2016  JN-->
+<script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function () {
+        var u = "//nhlbi.piwikpro.com/";
+        _paq.push(['setTrackerUrl', u + 'piwik.php']);
+        _paq.push(['setSiteId', 1]);
+        var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+        g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g, s);
+    })();
+    </script>
+<noscript><p><img src="//nhlbi.piwikpro.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+
+<!-- AT Internet tag --> 
+<script type="text/javascript">
+    var ATTag = new ATInternet.Tracker.Tag();
+    ATTag.page.send({ name: '' }); 
+</script> 
+
+ </body>
+</html>
+</div>
+</body>
+</html>

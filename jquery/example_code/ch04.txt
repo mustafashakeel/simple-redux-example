@@ -1,0 +1,283 @@
+chapter: jQuery Utilities
+==================
+(function($) {
+    $(document).ready(function() {
+     $('a')
+         .filter(function() {
+             var href = $(this).attr('href');
+             // Normalize the URL
+             if ( !jQuery.support.hrefNormalized ) {
+                 var loc = window.location;
+                 href = href.replace( loc.protocol + '//' + loc.host + loc.pathname, 
+'');
+             }
+             // This anchor tag is of the form <a href="#hash">
+             return ( href.substr(0, 1) == '#' );
+        })
+        .click(function() {
+            // Special click handler code
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        var months = [  'January', 'February', 'March', 'April', 'May',
+                        'June', 'July', 'August', 'September', 'October',
+                        'November', 'December'];
+        $.each(months, function(index, value) {
+            $('#months').append('<li>' + value + '</li>');
+        });
+
+        var days = {    Sunday: 0, Monday: 1, Tuesday: 2, Wednesday: 3,
+                        Thursday: 4, Friday: 5, Saturday: 6 };
+        $.each(days, function(key, value) {
+            $('#days').append('<li>' + key + ' (' + value + ')</li>');
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        var months = [  'January', 'February', 'March', 'April', 'May',
+                        'June', 'July', 'August', 'September', 'October',
+                        'November', 'December'];
+        $.each(months, function() {
+            $('#months').append('<li>' + this + '</li>');
+        });
+
+        var days = {    Sunday: 0, Monday: 1, Tuesday: 2, Wednesday: 3,
+                        Thursday: 4, Friday: 5, Saturday: 6 };
+        $.each(days, function(key) {
+            $('#days').append('<li>' + key + ' (' + this + ')</li>');
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        var months = [  'January', 'February', 'March', 'April', 'May',
+                        'June', 'July', 'August', 'September', 'October',
+                        'November', 'December'];
+        months = $.grep(months, function(value, i) {
+            return ( value.indexOf('J') == 0 );
+        });
+        $('#months').html( '<li>' + months.join('</li><li>') + '</li>' );
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        var months = [  'January', 'February', 'March', 'April', 'May',
+                        'June', 'July', 'August', 'September', 'October',
+                        'November', 'December'];
+        months = $.grep(months, function(value, i) {
+            return ( i % 2 ) == 0;
+        });
+        $('#months').html( '<li>' + months.join('</li><li>') + '</li>' );
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        var months = [  'January', 'February', 'March', 'April', 'May',
+                        'June', 'July', 'August', 'September', 'October',
+                        'November', 'December'];
+        months = $.map(months, function(value, i) {
+            return value.substr(0, 3);
+        });
+        $('#months').html( '<li>' + months.join('</li><li>') + '</li>' );
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        var horseBreeds = ['Quarter Horse', 'Thoroughbred', 'Arabian'];
+        var draftBreeds = ['Belgian', 'Percheron'];
+
+        var breeds = $.merge( horseBreeds, draftBreeds );
+        $('#horses').html( '<li>' + breeds.join('</li><li>') + '</li>' );
+    });
+})(jQuery);
+    
+    
+====================================
+['Quarter Horse', 'Thoroughbred', 'Arabian', 'Belgian', 'Percheron']
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        var animals = $('li.animals').get();
+        var horses = $('li.horses').get();
+        $('#animals')
+            .append( $(animals).clone() )
+            .append( $(horses).clone() );
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+    $(document).ready(function() {
+        var animals = $('li.animals').get();
+        var horses = $('li.horses').get();
+        var tmp = $.merge( animals, horses );
+        tmp = $.unique( tmp );
+        $('#animals').append( $(tmp).clone() );
+    });
+})(jQuery);
+    
+    
+====================================
+(function($) {
+    $.fn.myPlugin = function(settings) {
+        return this.each(function() {
+            settings = $.extend({ onShow: null }, settings);
+            $(this).show();
+            if ( $.isFunction( settings.onShow ) ) {
+                settings.onShow.call(this);
+            }
+        });
+    };
+    $(document).ready(function() {
+        $('div').myPlugin({
+            onShow: function() {
+                alert('My callback!');
+            }
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+jQuery.isFunction( document.getElementById );
+    
+    
+====================================
+<input type="text" name="first_name" class="cleanup" />
+<input type="text" name="last_name" class="cleanup" />
+
+(function($) {
+    $(document).ready(function() {
+        $('input.cleanup').blur(function() {
+            var value = $.trim( $(this).val() );
+            $(this).val( value );
+        });
+    });
+})(jQuery);
+    
+    
+====================================
+var node = document.getElementById('myId');
+node.onclick = function() {
+    // Click handler
+};
+node.myObject = {
+    label: document.getElementById('myLabel')
+};
+    
+    
+====================================
+$('#myId').data('myObject', {
+    label: $('#myLabel')[0]
+});
+
+var myObject = $('#myId').data('myObject');
+myObject.label;
+    
+    
+====================================
+<div id="time" class="updateTime"></div>
+    
+    
+====================================
+// Listen for new data
+$(document).bind('setData', function(evt, key, value) {
+    if ( key == 'clock' ) {
+        $('.updateTime').html( value );
+    }
+});
+    
+    
+====================================
+// Update the 'time' data on any element with the class 'updateTime'
+setInterval(function() {
+    $(document).data('clock', (new Date()).toString() );
+}, 1000);
+    
+    
+====================================
+(function($) {
+   $.fn.myPlugin = function(options) {
+        options = $.extend({
+            message: 'Hello world',
+            css: {
+                color: 'red'
+            }
+        }, options);
+        return this.each(function() {
+            $(this).css(options.css).html(options.message);
+        });
+    };
+})(jQuery);
+    
+    
+====================================
+var obj = { hello: 'world' };
+obj = $.extend(obj, { hello: 'big world' }, { foo: 'bar' });
+
+alert( obj.hello ); // Alerts 'big world'
+alert( obj.foo ); // Alerts 'bar';
+    
+    
+====================================
+$('div').myPlugin({ css: { color: 'blue' } });
+    
+    
+====================================
+$.fn.extend({
+    myPlugin: function() {
+        options = $.extend({
+            message: 'Hello world',
+            css: {
+                color: 'red'
+            }
+        }, options);
+        return this.each(function() {
+            $(this).css(options.css).html(options.message);
+        });
+    }
+});
+    
+    
+====================================
+var obj1 = { foo: { bar: '123', baz: '456' }, hello: 'world' };
+var obj2 = { foo: { car: '789' } };
+
+var obj3 = $.extend( obj1, obj2 );
+    
+    
+====================================
+{ foo: { car: '789 }, hello: 'world' }
+    
+    
+====================================
+var obj3 = $.extend( true, obj1, obj2 );
+// obj3
+{ foo: { bar: '123', baz: '456', car: '789 }, hello: 'world' }
+    
+    
+==================

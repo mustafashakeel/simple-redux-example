@@ -1,0 +1,193 @@
+chapter: Unit Testing
+==================
+<!DOCTYPE html>
+<html>
+<head>
+ <title>QUnit basic example</title>
+ <script src="http://code.jquery.com/jquery-latest.js"></script>
+ <link rel="stylesheet" 
+href="http://jqueryjs.googlecode.com/svn/trunk/qunit/testsuite.css" type="text/css" 
+media="screen" />
+ <script type="text/javascript" 
+src="http://jqueryjs.googlecode.com/svn/trunk/qunit/testrunner.js"></script>
+
+<script type="text/javascript">
+   test("a basic test example", function() {
+    ok( true, "this test is fine" );
+    var value = "hello";
+    equals( value, "hello", "We expect value to be hello" );
+    });
+</script>
+
+</head>
+<body>
+ <div id="main"></div>
+</body>
+</html>
+    
+    
+====================================
+test("ok test", function() {
+    ok(true, "ok succeeds");
+    ok(false, "ok fails");
+});
+    
+    
+====================================
+test("equals test", function() {
+    equals("", 0, "equals succeeds");
+    equals("three", 3, "equals fails");
+});
+    
+    
+====================================
+test("same test", function() {
+    same(undefined, undefined, "same succeeds");
+    same("", 0, "same fails");
+});
+    
+    
+====================================
+test("a test", function() {
+    expect(1);
+    $("input").myPlugin({
+        initialized: function() {
+            ok(true, "plugin initialized");
+        }
+    });
+});
+    
+    
+====================================
+test("a test", function() {
+    stop();
+    $.getJSON("/someurl", function(result) {
+        equals(result.value, "someExpectedValue");
+        start();
+    });
+});
+    
+    
+====================================
+test("a test", function() {
+    stop(500);
+    $.getJSON("/someurl", function(result) {
+        equals(result.value, "someExpectedValue");
+        start();
+    });
+});
+    
+    
+====================================
+var keylogger = {
+    log: null,
+    init: function() {
+        keylogger.log = [];
+        $(document).unbind("keydown").keydown(function(event) {
+            keylogger.log.push(event.keyCode);
+        });
+    }
+};
+    
+    
+====================================
+test("basic keylogger behavior", function() {
+    // initialize
+   keylogger.init();
+
+    // trigger event
+    var event = $.Event("keydown");
+    event.keyCode = 9;
+    $(document).trigger(event);
+
+    // verify expected behavior
+    same(keylogger.log.length, 1, "a key was logged");
+    same(keylogger.log[0], 9, "correct key was logged");
+});
+    
+    
+====================================
+test("2 asserts", function() {
+    $("#main").append("<div>Click here for <span class='bold'>messages</span>.</div>");
+    same($("#main div").length, 1, "added message link successfully");
+    $("#main").append("<span>You have a message!</span>");
+    same($("#main span").length, 1, "added notification successfully");
+});
+    
+    
+====================================
+test("test 1", function() {
+    $("#main").append("<div>Click here for <span class='bold'>messages
+</span>.</div>");
+    same($("#main div").length, 1, "added message link successfully");
+});
+test("test 2", function() {
+    $("#main").append("<span>You have a message!</span>");
+    same($("#main span").length, 1, "added notification successfully");
+});
+    
+    
+====================================
+test("global pollution", function(){
+    window.pollute = true;
+    same(pollute, true);
+});
+    
+    
+====================================
+module("group a");
+test("a basic test example", function() {
+    ok( true, "this test is fine" );
+});
+test("a basic test example 2", function() {
+    ok( true, "this test is fine" );
+});
+
+module("group b");
+test("a basic test example 3", function() {
+    ok( true, "this test is fine" );
+});
+test("a basic test example 4", function() {
+    ok( true, "this test is fine" );
+});
+    
+    
+====================================
+module("module", {
+    setup: function() {
+        ok(true, "one extra assert per test");
+    }, teardown: function() {
+        ok(true, "and one extra assert after each test");
+    }
+});
+test("test with setup and teardown", function() {
+    expect(2);
+});
+    
+    
+====================================
+// test.html?validation - just the validation module
+// test.html?validation&tooltip - validation and tooltip module
+// test.html?!validation - exclude the validation module
+// test.html?test 3 - just "test 3", the url will be displayed as test.html?test%203
+module("validation");
+test("test 1", function () {
+    ok(true, "bool succeeds");
+});
+test("test 2", function () {
+    equals(5, 5.0, "equals succeeds");
+});
+module("tooltip");
+test("test 3", function () {
+    same(true, 3 == 3, "same succeeds");
+});
+test("test 4", function () {
+    ok(false, "bool fails");
+});
+module("other");
+test("test 5", function () {
+    equals(3, 5, "equals fails");
+});
+    
+    
+==================

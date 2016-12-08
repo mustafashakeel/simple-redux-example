@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DD</title>
+	 <style>
+        .dropzone {
+            width: 300px;
+            padding: 20px;
+            border: 2px dashed #000;
+        }
+        .dragthis{
+            width:100px;
+            height:100px;
+            background: yellow;
+
+        }
+    </style>
+</head>
+<body>
+<div draggable="true" class="dragthis">Grag this</div>
+
+<div id="dropzone" class="dropzone">drop zone </div>
+<div id="dropstatus"></div>
+<script >
+
+	function handleDrag(e){
+		console.log(e.type);
+
+
+		switch(e.type){
+			case "dragover":
+						dropzone.style.background = "blue";
+			break;
+			case "dragleave":
+						dropzone.style.background = "grey";
+			break;
+			case "drop":
+					dropstatus.innerHTML = "You Have Dropped something";
+			break;
+
+		}
+
+	}
+	var dropzone = document.getElementById('dropzone');
+	var dropstatus = document.getElementById('dropstatus');
+
+	dropzone.addEventListener('dragenter',handleDrag);
+	dropzone.addEventListener('dragover',handleDrag);
+	dropzone.addEventListener('dragleave',handleDrag);
+	dropzone.addEventListener('drop',handleDrag);
+</script>
+</body>
+</html>

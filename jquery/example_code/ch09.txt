@@ -1,0 +1,422 @@
+chapter: Advanced Events
+==================
+jQuery('#a1,#a2,div.b5').trigger('someEvent');
+    
+    
+====================================
+jQuery('#text1').bind('change-page', function(e, title){
+    jQuery(this).text( 'Page is ' + title );
+});
+jQuery('#text2').bind('change-page', function(e, title){
+    jQuery(this).text( 'At ' + title + ' Page' );
+});
+jQuery.trigger('change-page', 'Inbox');
+    
+    
+====================================
+jQuery.page = jQuery({}); // Just an empty object
+jQuery.page.bind('change', function(e, title){
+    jQuery('#text1').text( 'Page is ' + title );
+});
+jQuery.page.bind('change', function(e, title){
+    jQuery('#text2').text( 'At ' + title + ' Page' );
+});
+jQuery.page.trigger('change', 'Inbox');
+    
+    
+====================================
+jQuery.page = jQuery({ number:1 });
+    
+    
+====================================
+jQuery.page.number; // undefined
+ jQuery.page[0].number; // 1
+    
+    
+====================================
+(function( $ ){
+
+    // These methods will be copied from jQuery.fn to our prototype
+    var copiedMethods = 'bind unbind one trigger triggerHandler'.split(' ');
+
+    // Empty constructor
+    function Listener(){
+    };
+
+    $.each(copiedMethods, function(i,name){
+        Listener.prototype[name] = $.fn[name];
+    });
+
+    // Our "jQuery.fn.each" needs to be replaced
+    Listener.prototype.each = function(fn) {
+        fn.call(this);
+        return this;
+    };
+
+    $.listener = function( data ){
+        return $.extend(new Listener(), data);
+    };
+
+})( jQuery );
+    
+    
+====================================
+jQuery.page = jQuery.listener({
+    title: 'Start',
+    changeTo: function( title ){
+        this.title = title;
+        this.trigger('change');
+    }
+});
+jQuery.page.changeTo('Inbox');
+    
+    
+====================================
+jQuery.page.bind('change', function(e){
+    jQuery('#text1').text( 'Page is ' + this.title );
+});
+    
+    
+====================================
+jQuery.event.special.myEvent = {
+    // Bind the custom event
+    setup:function( data, namespaces ){
+        this; // The element being bound
+        // return false to get the native binding, otherwise,
+        // it will be skipped
+    },
+    // Clean up
+    teardown:function( namespaces ){
+        this; // The element being bound
+        // Ditto about returning false
+    }
+ };
+    
+    
+====================================
+jQuery('#some_element').bind('myEvent', {foo:'bar'}, function(){...});
+    
+    
+====================================
+// Save these to make the code shorter
+// Don't do this within the global scope
+var event = jQuery.event;
+var $selected = event.special.selected = {
+    setup:function( data ){
+        event.add(this, 'click', $selected.handler);
+        return false;
+    },
+    teardown:function(){
+        event.remove(this, 'click', $selected.handler);
+        return false;
+    },
+    handler:function(){
+        var $elem = jQuery(this);
+        if( !$elem.hasClass('disabled') )
+            $elem.triggerHandler('selected');
+    }
+};
+    
+    
+====================================
+var e = jQuery.Event('updateName');
+    
+    
+====================================
+jQuery('#element').trigger(e);
+ alert( e.result ); // Charles
+    
+    
+====================================
+jQuery('#name').bind('updateName', function(e){
+    e.name = this.value;
+ });
+
+ var e = jQuery.Event('updateName');
+ jQuery('#name').trigger(e);
+ alert( e.name );
+    
+    
+====================================
+jQuery('#first').bind('update', function(e){
+    e.firstName = this.value;
+ });
+ jQuery('#last').bind('update', function(e){
+    e.lastName = this.value;
+ });
+
+ var e = jQuery.Event('update');
+ jQuery('#first, #last').trigger(e);
+ alert( e.firstName );
+ alert( e.lastName );
+    
+    
+====================================
+jQuery('#element').bind('updateName', function(){
+    return 'Charles';
+ });
+
+ var name = jQuery('#element').triggerHandler('updateName');
+ alert( name ); // Charles
+    
+    
+====================================
+var remote = jQuery.listener({
+     request:function( url, callback ){
+        jQuery.ajax({ url:url, success:callback });
+     }
+ });
+
+ // Do a request
+ remote.request('contact.html', function( html ){
+     alert( html );
+ });
+    
+    
+====================================
+var remote = jQuery.listener({
+     request:function( url, callback ){
+        var e = jQuery.Event('beforeRequest');
+        e.url = url;
+        this.trigger(e);
+
+        if( !e.isDefaultPrevented() )
+            jQuery.ajax({ url:url, success:callback });
+     }
+ });
+    
+    
+====================================
+remote.bind('beforeRequest', function(e){
+    if( e.url == 'contact.html' )
+        e.preventDefault();
+ });
+    
+    
+====================================
+(function( $ ){
+    $.fn.slideshow = function(options){
+
+        return this.each(function(){
+            var $img = $(this),
+                current = 0;
+
+            // Add slideshow behavior...
+        });
+    };
+ })( jQuery );
+    
+    
+====================================
+function show( index ){
+   var total = options.images.length;
+
+    while( index < 0 )
+        index += total;
+
+    while( index >= total )
+        index −= total;
+
+    current = index;
+    $img.attr('src', options.images[index]);
+ }
+
+ function prev(){
+    show( current − 1 );
+ }
+
+ function next(){
+    show( current + 1 );
+ }
+    
+    
+====================================
+$img.bind('prev', prev).bind('next', next).bind('goto',function(e, index){
+    show( index );
+ });
+    
+    
+====================================
+var auto = false, id;
+
+ function start(){
+    stop();
+    auto = true;
+    id = setTimeout(next, options.interval || 2000);
+ }
+
+ function stop(){
+    auto = false;
+    clearTimeout(id);
+ }
+    
+    
+====================================
+$img.bind('start', start).bind('stop', stop);
+    
+    
+====================================
+function show( index ){
+    // Same as before...
+
+    if( auto )
+        start();
+ }
+    
+    
+====================================
+<ul>
+   <li><img id="prev" src="prev.png" /></li>
+   <li><img id="slideshow" /></li>
+   <li><img id="next" src="next.png" /></li>
+ </ul>
+
+...
+
+(function( $ ){
+    var $image = $('#slideshow');
+
+    $image.slideshow({
+        images: ['1.jpg', '2.jpg', '3.jpg', '4.jpg'],
+        interval: 3000
+    });
+
+    $('#prev').click(function(){
+        $image.trigger('prev');
+    });
+
+    $('#next').click(function(){
+        $image.trigger('next');
+    });
+
+    $image.trigger('goto', 0); // Initialize on 0
+    $image.trigger('start'); // We want auto cycling
+
+})( jQuery );
+    
+    
+====================================
+jQuery('#slideshow').unbind('prev next goto start stop'); // Enumerate each event
+// or
+jQuery('#slideshow').unbind(); // Blindly remove them all
+    
+    
+====================================
+jQuery('#image').slideshow('goto', 1);
+    
+    
+====================================
+(function($){
+
+    $.broadcast = function(name){
+        // Save the original method
+        var old = $.fn[name];
+
+        $.fn[name] = function(){
+            // Broadcast
+        };
+    };
+
+})(jQuery);
+    
+    
+====================================
+jQuery.broadcast('addClass');
+    
+    
+====================================
+// Create an event object
+ var e = $.Event('before-'+name);
+ // Save the arguments into the object
+ e.args = $.makeArray(arguments);
+ // Trigger the event
+ this.trigger(e);
+    
+    
+====================================
+jQuery('body').bind('before-addClass',function(e){
+  e.args[0]; // The CSS class
+});
+    
+    
+====================================
+e.ret = old.apply(this, e.args);
+    
+    
+====================================
+e.type = 'after-'+name;
+this.trigger(e);
+    
+    
+====================================
+return e.ret;
+    
+    
+====================================
+(function($){
+
+    $.broadcast = function(name){
+        var old = $.fn[name];
+
+        $.fn[name] = function(){
+            var e = $.Event('before-'+name);
+
+            e.args = $.makeArray(arguments);
+            this.trigger(e);
+
+            e.ret = old.apply(this, e.args);
+
+            e.type = 'after-'+name;
+            this.trigger(e);
+
+            return e.ret;
+        };
+    };
+
+})(jQuery);
+    
+    
+====================================
+function Person(name){
+  this.name = name;
+  this.married = false;
+}
+
+jQuery.extend( Person.prototype, {
+    whatIsYourName: function(){
+        alert(this.name);
+    },
+    updateMarriedState: function(e){
+        var checkbox = e.currentTarget;
+        this.married = checkbox.checked;
+    }
+});
+
+var peter = new Person('Peter');
+var susan = new Person('Susan');
+    
+    
+====================================
+jQuery('#c1').bind('change', peter.updateMarriedState, peter);
+jQuery('#c2').bind('change', susan.updateMarriedState, susan);
+    
+    
+====================================
+function updatePersonMarriedState(e){
+   var checkbox = e.currentTarget;
+   this.married = checkbox.checked;
+}
+jQuery('#c1').bind('change', updatePersonMarriedState, peter);
+jQuery('#c2').bind('change', updatePersonMarriedState, susan);
+    
+    
+====================================
+jQuery('#b1').bind('click', peter.whatIsYourName, peter);
+jQuery('#b2').bind('click', susan.whatIsYourName, susan);
+    
+    
+====================================
+peter.whatIsYourName == susan.whatIsYourName; // true
+    
+    
+==================

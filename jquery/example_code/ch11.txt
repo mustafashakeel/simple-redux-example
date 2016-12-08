@@ -1,0 +1,643 @@
+chapter: HTML Form Enhancements with
+  Plugins
+==================
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="jquery.slideshow.css"/>
+    <script src="assets/jquery-latest.js"></script>
+    <script src="assets/jquery.slideshow.js"></script>
+    <script type="text/javascript">
+    jQuery(document).ready(function($){
+        $("#slideshow").slideshow();
+    });
+    </script>
+</head>
+<body>
+    <div id="slideshow">...</div>
+</body>
+</html>
+    
+    
+====================================
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="assets/jquery-latest.js"></script>
+  <script src="assets/jquery.validate.js"></script>
+  <style type="text/css">
+    * { font-family: Verdana; font-size: 96%; }
+    label { width: 10em; float: left; }
+    label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+    div { clear: both; }
+    input, textarea { width: 15em; }
+    .submit { margin-left: 10em; }
+  </style>
+  <script type="text/javascript">
+    jQuery(document).ready(function($){
+      $("#commentForm").validate();
+    });
+  </script>
+</head>
+<body>
+  <form id="commentForm" method="get" action="">
+    <fieldset>
+      <legend>A simple comment form with submit validation and default messages</legend>
+      <div>
+        <label for="cname">Name</label>
+        <input id="cname" name="name" class="required" minlength="2" />
+      </div>
+      <div>
+        <label for="cemail">E-Mail</label>
+        <input id="cemail" name="email" class="required email" />
+      </div>
+      <div>
+        <label for="curl">URL (optional)</label>
+        <input id="curl" name="url" class="url" value="" />
+      </div>
+      <div>
+        <label for="ccomment">Your comment</label>
+        <textarea id="ccomment" name="comment" class="required"></textarea>
+      </div>
+      <div>
+        <input class="submit" type="submit" value="Submit"/>
+      </div>
+    </fieldset>
+  </form>
+</body>
+</html>
+    
+    
+====================================
+jQuery.validator.addMethod("domain", function(value, element) {
+    return this.optional(element) || /^http:\/\/mycorporatedomain.com/.test(value);
+}, "Please specify the correct domain for your documents");
+    
+    
+====================================
+jQuery.validator.addMethod("math", function(value, element, params) {
+    return this.optional(element) || value == params[0] + params[1];
+}, jQuery.format("Please enter the correct value for {0} + {1}"));
+    
+    
+====================================
+$.validator.addMethod("customerRequired", $.validator.methods.required, 
+"Customer name required");
+    
+    
+====================================
+<input type="text" name="email" class="{required:true, email:true}" />
+    
+    
+====================================
+$("#myform").validate({
+    rules: {
+        name: {
+            required: true,
+            minlength: 2
+        },
+        email: {
+            required: true,
+            email: true
+        },
+        url: "url",
+        comment: "required"
+    }
+});
+    
+    
+====================================
+// initialize the validation first
+$("#myform").validate();
+// some time later, add more rules
+$("#username").rules("add", { minlength: 2});
+    
+    
+====================================
+$("#username").rules("remove", "required");
+    
+    
+====================================
+$("#loginform").validate({
+    username: "required",
+    password: "required"
+});
+$("a#forgotPassword").click(function(e) {
+    $("#password").rules("remove", "required");
+    $("#loginform").submit();
+    $("#password").rules("add", "required");
+    return false;
+});
+    
+    
+====================================
+email: {
+    required: "#newsletter:checked"
+}
+    
+    
+====================================
+email: {
+    required: function(element) {
+        return $("#newsletter:checked").length && $("#telephone:blank");
+    }
+}
+    
+    
+====================================
+<input name="email" class="required email" title="A valid email address is 
+required" />
+    
+    
+====================================
+<input name="email" class="{required:true, email:true, messages:{required:"Required", 
+email: "Not a valid email address"}}"/>
+    
+    
+====================================
+$("#myform").validate({
+    messages: {
+        email: {
+            required: "Required",
+            email: "Not a valid email address"
+        }
+    }
+});
+    
+    
+====================================
+$("#myform").validate();
+// sometime later
+$("#email").rules("add", {
+    messages: {
+        email: "A valid email address, please!"
+    }
+});
+    
+    
+====================================
+$("#myform").validate({
+    ignoreTitle: true
+});
+    
+    
+====================================
+<script src="assets/jquery-latest.js"></script>
+<script src="assets/jquery.validate.js"></script>
+<script src="assets/messages_se.js.js"></script>
+    
+    
+====================================
+$("#myform").validate({
+    errorElement: "em"
+});
+    
+    
+====================================
+<form id="signupform" method="get" action="">
+    <table>
+        <tr>
+            <td class="label">
+                <label id="lfirstname" for="firstname">First Name</label>
+            </td>
+            <td class="field">
+                <input id="firstname" name="firstname" type="text" value="" 
+maxlength="100" />
+            </td>
+            <td class="status"></td>
+        </tr>
+        <!-- more fields -->
+    </table>
+</form>
+
+$("#signupform").validate({
+    errorPlacement: function(error, element) {
+        error.appendTo( element.parent("td").next("td") );
+    }
+});
+    
+    
+====================================
+$("#myform").validate({
+    errorContainer: "#messageBox1"
+});
+    
+    
+====================================
+<div class="container">
+        <h4>There are a few problems, please see below for details.</h4>
+        <ul></ul>
+</div>
+<form id="myform" action="">
+<!-- form content -->
+</form>
+
+var container = $('div.container');
+// validate the form when it is submitted
+$("#myform").validate({
+    errorContainer: container,
+    errorLabelContainer: $("ul", container),
+    wrapper: 'li'
+});
+    
+    
+====================================
+$(".selector").validate({
+    submitHandler: function(form) {
+        $(form).ajaxSubmit();
+    }
+});
+    
+    
+====================================
+$("#myform").validate({
+    invalidHandler: function(e, validator) {
+        var errors = validator.numberOfInvalids();
+        if (errors) {
+            var message = errors == 1
+                ? 'You missed 1 field. It has been highlighted below'
+                : 'You missed ' + errors + ' fields. They have been highlighted below';
+            $("div.error span").html(message);
+            $("div.error").show();
+        } else {
+            $("div.error").hide();
+        }
+    }
+});
+    
+    
+====================================
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="assets/jquery-latest.js"></script>
+    <script src="assets/jquery.maskedinput.js"></script>
+    <script>
+    jQuery(document).ready(function($) {
+        $("#phone").mask("(999) 999-9999");
+    });
+    </script>
+</head>
+<body>
+    <form>
+        <label for="phone">Phone</label>
+        <input type="text" name="phone" id="phone" />
+    </form>
+</body>
+</html>
+    
+    
+====================================
+(___) ___-____
+    
+    
+====================================
+$("#phone").mask("(999) 999-9999", {placeholder: " "});
+    
+    
+====================================
+$.mask.definitions['~'] = '[+−]';
+$("#eyescript").mask("~9.99 ~9.99 999");
+    
+    
+====================================
+$("#phone").mask("(999) 999-9999? x99999");
+    
+    
+====================================
+<label for="month">Select a month:</label>
+<input id="month" name="month" />
+
+var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
+'August', 'September', 'October', 'November', 'December'];
+$("#month").autocomplete({
+    source: months
+});
+    
+    
+====================================
+$("#month").autocomplete({
+    source: "addresses.php"
+});
+    
+    
+====================================
+Mainstreet
+Mallstreet
+Marketstreet
+    
+    
+====================================
+<div id="slider"></div>
+
+$("#slider").slider();
+    
+    
+====================================
+<link rel="stylesheet" href="ui.core.css" />
+<link rel="stylesheet" href="ui.slider.css" />
+<link rel="stylesheet" href="ui.theme.css" />
+<script type="text/javascript" src="jquery-1.3.2.js"></script>
+<script type="text/javascript" src="ui.core.js"></script>
+<script type="text/javascript" src="ui.slider.js"></script>
+    
+    
+====================================
+<p>
+    <label for="amount">Price range:</label>
+    <input type="text" id="amount" style="border:0; color:#f6931f; 
+font-weight:bold;" />
+</p>
+
+<div id="slider-range"></div>
+    
+    
+====================================
+var slider = $("#slider-range").slider({
+    range: true,
+    min: 0,
+    max: 500,
+    values: [75, 300],
+    slide: function(event, ui) {
+        $("#amount").val('$' + ui.values[0] + ' − $' + ui.values[1]);
+    }
+});
+$("#amount").val('$' + slider.slider("values", 0) + ' − $' + slider.slider("values", 
+1));
+    
+    
+====================================
+<select name="minbeds" id="minbeds">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+</select>
+
+var select = $("#minbeds");
+var slider = $('<div id="slider"></div>').insertAfter(select).slider({
+    min: 1,
+    max: 6,
+    range: "min",
+    value: select[0].selectedIndex + 1,
+    slide: function(event, ui) {
+        select[0].selectedIndex = ui.value − 1;
+    }
+});
+$("#minbeds").click(function() {
+    slider.slider("value", this.selectedIndex + 1);
+});
+    
+    
+====================================
+<input id="value" name="value" />
+    
+    
+====================================
+$("#value").spinner();
+    
+    
+====================================
+<label for="currency">Currency</label>
+<select id="currency" name="currency">
+    <option value="$">US $</option>
+    <option value="€">EUR €</option>
+    <option value="¥">YEN ¥</option>
+</select>
+<br/>
+<label for="amount">Select the amount to donate:</label>
+<input id="amount" name="amount" value="5" />
+    
+    
+====================================
+var currency = $("#currency").change(function() {
+    $("#amount").spinner("option", "currency", $(this).val()).blur();
+});
+$("#amount").spinner({
+    currency: currency.val(),
+    min: 5,
+    max: 1000,
+    step: 5
+});
+    
+    
+====================================
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?
+sensor=false"></script>
+    
+    
+====================================
+<style>
+    #map { width:500px; height:500px; }
+</style>
+
+<label for="lat">Latitude</label>
+<input id="lat" name="lat" value="44.797916" />
+<br/>
+<label for="lng">Longitude</label>
+<input id="lng" name="lng" value="-93.278046" />
+
+<div id="map"></div>
+    
+    
+====================================
+function latlong() {
+    return new google.maps.LatLng($("#lat").val(),$("#lng").val());
+}
+function position() {
+    map.set_center(latlong());
+}
+$("#lat, #lng").spinner({
+    precision: 6,
+    change: position
+});
+
+var map = new google.maps.Map($("#map")[0], {
+    zoom: 8,
+    center: latlong(),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+});
+    
+    
+====================================
+<form id="uploadform">
+    <input type="file" id="fileupload" name="fileupload" />
+    <input type="submit" value="Upload!" />
+</form>
+    
+    
+====================================
+$("#uploadform").ajaxForm();
+    
+    
+====================================
+$("#uploadform").ajaxForm({
+    success: function() {
+        alert("Upload completed!");
+    }
+});
+    
+    
+====================================
+$("#commentform").validate({
+    submitHandler: function(form) {
+        $(form).ajaxSubmit({
+            success: function() {
+                $(form).clearForm();
+                alert("Thanks for your comment!");
+            }
+        });
+    }
+});
+    
+    
+====================================
+<form action="/comment">
+  <p>Characters left: <span class="charsLeft">10</span></p>
+  <textarea name="commentbody" maxlength="10"></textarea>
+</form>
+
+$('textarea').maxlength();
+    
+    
+====================================
+<form action="/comment">
+  <textarea name="commentbody" maxlength="10"></textarea>
+</form>
+
+var textarea = $('textarea');
+$('<p>Characters left: <span class="charsLeft">10</span></p>').insertBefore(textarea);
+textarea.maxlength();
+    
+    
+====================================
+<form action="/comment">
+    <textarea name="commentbody" maxlength="10"></textarea>
+    <p><span>x</span> characters left</p>
+</form>
+
+$('textarea').maxlength({
+    feedback: "p>span",
+    hardLimit: false,
+    words: true
+});
+    
+    
+====================================
+$("#search").watermark("Search");
+    
+    
+====================================
+<form id="loginform">
+    <input type="text" id="email" name="email" 
+class="{watermark:'E-Mail Address'}" />
+    <input type="password" id="password" name="password" 
+class="{watermark:'Your password'}" />
+</form>
+
+$("#loginform input").watermark();
+    
+    
+====================================
+<form id="loginform">
+    <div>
+        <label for="email">E-Mail Address</label>
+        <input type="text" id="email" name="email" />
+    </div>
+    <div>
+        <label for="password">Your password</label>
+        <input type="password" id="password" name="password" />
+    </div>
+</form>
+    
+    
+====================================
+$("#loginform label").watermark();
+    
+    
+====================================
+<textarea id="commentbody"></textarea>
+    
+    
+====================================
+$("#commentbody").elastic();
+    
+    
+====================================
+$("#resizable").resizable({
+    handles: "se"
+});
+    
+    
+====================================
+.ui-resizable-handle {
+    bottom: 17px;
+}
+    
+    
+====================================
+<label for="startAt">Start at:</label>
+<input type="text" name="startAt" id="startAt" />
+
+$("#startAt").datepicker();
+    
+    
+====================================
+<label for="from">From</label>
+<input type="text" id="from" name="from"/>
+<label for="to">to</label>
+<input type="text" id="to" name="to"/>
+    
+    
+====================================
+var dates = $('#from, #to').datepicker({
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 3,
+    onSelect: function(selectedDate) {
+        var option = this.id == "from" ? "minDate" : "maxDate";
+        dates.not(this).datepicker("option", option, new Date(selectedDate));
+    }
+});
+    
+    
+====================================
+$("#datepicker").datepicker({
+    showOn: 'button',
+    buttonImage: 'images/calendar.gif',
+    buttonImageOnly: true
+});
+    
+    
+====================================
+$.datepicker.regional['ar'] = {
+    closeText: 'إغلاق',
+    prevText: '&#x3c;السابق',
+    nextText: 'التالي&#x3e;',
+    currentText: 'اليوم',
+    dayNames: ['السبت', 'الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخم
+يس', 'الجمعة'],
+    dayNamesShort: ['سبت', 'أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خم
+يس', 'جمعة'],
+    dayNamesMin: ['سبت', 'أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خم
+يس', 'جمعة'],
+    dateFormat: 'dd/mm/yy',
+    firstDay: 0,
+    isRTL: true
+};
+    
+    
+====================================
+$("#datepicker").datepicker($.datepicker.regional.ar);
+    
+    
+====================================
+$("#datepicker").datepicker($.extend({}, $.datepicker.regional.ar, {
+    changeMonth: true,
+    changeYear: true
+});
+    
+    
+==================

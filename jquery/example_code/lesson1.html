@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Grep</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+	<script>
+(function($) {
+    $(document).ready(function() {
+        var horseBreeds = ['Quarter Horse', 'Thoroughbred', 'Arabian'];
+        var draftBreeds = ['Belgian', 'Percheron'];
+
+        var breeds = $.merge(horseBreeds, draftBreeds);
+        $('#horses').html('<li'+breeds.join('</li><li>')+'</li>')
+
+    //     var breeds = $.merge( horseBreeds, draftBreeds );
+    //     $('#horses').html( '<li>' + breeds.join('</li><li>') + '</li>' );
+     });
+})(jQuery);
+	</script>
+</head>
+<body>
+<ul id="horses"></ul>
+	
+</body>
+</html>

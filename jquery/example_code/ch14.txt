@@ -1,0 +1,570 @@
+chapter: User Interfaces with jQuery UI
+==================
+<link rel="stylesheet" type="text/css" href="themename/jquery-ui.css" />
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery-ui.js"></script>
+    
+    
+====================================
+<script type="text/javascript"
+ src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript"
+ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+    
+    
+====================================
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/
+jqueryui/1.7.2/themes/{themename}/jquery-ui.css" />
+    
+    
+====================================
+js/jquery-ui-1.7.2.custom.min.js
+    
+    
+====================================
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script>
+    
+    
+====================================
+<script type="text/javascript" src="jquery-1.3.2.js"></script>
+<script type="text/javascript" src="ui/ui.core.js"></script>
+<script type="text/javascript" src="ui/ui.sortable.js"></script>
+<script type="text/javascript" src="ui/ui.tabs.js"></script>
+    
+    
+====================================
+<link rel="stylesheet" type="text/css" href="themes/base/ui.core.css" />
+<link rel="stylesheet" type="text/css" href="themes/base/ui.tabs.css" />
+<link rel="stylesheet" type="text/css" href="themes/base/ui.theme.css" />
+    
+    
+====================================
+<script type="text/javascript">
+$(function() {
+    $('#topnav').tabs();
+});
+</script>
+    
+    
+====================================
+$('p.long').succinct();
+
+$('.short').longerPluginName();
+    
+    
+====================================
+<div>A simple DIV</div>
+
+<div class="ui-draggable">A simple DIV</div>
+    
+    
+====================================
+$('img').draggable();
+    
+    
+====================================
+$('img').each(function() {
+    $(this).draggable();
+});
+    
+    
+====================================
+$('#myDiv').dialog({
+    height: 100,          // overrides default: 'auto'
+    width: 350            // overrides default: 300
+});
+    
+    
+====================================
+$('#myDiv').foo({ color: 'black' });
+$('#myDiv').bar({ color: 'green' });
+    
+    
+====================================
+$('#msg').dialog({
+    height: 300,
+    width: 400,
+    draggable: false,
+    modal: true,
+    buttons: {
+        'OK': function(event, ui) {
+            $(this).dialog('close');
+        }
+    }
+    ...
+});
+    
+    
+====================================
+$.extend($.ui.dialog.defaults, {
+    height: 300,
+    width: 400,
+    draggable: false,
+    modal: true,
+    buttons: {
+        'OK': function(event, ui) {
+            $(this).dialog('close');
+        }
+     }
+});
+...
+$('#msg').dialog();
+...
+$('#note').dialog();
+    
+    
+====================================
+var options = {
+    height: 300,
+    width: 400,
+    draggable: false,
+    modal: true,
+    buttons: {
+        'OK': function(event, ui) {
+            $(this).dialog('close');
+        }
+    }
+};
+
+$('#msg').dialog(options);
+    
+    
+====================================
+$('#msg').dialog();
+    
+    
+====================================
+var active = $('#myDiv').accordion('option', 'active');
+    
+    
+====================================
+$('#myDiv').accordion('option', 'active', 3);
+    
+    
+====================================
+$('#myDiv').accordion('option', {
+    active: 2,
+    collapsible: true
+});
+    
+    
+====================================
+$('#msg').dialog('close');
+    
+    
+====================================
+$('#nav').tabs('select', 2); // tabs method select accepts a 0-based index
+    
+    
+====================================
+$('img').draggable('disable');
+
+$('#mySlider').slider('enable');
+    
+    
+====================================
+var isDisabled = $('#tempature').slider('option', 'disabled');
+    
+    
+====================================
+// Declaring an event callback option on init
+$('#shopping-cart').droppable({
+    drop: function(event, ui) {
+        addProduct(ui.draggable);
+    }
+});
+
+// Declaring an event callback after init using the option method
+$('#shopping-cart').droppable();
+...
+$('#shopping-cart').droppable('option', 'drop', function(event, ui) {
+    addProduct(ui.draggable);
+});
+    
+    
+====================================
+// Declaring an event callback option on init
+$('#shopping-cart').bind('drop', function(event, ui) {
+    addProduct(ui.draggable);
+});
+    
+    
+====================================
+$('img').draggable({
+    start: function(event, ui) {
+        //event.type == 'dragstart'
+    }
+});
+$('#mySlider').slider({
+    start: function(event, ui) {
+        //event.type == 'slidestart'
+    }
+});
+    
+    
+====================================
+$('img').bind('dragstart', function(event, ui) {
+        //event.type == 'dragstart'
+    }
+});
+$('#mySlider').bind('slidestart', function(event, ui) {
+        //event.type == 'slidestart'
+    }
+});
+    
+    
+====================================
+$('#queue').sortable('destroy');
+    
+    
+====================================
+var $audio = $('audio'), audioEl = $audio[0];
+var audio = {
+        currentTime: 0,
+        duration: secondsTotal,
+        volume: 0.5,
+        set: function(key, value) {
+                this[key] = value;
+                try { audioEl[key] = value; } catch(e) {}
+                if (key == 'currentTime') {
+                        $audio.trigger('timeupdate');
+                }
+                if (key == 'volume') {
+                        $audio.trigger('volumechange');
+                }
+        },
+        play: function() {
+                audioEl.play && audioEl.play();
+        },
+        pause: function() {
+                audioEl.pause && audioEl.pause();
+        }
+};
+$audio.bind('timeupdate', function() {
+        audio.currentTime = audioEl.currentTime;
+});
+audio.set('currentTime', 0);
+audio.set('volume', 0.5);
+    
+    
+====================================
+.mplayer { position: relative; width: 40%; height: 2.5em; margin: 50px 0 100px 0; }
+
+<div class="mplayer ui-widget"></div>
+    
+    
+====================================
+.mplayer .buttons-container { position: absolute; top: 10px; left: 10px; }
+.mplayer .buttons-container .playpause { height: 1.2em; width: 1.2em; display: block;
+        position: relative; top: −2px; left: −2px; }
+.mplayer .buttons-container .playpause .ui-icon { margin: −1px 0 0 −1px; }
+.mplayer .playpause .ui-icon-play, .paused .playpause .ui-icon-pause { display: none; }
+.paused .playpause .ui-icon-play { display: block; }
+    
+    
+====================================
+<div class="mplayer ui-widget">
+        <div class="buttons-container">
+                <a class="playpause ui-state-default ui-corner-all" href="#">
+                        <span class="ui-icon ui-icon-play"></span>
+                        <span class="ui-icon ui-icon-pause"></span>
+                </a>
+        </div>
+</div>
+    
+    
+====================================
+$('.mplayer .playpause').click(function() {
+        var player = $(this).parents('.mplayer');
+        if (player.is('.paused')) {
+                $('.mplayer').removeClass('paused');
+                audio.play();
+        } else {
+                $('.mplayer').addClass('paused');
+                audio.pause();
+        }
+        return false;
+})
+.hover(function() { $(this).addClass('ui-state-hover'); },
+        function() { $(this).removeClass('ui-state-hover'); })
+.focus(function() { $(this).addClass('ui-state-focus'); })
+.blur(function() { $(this).removeClass('ui-state-focus'); });
+$('.mplayer').addClass('paused');
+    
+    
+====================================
+.mplayer .currenttime { position: absolute; top: 0.6em; left: 2.2em;
+        width: 3em; text-align: center; background: none; border: none; }
+.mplayer .duration { position: absolute; top: 0.6em; right: 2.2em;
+        width: 3em; text-align: center; background: none; border: none; }
+    
+    
+====================================
+<div class="mplayer ui-widget">
+        <div class="buttons-container">
+                <a class="playpause ui-state-default ui-corner-all" href="#">
+                        <span class="ui-icon ui-icon-play"></span>
+                        <span class="ui-icon ui-icon-pause"></span>
+                </a>
+        </div>
+        <span class="currenttime ui-state-default"></span>
+        <span class="duration ui-state-default"></span>
+</div>
+    
+    
+====================================
+function minAndSec(sec) {
+        sec = parseInt(sec);
+        return Math.floor(sec / 60) + ":" + (sec % 60 < 10 ? '0' : '') + 
+Math.floor(sec % 60);
+}
+$('.mplayer .currenttime').text(minAndSec(audio.currentTime));
+$('.mplayer .duration').text(minAndSec(secondsTotal));
+
+$audio
+        .bind('timeupdate', function(event) {
+                $('.mplayer .currenttime').text(minAndSec(audio.currentTime));
+        });
+    
+    
+====================================
+.mplayer .track { top: 11px; margin: 0 5.2em; margin-top: −2px; 
+        border-style: none; }
+.mplayer .track .ui-slider-handle { border-left-width: 0; height: 1.1em; 
+        top: −0.24em; width: 2px; margin-left: −3px; }
+    
+    
+====================================
+<div class="mplayer ui-widget">
+        <div class="buttons-container">
+               <a class="playpause ui-state-default ui-corner-all" href="#">
+                       <span class="ui-icon ui-icon-play"></span>
+                       <span class="ui-icon ui-icon-pause"></span>
+               </a>
+        </div>
+        <span class="currenttime ui-state-default"></span>
+        <div class="track"></div>
+        <span class="duration ui-state-default"></span>
+</div>
+    
+    
+====================================
+$('.mplayer .track')
+        .slider({
+                range: 'min',
+                max: audio.duration,
+                slide: function(event, ui) {
+                        $('.ui-slider-handle', this).css('margin-left',
+                                (ui.value < 3) ? (1 - ui.value) + 'px' : '');
+                        if (ui.value >= 0 && ui.value <= audio.duration) {
+                                audio.set('currentTime', ui.value);
+                        }
+                },
+                change: function(event, ui) {
+                        $('.ui-slider-handle', this).css('margin-left',
+                                (ui.value < 3) ? (1 - ui.value) + 'px' : '');
+               }
+        })
+        .find('.ui-slider-handle').css('margin-left', '0').end()
+        .find('.ui-slider-range').addClass('ui-corner-left').end();
+
+$audio
+        .bind('timeupdate', function(event) {
+                $('.mplayer .track').each(function() {
+                        if ($(this).slider('value') != audio.currentTime) {
+                                $(this).slider('value', audio.currentTime);
+                        }
+               });
+               $('.mplayer .currenttime').text(minAndSec(audio.currentTime));
+        });
+    
+    
+====================================
+slide: function(event, ui) {
+      $('.ui-slider-handle', this).css('margin-left',
+               (ui.value < 3) ? (1 - ui.value) + 'px' : '');
+      if (ui.value >= 0 && ui.value <= audio.duration) {
+               audio.set('currentTime', ui.value);
+      }
+},
+change: function(event, ui) {
+        $('.ui-slider-handle', this).css('margin-left',
+                (ui.value < 3) ? (1 - ui.value) + 'px' : '');
+}
+    
+    
+====================================
+.mplayer .ui-progressbar .ui-progressbar-value { border-style: none; }
+    
+    
+====================================
+var secondsCached = 0, cacheInterval;
+$('.mplayer .track')
+        .progressbar({
+                value: secondsCached / secondsTotal * 100
+        })
+        .find('.ui-progressbar-value').css('opacity', 0.2).end();
+
+cacheInterval = setInterval(function() {
+        secondsCached += 2;
+        if (secondsCached > secondsTotal) clearInterval(cacheInterval);
+        $('.mplayer .track.ui-progressbar')
+                .progressbar('value', secondsCached / secondsTotal * 100);
+}, 30);
+    
+    
+====================================
+$('.mplayer .volume').slider({
+        max: 1,
+        step: 0.01,
+        value: audio.volume,
+        slide: fnSlide,
+        change: fnChange
+});
+    
+    
+====================================
+.mplayer .volume-container { position: absolute; top: 12px; right: 12px; }
+.mplayer .volume { height: 0; margin-top: 5px; }
+    
+    
+====================================
+<div class="mplayer ui-widget">
+        <div class="buttons-container">
+                <a class="playpause ui-state-default ui-corner-all" href="#">
+                        <span class="ui-icon ui-icon-play"></span>
+                        <span class="ui-icon ui-icon-pause"></span>
+                </a>
+        </div>
+        <span class="currenttime ui-state-default"></span>
+        <div class="track"></div>
+        <span class="duration ui-state-default"></span>
+        <div class="volume-container">
+                <div class="volume">
+                        <a href="#" class="ui-state-default ui-corner-all 
+ui-slider-handle">
+                                <span class="ui-icon ui-icon-volume-on"></span>
+                        </a>
+                </div>
+        </div>
+</div>
+    
+    
+====================================
+$('.mplayer .volume')
+        .slider({
+                max: 1,
+                orientation: 'vertical',
+                range: 'min',
+                step: 0.01,
+                value: audio.volume,
+                start: function(event, ui) {
+                        $(this).addClass('ui-slider-sliding');
+                        $(this).parents('.ui-slider').css({
+                                'margin-top': (((1 - audio.volume) * −100) + 5) + 'px',
+                                'height': '100px'
+                        }).find('.ui-slider-range').show();
+                },
+                slide: function(event, ui) {
+                        if (ui.value >= 0 && ui.value <= 1) {
+                                audio.set('volume', ui.value);
+                        }
+                        $(this).css({
+                                'margin-top': (((1 - audio.volume) * −100) + 5) + 'px',
+                                'height': '100px'
+                        }).find('.ui-slider-range').show();
+               },
+               stop: function(event, ui) {
+                        $(this).removeClass('ui-slider-sliding');
+                        var overHandle = $(event.originalEvent.target)
+                                .closest('.ui-slider-handle').length > 0;
+                        if (!overHandle) {
+                                $(this).css({
+                                        'margin-top': '',
+                                        'height': ''
+                                }).find('.ui-slider-range').hide();
+                        }
+               },
+               change: function(event, ui) {
+                       if (ui.value >= 0 && ui.value <= 1) {
+                               if (ui.value != audio.volume) {
+                                        audio.set('volume', ui.value);
+                               }
+                       }
+               }
+        })
+        .mouseenter(function(event) {
+                if ($('.ui-slider-handle.ui-state-active').length) {
+                        return;
+                }
+                $(this).css({
+                        'margin-top': (((1 - audio.volume) * −100) + 5) + 'px',
+                        'height': '100px'
+                }).find('.ui-slider-range').show();
+        })
+        .mouseleave(function() {
+                $(this).not('.ui-slider-sliding').css({
+                        'margin-top': '',
+                        'height': ''
+                }).find('.ui-slider-range').hide();
+        })
+        .find('.ui-slider-range').addClass('ui-corner-bottom').hide().end();
+    
+    
+====================================
+$(this).parents('.ui-slider').css({
+        'margin-top': (((1 - audio.volume) * −100) + 5) + 'px',
+        'height': '100px'
+})
+    
+    
+====================================
+.mplayer .bg { position: absolute; width: 100%; height: 100%; top: 0;
+        bottom: 0; left: 0; right: 0; border: none; }
+.mplayer .rod { position: absolute; top: −2px; left: −0.4%; right: −0.4%;
+        width: 100.8%; height: 3px; overflow: hidden; border: none; }
+.mplayer .hl { position: absolute; top: 2px; left: 1%; right: 1%; width: 98%;
+        height: 1px; overflow: hidden; border: none; }
+.mplayer .hl2 { position: absolute; top: 2px; left: 2%; right: 2%; width: 96%;
+        height: 3px; overflow: hidden; border: none; }
+    
+    
+====================================
+$('.mplayer').each(function() {
+        $('.bg:first', this).css('opacity', 0.7);
+        $('.bg:last', this).css('opacity', 0.3);
+})
+$('.mplayer .rod').css('opacity', 0.4);
+$('.mplayer .hl').css('opacity', 0.25);
+$('.mplayer .hl2').css('opacity', 0.15);
+    
+    
+====================================
+<div class="mplayer ui-widget">
+        <div class="bg ui-widget-header ui-corner-bottom"></div>
+        <div class="bg ui-widget-content ui-corner-bottom"></div>
+        <div class="rod ui-widget-header"></div>
+        <div class="hl ui-widget-content"></div>
+        <div class="hl2 ui-widget-content"></div>
+        <div class="buttons-container">
+                <a class="playpause ui-state-default ui-corner-all" href="#">
+                        <span class="ui-icon ui-icon-play"></span>
+                        <span class="ui-icon ui-icon-pause"></span>
+                </a>
+        </div>
+        <span class="currenttime ui-state-default"></span>
+        <div class="track"></div>
+        <span class="duration ui-state-default"></span>
+        <div class="volume-container">
+                <div class="volume">
+                        <a href="#" class="ui-state-default ui-corner-all
+ui-slider-handle">
+                                <span class="ui-icon ui-icon-volume-on"></span>
+                        </a>
+                </div>
+        </div>
+</div>
+    
+    
+==================

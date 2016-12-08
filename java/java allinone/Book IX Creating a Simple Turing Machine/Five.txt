@@ -1,0 +1,9 @@
+_
+A
+_ A 1 R B
+_ B 1 R C
+_ C 1 R D
+_ D 1 R E
+_ E 1 R F
+_ F * H F
+ 
