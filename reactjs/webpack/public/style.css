@@ -1,0 +1,12 @@
+.calculatorbox {
+  margin-top: 20px;
+border: 2px solid;
+width: 400px;
+height: 300px;
+padding: 20px;
+}
+.display{
+    background: lightgrey;
+    padding: 5px;
+    border-radius: 5px;
+  }

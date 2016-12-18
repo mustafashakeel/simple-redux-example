@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>
+		JS Accordian
+	</title>
+	<style>
+		#sectionone{
+			background: lightgrey;
+    		width: 400px;
+		}
+		#subsectionone{
+			background: beige;
+			width:400px;
+			height:200px;
+
+		}
+
+
+	</style>
+
+	
+</head>
+
+<body>
+	<form>
+		<div>
+			<div id="sectionone" class="label"> Section One</div>
+			<div id="subsectionone" class="panel">
+			<span>please enter your name</span>
+				<label for="name">name</label><input type="text" name='name'/>
+			</div>
+			
+		</div>
+		</div>
+	</form>	
+		<script>
+
+	(function(window){
+		'use strict';
+		var elements = document.getElementsByTagName('div');
+		
+		console.log(elements);	
+		for(var i=0; i < elements.length; i++){
+			if(elements[i].className =="panel"){
+				elements[i].style.display="none";
+
+
+			} else if(elements[i].className=='label'){
+				console.log(elements[i]);
+				elements[i].onclick = clickTab;
+			}
+		}
+		function clickTab(){
+			
+			var nodes = this.parentNode;
+			console.log("nodes",nodes);
+			// var panels = nodes.getElementsByClassName('panel');
+			var panels = nodes.getElementsByTagName('div')[1];
+			console.log('Panel ', panels);
+			// panels.style.display='block';	
+			if(panels.style.display=='none'){
+				panels.style.display='block';
+			}else {
+				panels.style.display='none';
+			}
+
+
+
+		}
+		
+	})(window);
+		
+	</script>
+</body>
+</html>

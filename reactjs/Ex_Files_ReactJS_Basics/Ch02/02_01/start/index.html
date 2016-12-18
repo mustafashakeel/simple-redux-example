@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-    	
+    	   <script src="https://fb.me/react-15.2.1.js"></script>
+        <script src="https://fb.me/react-dom-15.2.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.js"></script>
         <title>My First React File</title>
     </head>
     <body>
+    <div id="reactdiv"></div>
+
+    <script>
+    
+    	ReactDOM.render(<h1>Hello, world!</h1>,
+  document.getElementById('reactdiv')
+);
+    </script>
     </body>
 </html>

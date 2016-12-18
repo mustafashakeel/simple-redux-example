@@ -1,0 +1,15 @@
+{
+  "name": "mustafa",
+  "version": "1.0.0",
+  "description": "learning webpack",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mustafa",
+  "license": "ISC",
+  "devDependencies": {
+    "jquery": "^3.1.1",
+    "webpack": "^1.14.0"
+  }
+}
