@@ -1,0 +1,25 @@
+.right {
+	background: lightblue;
+	height:100vh;
+	padding:0px;
+}
+
+.left {
+	background: orange;
+	/*height:100vh;*/
+	padding:0px;
+}
+
+.container-fluid{
+	padding:0px;
+}
+
+.top-right{
+	height:80%;
+	background: lightgreen;
+}
+.bottom-right{
+	height:20%;
+	background:green;
+}
+

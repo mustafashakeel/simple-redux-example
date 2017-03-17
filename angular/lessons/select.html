@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div ng-app="select" ng-controller="select">
+		<span>This select option uses ng-options </span>
+		<select ng-model="select1" ng-options="x for x in info"></select>
+		<br/>
+		<span>this select uses ng-repeat</span>
+		<select ng-model="select2"> 
+			<option ng-repeat="x in info">{{x}}</option>
+		</select>
+		<br/>
+		<span>This select option will display the select </span>
+
+		<select ng-model="select3">
+			<option value="{{x}}" ng-repeat="x in info">{{x}}</option>
+		</select>
+		The Selected name is {{select3}}
+	</div>
+
+	
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="js/select.js"></script>
+</body>
+</html>

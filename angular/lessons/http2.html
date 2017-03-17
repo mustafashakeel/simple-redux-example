@@ -1,0 +1,23 @@
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>ng-repeat</title>
+		<style>
+			table,tr, td{
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<div ng-app="app" ng-controller="ctr">
+			<table>
+				<tr ng-repeat="x in info">
+					<td>{{x.Name}}</td><td>{{x.City}}</td><td>{{x.Country}}</td>
+				</tr>
+			</table>
+		</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="js/http2.js"></script>
+	</body>
+	</html>
