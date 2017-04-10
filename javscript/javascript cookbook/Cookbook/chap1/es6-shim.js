@@ -27,6 +27,9 @@
     }
   };
 
+var thisIsGreat = function(){
+  
+}
   var arePropertyDescriptorsSupported = function() {
     try {
       Object.defineProperty({}, 'x', {});
