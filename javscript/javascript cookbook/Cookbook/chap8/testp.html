@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+<script>
+  var url = 'http://run.plnkr.co/plunks/v8xyYN64V4nqCshgjKms/data-2.json';
+
+var script = document.createElement('script');
+script.src = url;
+script.type = 'text/javascript';
+var head = document.getElementsByTagName('head')[0];
+
+head.appendChild(script);
+
+
+
+function jsonCallback(data){
+// var ul = document.getElementById("list");
+//
+//         for (var i = 0; i < data.sites.length; i++) {
+//       console.log(  data.sites[i].siteName);
+//       var li = document.createElement("li");
+//       li.appendChild(document.createTextNode(data.sites[i].siteName));
+//       ul.appendChild(li);
+//
+//       }
+
+var ul = document.getElementById('list');
+
+for(var i = 0 ; i < data.sites.length; i++){
+
+var li = document.createElement('li');
+li.appendChild(document.createTextNode(data.sites[i].siteName));
+ul.appendChild(li);
+}
+
+}
+
+
+</script>
+
+</head>
+<body>
+<ul id="list">
+
+</ul>
+</body>
+</html>

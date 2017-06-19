@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+	
+<div>
+	<form onsubmit="great(this)">
+		
+		<input type="text" id="aa" value="greattttt">
+		<input type="submit" value="click">
+	</form>
+	
+
+</div>
+
+<script>
+	function great(){
+		// e.preventDefault();
+		// console.log('e  ',e)
+		console.log(this)
+		var aa = document.getElementById('aa').value
+		console.log(' lll   ',aa);
+	}
+</script>
+</body>
+</html>
