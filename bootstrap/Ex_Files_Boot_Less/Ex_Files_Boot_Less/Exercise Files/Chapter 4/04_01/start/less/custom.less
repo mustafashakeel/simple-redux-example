@@ -1,0 +1,46 @@
+/* Custom styling for the Bootstrap website. 
+These styles do not ship with Bootstrap. 
+*/
+footer {
+	text-align: center;
+	color: #999;
+	border-top: 1px solid #ccc;
+	padding: 2em 0em;
+	margin: 3em 0;
+}
+
+/* jumbotron styling */
+  @media screen and (min-width: @screen-sm-min) {
+   .jumbotron h1,
+   .jumbotron .h1 {
+      font-size: (@font-size-base * 3);
+    }
+  }
+.jumbotron {
+	border: 1px solid @brand-secondary;
+}
+
+/* panel styling */
+.panel {
+  margin-top: 69px;
+
+.panel-body {
+  padding: @panel-body-padding;
+  &:extend(.clearfix all);
+  color: #fff;
+  }
+
+  a {
+  	color: lighten(@brand-secondary, 25%);
+  	text-decoration: underline;
+  }
+  a:hover {
+  	text-decoration: none;
+  }
+  a.btn-primary {
+  	background-color: @brand-secondary;
+  	color: #fff;
+  	text-decoration: none !important;
+  	font-family: 'Shadows Into Light Two', cursive;
+  }
+}
