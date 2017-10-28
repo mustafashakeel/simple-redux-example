@@ -1,0 +1,106 @@
+/**
+ * The primary stylesheet for the CSS Grid Playground.
+ * This sheet pulls in surrounding components allowing you to focus on specifics.
+ */
+
+/* Components */
+@import url('CSS/reset.css');
+@import url('CSS/accessibility.css');
+@import url('CSS/layout.css');
+@import url('CSS/typography.css');
+@import url('CSS/masthead.css');
+@import url('CSS/boxes.css');
+
+/* CSS Grid Playground */
+
+/*.the-grid{
+	display: grid;		
+	grid-template-columns: 25% 25% 25% 25%;
+}*/
+
+/*.the-grid {
+	display: grid;
+	width:1000px;
+	border 1px solid brown;
+	margin:0 auto;
+
+}*/
+/*
+.the-grid {
+	display: grid;
+	grid-template-columns: 1fr repeat(3, 10px 1fr);
+	grid-template-rows: auto;
+	grid-template-areas:
+	"header header header header header header header",
+	"sidebarleft content content content sidebarright",
+	"footer footer footer footer footer footer";
+
+}
+
+.blue {
+	grid-area:header;
+}
+.purple {
+	grid-area:sidebarleft;
+
+}
+
+.green {
+	grid-area: content;
+}
+.yellow{
+	grid-area:sidebarright;
+}
+.orange {
+	grida-area:footer;
+}*/
+
+
+.parent {
+  display: grid;
+  grid-template-columns: auto 30px 250px;
+  grid-template-rows: 50px auto 50px;
+  grid-template-areas: "header header header"
+                       "main . sidebar"
+                       "footer footer footer"
+}
+
+.header {
+  grid-area: header;
+}
+
+.main {
+  grid-area: main;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.parent {
+  height: 90vh;
+  border: 5px solid #333;
+}
+
+.grid-area {
+  background-color: #F8F3A8;
+  border-radius: 10px;
+  font: 25px Georgia;
+  border: 5px solid #949494;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .parent {
+    grid-template-columns: auto;
+    grid-template-rows: 50px auto auto 50px;
+    grid-template-areas: "header"     
+                         "sidebar"                   
+                         "main"
+                         "footer"
+  }
+}

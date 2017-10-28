@@ -1,0 +1,21 @@
+<div class="inventory-app"> 
+  <h2>Inventory App</h2>
+  <div>
+    <h3>{{product.name}}</h3>
+    <h3>{{product.sku}}</h3>
+
+    <h2 > This is the Output from Child Component : {{showMessage}} </h2>
+
+    <!-- <app-product-list 
+      [productList] = "product"
+      (onProductSelected)="productWasSelected($event)"
+      
+    ></app-product-list> -->
+
+    <app-product-list 
+    [productList] = "product"
+    (notify)="onNotifyClicked($event)" 
+  ></app-product-list>
+
+  </div>
+</div>

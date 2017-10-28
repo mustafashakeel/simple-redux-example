@@ -1,0 +1,25 @@
+<ul>
+	<li *ngFor="let meal of food"> {{meal}}</li>
+</ul>
+
+  <app-works
+	*ngFor="let meal of food"
+	[meal]="meal"
+  ></app-works>
+
+
+<h4>Welcome to Server Manager 4.0</h4>
+<p>Manage your Servers and Users.</p>
+<button class="btn btn-primary" (click)="onLoadServer(1)">Load Server 1</button>
+<button class="btn btn-default" (click)="onLogin()">Login</button>
+<button class="btn btn-default" (click)="onLogout()">Logout</button>
+<ul *ngFor="let name of qureshis">
+	<li> {{name	}}</li>
+	
+</ul>
+<ul>	
+<app-mychild 
+	*ngFor="let name of qureshis"
+	[myname]="name"	
+></app-mychild>
+</ul>

@@ -1,2 +1,4 @@
 The first string
 The second string
+The first string
+The second string

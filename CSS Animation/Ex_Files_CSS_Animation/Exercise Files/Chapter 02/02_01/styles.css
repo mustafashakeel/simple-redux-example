@@ -1,0 +1,46 @@
+
+body {
+	background-image: url('background.png');
+	background-size: cover;
+	background-position: 0px -250px;
+}
+
+.wrapper {
+	margin: 20em auto 2em auto;
+	width:80%;
+	position:relative;
+}
+
+.robot {
+	
+	-webkit-animation-name: Slide-me;
+	-o-animation-name: Slide-me;
+	animation-name: Slide-me;
+	-webkit-animation-duration: 2s;
+	-o-animation-duration: 2s;
+	animation-duration: 2s;	
+	-webkit-animation-timing-function: ease;
+	-o-animation-timing-function: ease;
+	animation-timing-function: ease;
+	-webkit-animation-iteration-count: 1;
+			-o-animation-iteration-count: 1;
+			animation-iteration-count: 1;		
+		
+}		
+	
+@-webkit-keyframes Slide-me {
+		from {transform: translateX(0);  }
+		to { transform:translateX(900px);  }
+	}
+	@-o-keyframes Slide-me {
+		from {transform: translateX(0);  }
+		to { transform:translateX(900px);  }
+	}
+	@-moz-keyframes Slide-me {
+		from {transform: translateX(0);  }
+		to { transform:translateX(900px);  }
+	}
+	@keyframes Slide-me {
+		from {transform: translateX(0);  }
+		to { transform:translateX(900px);  }
+	}

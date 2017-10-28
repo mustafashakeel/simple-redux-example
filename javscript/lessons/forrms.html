@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+<body>
+	<form name="ageForm" action="service.jsp" onsubmit="return validateForm()" method="post"> Your age: <input type="text" name="age"> <label id="ageError"></label> <br/><input type="submit" value="Submit"> </form>
+		<script> function validateForm(){ var age = document.forms["ageForm"]["age"].value; if ( age == null || age == "" ){ document.getElementById("ageError").innerHTML = "Please enter your age."; return false; } else { 
+	 document.getElementById("ageError").innerHTML = ""; }
+return true;
+} </script>
+</body>
+</html>

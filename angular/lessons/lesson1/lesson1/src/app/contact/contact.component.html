@@ -1,0 +1,15 @@
+<p>
+<span><h2>My Name is {{ name  }}</h2></span>  
+
+</p>
+
+<!--<ul>
+  <li *ngFor="let siblings of family"> Hello Qureshi {{siblings}}</li>
+</ul>-->
+
+<ul>
+  <li *ngFor="let siblings of family">
+     <app-about-us  [name]="siblings">
+     </app-about-us>
+  </li>
+</ul>
