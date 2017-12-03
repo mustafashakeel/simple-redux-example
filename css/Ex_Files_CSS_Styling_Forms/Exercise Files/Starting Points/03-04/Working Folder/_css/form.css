@@ -1,0 +1,43 @@
+label {
+	display:block;
+	font-size: 1em;
+	margin: .8em 0 0;
+}
+
+input[type="text"], input[type="email"], input[type="url"], textarea {
+	width: 250px;
+}
+
+input[type="submit"] {
+	display:block;
+	margin: 1em 0;
+}
+
+.inline {
+	display: inline;
+}
+
+fieldset {
+	border: none;
+	background: rgb(237, 228, 214);
+	position: relative;
+	width: 80%;
+	padding:1em;
+	margin: 1em 0;
+	-webkit-border-radius: 0 .5em .5em 0;
+	-moz-border-radius: 0 .5em .5em 0;
+	border-radius: 0 .5em .5em 0;
+}
+
+legend {
+	display: none;
+}
+
+fieldset:before {
+	content:attr(title);
+	display: block;
+	font: 1.2em Cantarell, Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	border-bottom: 1px solid rgb(76, 67, 65);
+	width: 80%;
+}

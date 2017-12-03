@@ -1,0 +1,2328 @@
+01-01
+==============================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Styling Forms</title>
+</head>
+<body>
+</body>
+</html>
+
+-----------------------
+
+<form>
+	<input />
+</form>
+
+-----------------------
+ 
+ <form action="http://google.com/search">
+
+-----------------------
+
+	<input name="q" />
+
+-----------------------
+
+ 	<input type="submit"/>
+
+-----------------------
+
+ 	<input type="submit" value="go" />
+
+-----------------------
+
+	<input type="hidden" name="tbm" value="isch" />
+
+01-02
+==============================
+
+	<input type="checkbox" name="tbm" value="isch" />Images
+
+
+-----------------------
+
+	<label for="searchbox">Search</label>
+	<input id="searchbox" name="q" />
+
+	<input type="checkbox" id="imagescheckbox" name="tbm" value="isch" />
+	<label for="imagescheckbox">Images</label>
+
+-----------------------
+
+	<label for="searchbox">Search</label>
+	<input  tabindex="2" id="searchbox" name="q" title="Type your search term here" />
+
+	<input  tabindex="1" type="checkbox" id="imagescheckbox" name="tbm" value="isch" title="check this if you want to search for images." />
+	<label for="imagescheckbox">Images</label>
+
+	<input type="submit"/>
+
+01-03
+==============================
+	<style>
+		form * {
+			background: none;
+		}
+		
+		input[type=text], input[type=password], input[type=submit],textarea, button {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			border: 1px solid #666;
+			background: none;
+			-webkit-border-radius: 0;
+			-moz-border-radius: 0;
+			border-radius: 0;
+			padding: 0;
+			margin: 0;
+		}
+	</style>
+
+
+02-01
+==============================
+
+body {
+	background:#2B313B;
+	background: url(noisetexture.png), -webkit-linear-gradient(#475161,#2A313B) no-repeat, #2B313B;
+	background: url(noisetexture.png), -moz-linear-gradient(#475161,#2A313B) no-repeat, #2B313B;
+	background: url(noisetexture.png), -o-linear-gradient(#475161,#2A313B) no-repeat, #2B313B;
+	background: url(noisetexture.png), -ms-linear-gradient(#475161,#2A313B) no-repeat, #2B313B;
+	background: url(noisetexture.png), linear-gradient(#475161,#2A313B) no-repeat, #2B313B;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#475161', EndColorStr='#2B313B');
+	height: 900px;
+}
+
+02-02
+==============================
+
+height: 400px;
+background: url(wooden.jpg);
+background: -webkit-radial-gradient(rgba(255, 255, 255,.2) 40%,rgba(255, 255, 255,0) 60%) no-repeat, url(wooden.jpg);
+background: -moz-radial-gradient(rgba(255, 255, 255,.2) 40%,rgba(255, 255, 255,0) 60%) no-repeat, url(wooden.jpg);
+background: -ms-radial-gradient(rgba(255, 255, 255,.2) 40%,rgba(255, 255, 255,0) 60%) no-repeat, url(wooden.jpg);
+background: -o-radial-gradient(rgba(255, 255, 255,.2) 40%,rgba(255, 255, 255,0) 60%) no-repeat, url(wooden.jpg);
+background: radial-gradient(rgba(255, 255, 255,.2) 40%,rgba(255, 255, 255,0) 60%) no-repeat, url(wooden.jpg);
+
+02-03
+==============================
+<link rel="stylesheet" href="orbitron.css"/>
+-----------------------
+<style>
+	.custom1 {
+		font-family:OrbitronMedium, sans-serif;
+	}
+	.custom2 {
+		font-family:Convergence, sans-serif;
+	}
+</style>
+-----------------------
+
+<link href='http://fonts.googleapis.com/css?family=Convergence' rel='stylesheet' type='text/css'>	
+
+02-04
+==============================
+<link rel="stylesheet" href="normalize.css" />
+<link rel="stylesheet" href="mystyle.css" />
+
+-----------------------
+
+AddType text/x-component .htc
+
+-----------------------
+
+form {
+	position: relative;
+	top: 50px;			
+}
+
+form * {
+	background: transparent;
+	behavior: url(PIE.htc);
+}
+
+input[type=text] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: none;
+	background: none;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	padding: 0;
+	margin: 0;
+}
+			
+
+body {
+	background: #CCC;
+	background: url(bluesliver.jpg);
+}
+
+-----------------------
+form {
+	position: relative;
+	width: 200px;
+	height: 30px;
+	margin: 0 auto;
+	border: 1px solid #AAA;
+	
+	background: url(magnifyingglass.png) no-repeat #DDD;
+	background: url(magnifyingglass.png) no-repeat, -webkit-linear-gradient(#FFF, #DDD);
+	background: url(magnifyingglass.png) no-repeat, -moz-linear-gradient(#FFF, #DDD);
+	background: url(magnifyingglass.png) no-repeat, -ms-linear-gradient(#FFF, #DDD);
+	background: url(magnifyingglass.png) no-repeat, -o-linear-gradient(#FFF, #DDD);
+	background: url(magnifyingglass.png) no-repeat, linear-gradient(#FFF, #DDD);
+	-pie-background: url(magnifyingglass.png) no-repeat, linear-gradient(#FFF, #DDD);
+	
+
+	-webkit-border-radius: 40px;
+	-moz-border-radius: 40px;
+	border-radius: 40px 40px 40px 40px;
+	
+	-webkit-box-shadow: inset 0px 2px 5px rgba(0,0,0,.4), 1px 1px 5px #DDD;
+	-moz-box-shadow: inset 0px 2px 5px rgba(0,0,0,.4), 1px 1px 5px #DDD;
+	-box-shadow: inset 0px 2px 5px rgba(0,0,0,.4), 1px 1px 5px #DDD;
+}
+-----------------------
+
+input[type=submit] {
+	position: absolute;
+	right: 0px;
+	height: 30px;
+	width: 50px;
+	border:none;
+
+	background: #CCC;
+	background: -webkit-linear-gradient(#172C3D,#2A496B 50%,#192430 51%,#000);
+	background: -moz-linear-gradient(#172C3D,#2A496B 50%,#192430 51%,#000);
+	background: -ms-linear-gradient(#172C3D,#2A496B 50%,#192430 51%,#000);
+	background: -o-linear-gradient(#172C3D 0%,#2A496B 50%,#192430 51%,#000);
+	background: linear-gradient(#172C3D,#2A496B 50%,#192430 51%,#000);
+	-pie-background: linear-gradient(#172C3D,#2A496B 50%,#192430 51%,#000);
+	
+	-webkit-border-radius: 0 40px 40px 0;
+	-moz-border-radius: 0 40px 40px 0;
+	border-radius: 0px 40px 40px 0px;
+
+	-webkit-box-shadow: inset 1px 0 0px rgba(255,255,255,.4);
+	-moz-box-shadow: inset 1px 0 0px rgba(255,255,255,.4);
+	box-shadow: inset 1px 0 0px rgba(255,255,255,.4);
+
+	border-left: 1px solid rgba(0,0,0,.2);
+	color: #FFF;
+}
+
+-----------------------
+
+input[type=submit]:hover {
+
+	background: -webkit-linear-gradient(#4E080D,#9C111A 50%, #4E080D 51%);
+	background: -moz-linear-gradient(#4E080D,#9C111A 50%, #4E080D 51%);
+	background: -ms-linear-gradient(#4E080D,#9C111A 50%, #4E080D 51%);
+	background: -o-linear-gradient(#4E080D,#9C111A 50%, #4E080D 51%);
+	background: linear-gradient(#4E080D,#9C111A 50%, #4E080D 51%);
+	-pie-background: linear-gradient(#4E080D,#9C111A 50%, #4E080D 51%);
+
+-----------------------
+
+input[type=text] {
+	position: absolute;
+	left: 30px;
+	float: right;
+	width: 110px;
+	height: 30px;
+	font-size: 16px;
+	color: #666;
+	outline: solid transparent;
+}		
+
+-----------------------
+
+<!--[if lt IE 9]>
+	<style>
+		input[type=submit] {
+			border-radius: 0px;
+			border-left: none;
+			box-shadow:none;
+		}
+	</style>
+<![endif]-->
+
+
+02-05
+==============================
+	<link rel="stylesheet" href="normalize.css" />
+	<link rel="stylesheet" href="mystyle.css" />
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+-----------------------
+
+form * {
+	background: transparent;
+	behavior: url(PIE.htc);
+}
+
+input {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: none;
+	background: none;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 0;
+}
+			
+.group:before, .group:after { content: "\0020"; display: block; height: 0; overflow: hidden; }  
+.group:after { clear: both; }  
+.group { zoom: 1; }  
+
+				
+-----------------------
+ 
+body {
+	background: #CCC url(papertile.jpg);
+}
+ 
+ 
+form {
+	width: 300px;
+	margin: 0 auto;
+	padding: 10px;
+}
+-----------------------
+
+label {
+	display: block;
+	width: 250px;
+	margin: 0 auto;
+	font-weight: bold;
+	color: #777;
+	padding-top: 15px;
+}
+-----------------------
+
+
+input[type=text], input[type=password], textarea {
+
+	display: block;
+	width: 250px;
+	margin: 0 auto;
+	padding: 5px;
+	background: #EEE;
+	border: 1px solid #FFF;
+	font-family: 'Ubuntu Mono', sans-serif;
+	font-size: 16px;
+	color: #666;
+
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+
+	background: -webkit-linear-gradient(#FFF,#DDD);
+	background: -moz-linear-gradient(#FFF,#DDD);
+	background: -o-linear-gradient(#FFF,#DDD);
+	background: linear-gradient(#FFF,#DDD);
+    -pie-background: linear-gradient(#FFF, #DDD);
+
+	-webkit-box-shadow: inset 0px 2px 3px #666,inset 0px -5px 3px #EEE;
+	-moz-box-shadow: inset 0px 2px 3px #666,inset 0px -5px 3px #EEE;
+	box-shadow: inset 0px 2px 3px #666,inset 0px -5px 3px #EEE;
+}
+-----------------------
+
+input[type=submit] {
+	padding: 5px;
+	background: #666;
+	color:white;
+	border:none;
+	float: right;
+	margin-right: 12px;
+	margin-top: 10px;
+
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+
+}
+-----------------------
+
+input:focus, textarea:focus {
+	outline: solid red;
+}
+
+-----------------------
+
+input[type=text].required {
+	padding-left:30px;
+	width:220px;
+}
+
+input.required {
+	background: url(required.png) no-repeat 5px 5px, -webkit-linear-gradient(#FFF,#DDD);
+	background: url(required.png) no-repeat 5px 5px, -moz-linear-gradient(#FFF,#DDD);
+	background: url(required.png) no-repeat 5px 5px, -o-linear-gradient(#FFF,#DDD);
+	background: url(required.png) no-repeat 5px 5px, -ms-linear-gradient(#FFF,#DDD);
+	background: url(required.png) no-repeat 5px 5px, linear-gradient(#FFF,#DDD);
+	-pie-background: url(required.png) no-repeat 5px 5px, linear-gradient(#FFF, #DDD);
+}
+-----------------------
+
+label:hover input[type=text], input[type=password]:hover, textarea:hover {
+	outline: solid orange;
+}
+
+02-06
+==============================
+<link rel="stylesheet" href="normalize.css" />
+<link rel="stylesheet"	href="mystyle.css" />
+-----------------------
+
+form {
+	position: relative;
+	top: 50px;			
+}
+
+form * {
+	background: transparent;
+	behavior: url(PIE.htc);
+}
+
+input[type=text] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: none;
+	background: none;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	padding: 0;
+	margin: 0;
+}
+			
+.group:before, .group:after { content: "\0020"; display: block; height: 0; overflow: hidden; }  
+.group:after { clear: both; }  
+.group { zoom: 1; }  
+
+
+-----------------------
+
+body {
+	background: #CCC;
+	background: url('brownlines.jpg');
+}
+
+form{
+	position: relative;
+	width: 300px;
+	margin: 0 auto;
+}
+
+-----------------------
+
+.item {
+	border: 1px solid #555;
+	margin: 5px;
+	height: 27px;
+
+	background: -webkit-linear-gradient(#FFF, rgba(255,255,255,.3)),url('brownlines.jpg');
+	background: -moz-linear-gradient(#FFF, rgba(255,255,255,.3)),url('brownlines.jpg');
+	background: -ms-linear-gradient(#FFF, rgba(255,255,255,.3)),url('brownlines.jpg');
+	background: -o-linear-gradient(#FFF, rgba(255,255,255,.3)),url('brownlines.jpg');
+	background: linear-gradient(#FFF, rgba(255,255,255,.3)),url('brownlines.jpg');
+ 	-pie-background: linear-gradient(#FFF, rgba(255,255,255,.3)),url('brownlines.jpg');	
+
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+
+	-webkit-box-shadow: 5px 5px 10px #84785E;
+	-moz-box-shadow: 5px 5px 10px #84785E;
+	box-shadow: 5px 5px 10px #84785E;
+}
+
+-----------------------
+
+label {
+	display: block;
+	width: 80px;
+	height: 17px;
+	float: left;
+	text-align: center;
+	color: #FFF;
+	padding: 5px;
+
+	background: #17286D url(leaftilesm.jpg);	
+
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+
+	-webkit-box-shadow: inset -5px 0px 5px #3C4D03;
+	-moz-box-shadow: inset -5px 0px 5px #3C4D03;
+	box-shadow: inset -5px 0px 5px #3C4D03,inset 5px 0px 5px #3C4D03;
+
+	text-shadow: 2px 0px 1px #3C4D03;
+}
+
+-----------------------
+
+input[type=text] {
+	width:180px;
+	display: block;
+	float: left;
+	font-size: 16px;
+	color: #666;
+	padding: 4px;
+	color: #555;
+	outline: solid transparent;
+	text-shadow: 2px 0px 1px #FFF;
+}
+
+02-07
+==============================
+
+<link rel="stylesheet" href="normalize.css" />
+<link rel="stylesheet"	href="mystyle.css" />
+
+-----------------------
+
+form {
+	position: relative;
+	top: 50px;			
+}
+
+form * {
+	background: transparent;
+	behavior: url(PIE.htc);
+}
+
+input[type=checkbox], input[type=radio]{
+	border: none;
+	background: none;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	padding: 0;
+	margin: 0;
+}
+			
+.group:before, .group:after { content: "\0020"; display: block; height: 0; overflow: hidden; }  
+.group:after { clear: both; }  
+.group { zoom: 1; }  
+
+
+-----------------------
+
+body {
+	height: 800px;
+	background: #222;
+	background: url(diamondpattern.png) no-repeat #222;
+	background: url(diamondpattern.png), -webkit-linear-gradient(#555, #222) no-repeat, #222;
+	background: url(diamondpattern.png), -webkit-linear-gradient(#555, #222) no-repeat, #222;
+	background: url(diamondpattern.png), -moz-linear-gradient(#555, #222) no-repeat, #222;
+	background: url(diamondpattern.png), -ms-linear-gradient(#555, #222) no-repeat, #222;
+	background: url(diamondpattern.png), -o-linear-gradient(#555, #222) no-repeat, #222;
+	background: url(diamondpattern.png), linear-gradient(#555, #222) no-repeat, #222;
+	-pie-background: url(magnifyingglass.png), linear-gradient(#555, #222) no-repeat, #222;
+}
+
+-----------------------
+
+form {
+	position: relative;
+	width: 340px;
+	margin: 0 auto;
+	color: #BBB;
+	padding:  5px 20px 25px 20px;
+	
+	text-shadow:1px 1px 1px #000;
+	
+	background: url(diamondpattern.png) no-repeat #888;
+	background: url(diamondpattern.png), -webkit-linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.85));
+	background: url(diamondpattern.png), -moz-linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.85));
+	background: url(diamondpattern.png), -ms-linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.85));
+	background: url(diamondpattern.png), -o-linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.85));
+	background: url(diamondpattern.png), linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.85));
+	-pie-background: url(diamondpattern.png), linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.85));
+	
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius:10px;
+
+	-webkit-box-shadow: inset 0px 3px 20px #000;
+	-moz-box-shadow: inset 0px 3px 20px #000;
+	box-shadow: inset 0px 3px 20px #2;
+}
+
+-----------------------
+
+h2 {
+	font-size: 16px;
+	margin: 20px 5px 8px 0;
+}
+
+
+
+-----------------------
+
+input[type=checkbox], input[type=radio] {
+	display: none;
+}
+
+-----------------------
+
+div:not(#ray) > input[type=checkbox], div:not(#ray) > input[type=radio] {
+	display: none;
+}
+
+-----------------------
+
+div:not(#ray) > label	{
+	display: block;
+	float: left;
+	padding: 4px 10px 0 24px;
+	color: #FFF;
+	cursor: pointer;
+}
+
+div:not(#ray) > input[type=checkbox] + label {
+	background: url('uikit.png') no-repeat 0px -43px ;
+}
+
+div:not(#ray) > input[type=checkbox]:checked + label {
+	background-position: 0px -65px;
+}
+
+div:not(#ray) > input[type=radio] + label {
+	background: url('uikit.png') no-repeat;
+}
+
+div:not(#ray) > input[type=radio]:checked + label {
+	background-position: 0px -22px;
+}
+
+
+02-08
+==============================
+
+<link rel="stylesheet" href="normalize.css" />
+<link rel="stylesheet"	href="mystyle.css" />
+
+-----------------------
+
+
+form {
+	position: relative;
+	top: 50px;			
+}
+
+form * {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background: transparent;
+	behavior: url(PIE.htc);
+}
+
+select, option {
+	border: none;
+	background: none;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	padding: 0;
+	margin: 0;
+}
+			
+-----------------------
+
+body {
+	background: #666;
+}
+
+form {
+	position: relative;
+	width: 340px;
+	margin: 0 auto;
+	font-weight: bold;
+	color: #DDD;
+}
+
+select {
+	background: #555;
+	border-radius: 4px;
+	width: 240px;
+	height: 35px;
+	background: url('select.png') no-repeat;
+	color: #DDD;
+	padding: 8px;
+	outline: solid transparent;
+}
+
+select:focus {
+	background: url('select.png') no-repeat 0 -35px;
+}
+
+option {
+	background: #666;
+	color: #DDD;
+	padding: 5px;
+	text-align: center;
+}
+
+
+
+03-01
+==============================
+
+<link rel="stylesheet" href="normalize.css" />
+<link rel="stylesheet"	href="mystyle.css" />
+			
+-----------------------
+
+form * {
+	background: none;
+}
+
+input[type=text], input[type=password], input[type=submit],textarea, button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: none;
+	background: white;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 5px;
+	padding: 5px;
+	margin: 0;
+	margin-bottom: 10px;
+	color: #555;
+}
+		
+
+body {
+	background: url(background_wood.jpg);
+}
+
+h2 {
+	text-align: center;
+	font-size: 27px;
+	color: #CF423C;
+	margin: 0px;
+	margin-bottom: 3px;
+}
+
+p {
+	font-size: 13px;
+	text-align: center;
+	color: #FFF;
+	margin: 0;
+	margin-bottom: 20px;
+}
+-----------------------
+		
+form {
+	width: 340px;
+	margin: 0 auto;
+	position: relative;
+	top:50px;
+	
+	background: #7A1631;
+	background: #7A1631 -webkit-linear-gradient(#7A1631,#3F0B1B);
+	background: #7A1631 -moz-linear-gradient(#7A1631,#3F0B1B);
+	background: #7A1631 -o-linear-gradient(#7A1631,#3F0B1B);
+	background: #7A1631 -ms-linear-gradient(#7A1631,#3F0B1B);
+	background: #7A1631 linear-gradient(#7A1631,#3F0B1B);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7a1631', endColorstr='#3f0b1b',GradientType=0 );
+	border: 1px solid #3f0b1b;
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+
+	-webkit-box-shadow: 5px 5px 11px rgba(0,0,0,0.42);
+	-moz-box-shadow: 5px 5px 11px rgba(0,0,0,0.42);
+	box-shadow: 5px 5px 11px rgba(0,0,0,0.42);
+	padding: 15px 30px 10px 30px;
+}
+
+-----------------------
+
+button {
+	font-size: 13px;
+	width: 90px;
+	text-align: center;
+	display: block;
+	float: right;
+	clear: both;
+	background: #FFD462;
+	padding: 6px 28px;
+	border: none;
+
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	color: #7A1631;
+}
+
+-----------------------
+
+.group:before, .group:after { content: "\0020"; display: block; height: 0; overflow: hidden; }  
+.group:after { clear: both; }  
+.group { zoom: 1; }  
+
+-----------------------
+
+	<form class="loginform group" action="#">
+
+-----------------------
+
+label {
+	display: block;
+	font-size: 13px;
+	color: #FC7D49;
+	padding: 5px;
+}
+
+input[type=text],input[type=password] {
+	width: 330px;
+	border: 1px solid #3F0B1B;
+}
+
+input[type=text]:focus,input[type=password]:focus {
+	background: #DDD;
+}
+
+-----------------------
+
+
+label {
+	float: left;
+	text-align: right;
+	font-size: 13px;
+	color: #FC7D49;
+	padding: 5px;
+	clear: both;
+}
+
+input[type=text],input[type=password] {
+	float: right;
+	width: 250px;
+	border: 1px solid #3F0B1B;
+}
+
+input[type=text]:focus,input[type=password]:focus {
+	background: #DDD;
+}
+
+
+03-02
+==============================
+
+<form class="group" action="#">
+	<label for="namefield">Username</label>
+	<input type="text" name="name" id="namefield" />
+
+	<label for="passwordfield">Password</label>
+	<input type="password" name="password" id="passwordfield" />
+
+	<div class="grouplabel">Sign up for</div>
+
+	<input type="radio" name="membershiptype" value="beginner" id="beginnerbtn" />
+	<label for="beginnerbtn">Beginner</label>
+
+	<input type="radio" name="membershiptype" value="question" id="question" />
+	<label for="question">Professional</label>
+	
+	<button type="submit">send</button>
+</form>
+
+-----------------------
+
+<form class="group" action="#">
+
+	<ol>
+		<li class="group">
+			<label for="namefield">Username</label>
+			<input type="text" name="name" id="namefield" />
+		</li>
+		<li class="group">
+			<label for="passwordfield">Password</label>
+			<input type="text" name="password" id="passwordfield" />
+		</li>
+		<li class="group">
+			<div class="grouplabel">Sign up for</div>
+			<ol>
+				<li>
+					<input type="radio" name="membershiptype" value="beginner" id="beginnerbtn" />
+					<label for="beginnerbtn">Beginner</label>
+				</li>
+				<li>
+					<input type="radio" name="membershiptype" value="question" id="question" />
+					<label for="question">Pro</label>
+				</li>
+			</ol>
+		</li>
+	</ol>
+	
+	<button type="submit">send</button>
+</form>
+
+-----------------------
+
+<link rel="stylesheet" href="normalize.css" />
+<link rel="stylesheet"	href="mystyle.css" />
+
+-----------------------
+
+form * {
+	background: none;
+}
+
+.group:before, .group:after { content: "\0020"; display: block; height: 0; overflow: hidden; }  
+.group:after { clear: both; }  
+.group { zoom: 1; }  
+
+input[type=text],input[type=password],input[type=submit],textarea,button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: none;
+	background: transparent;
+
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	padding: 5px;
+	margin: 0;
+	margin-bottom: 10px;
+	color: #555;
+}
+
+-----------------------
+
+body {
+	height: 500px;
+	background: #42826C;
+	background: #42826C -webkit-linear-gradient(#002F32,#42826C) no-repeat;
+	background: #42826C -moz-linear-gradient(#002F32,#42826C) no-repeat;
+	background: #42826C -o-linear-gradient(#002F32,#42826C) no-repeat;
+	background: #42826C -ms-linear-gradient(#002F32,#42826C) no-repeat;
+	background: #42826C linear-gradient(#002F32,#42826C) no-repeat;
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#002F32', endColorstr='#42826C',GradientType=0 );
+}
+
+-----------------------
+
+form {
+	width: 450px;
+	margin: 0 auto;
+	position: relative;
+	top: 150px;
+	padding: 35px 30px 5px 30px;
+	border: 5px solid #022E32;
+
+	background: #F9C35F;
+	background: url(checkeredpattern.png), -webkit-linear-gradient(#F9C35F, #A5C77F) no-repeat;
+	background: url(checkeredpattern.png), -moz-linear-gradient(#F9C35F, #A5C77F) no-repeat;
+	background: url(checkeredpattern.png), -o-linear-gradient(#F9C35F, #A5C77F) no-repeat;
+	background: url(checkeredpattern.png), -ms-linear-gradient(#F9C35F, #A5C77F) no-repeat;
+	background: url(checkeredpattern.png), linear-gradient(#F9C35F, #A5C77F) no-repeat;
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F9C35F', endColorstr='#F9C35F',GradientType=0 );
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+
+	-webkit-box-shadow: inset 0px 1px 1px rgba(255,255,255,1), 0px 10px 15px rgba(0,0,0,.5);
+	-moz-box-shadow: inset 0px 1px 1px rgba(255,255,255,1), 0px 10px 15px rgba(0,0,0,.5);
+	box-shadow: inset 0px 1px 1px rgba(255,255,255,1), 0px 10px 15px rgba(0,0,0,.5);
+}
+
+-----------------------
+
+input[type=text],input[type=password],input[type=submit],textarea {
+	border: 1px solid #47816A;
+	background: #FFF;
+	width: 330px;
+	float: right;
+}
+
+button {
+	float: right;
+	color: #FFC861;
+	padding: 5px 10px;
+
+	background: #022E32;
+	background: -webkit-linear-gradient(#47816A,#022E32) no-repeat;
+	background: -moz-linear-gradient(#47816A,#022E32) no-repeat;
+	background: -o-linear-gradient(#47816A,#022E32) no-repeat;
+	background: -ms-linear-gradient(#47816A,#022E32) no-repeat;
+	background: linear-gradient(#47816A,#022E32) no-repeat;
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47816A', endColorstr='#022E32',GradientType=0 );
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+-----------------------
+
+ol {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+ol li ol {
+	padding: 5px;
+	float: left;
+	margin-left: 5px;
+}
+
+ol li ol li {
+	display: inline;
+}
+
+ol li ol li label {
+	padding: 0;
+	display: inline;
+	float: none;
+	font-weight: normal;
+}
+
+
+ol li label,ol li .grouplabel {
+	font: bold 14px "Lucida Grande", Lucida, Verdana, sans-serif;
+	padding: 5px;
+	color: #315848;
+	display: block;
+	width: 90px;
+	float: left;
+	text-align: right;
+	text-shadow: 0 1px 0px #FFF;
+}
+
+
+03-03
+==============================
+<link rel="stylesheet" href="_css/form.css" />
+
+-----------------------
+
+<form id="frmContact" action="http://www.desolve.org" method="post">
+	<label for="name">Name</label>
+	<input type="text" name="name" id="name" tabindex="10" placeholder="Your name" required>
+
+	<label for="email">Email</label>
+	<input type="email" name="email" id="email" tabindex="20" placeholder="valid email" required>
+
+	<label for="website">Personal website</label>
+	<input type="url" name="website" id="website" tabindex="30" placeholder="website" required>
+	
+	<p>What, exactly then, are you after?</p>
+
+	<input type="radio" name="intent" value="suggest" id="suggest" tabindex="40">
+	<label for="suggest" class="inline">Suggest a city</label><br>
+
+	<input type="radio" name="intent" value="submit" id="submit" tabindex="50">
+	<label for="submit" class="inline">Submit my own gallery</label><br>
+
+	<input type="radio" name="intent" value="comment" id="comment" tabindex="60">
+	<label for="comment" class="inline">Comment on a gallery</label><br>
+
+	<input type="radio" name="intent" value="friends" id="friends" tabindex="70">
+	<label for="friends" class="inline"> Make friends</label><br>
+
+	<label for="discourse">Pour out your heart</label>
+	<textarea id="discourse" name="discourse" tabindex="80" rows="7" placeholder="This is where your thoughts go"></textarea>
+	<input type="submit" name="submit" id="submit" value="Oh really?" tabindex="90">
+</form>
+
+-----------------------
+
+label {
+	display:block;
+	font-size: 1em;
+	margin: .8em 0 0;
+}
+
+input[type="text"], input[type="email"], input[type="url"], textarea {
+	width: 250px;
+}
+
+input[type="submit"] {
+	display:block;
+	margin: 1em 0;
+}
+
+.inline {
+	display: inline;
+}
+
+-----------------------
+
+<form id="frmContact" action="http://www.desolve.org" method="post">
+	<fieldset>
+		<label for="name">Name</label>
+		<input type="text" name="name" id="name" tabindex="10" placeholder="Your name" required>
+
+		<label for="email">Email</label>
+		<input type="email" name="email" id="email" tabindex="20" placeholder="valid email" required>
+
+		<label for="website">Personal website</label>
+		<input type="url" name="website" id="website" tabindex="30" placeholder="website" required>
+	</fieldset>
+	<fieldset>
+		<p>What, exactly then, are you after?</p>
+		
+		<input type="radio" name="intent" value="suggest" id="suggest" tabindex="40">
+		<label for="suggest" class="inline">Suggest a city</label><br>
+
+		<input type="radio" name="intent" value="submit" id="submit" tabindex="50">
+		<label for="submit" class="inline">Submit my own gallery</label><br>
+
+		<input type="radio" name="intent" value="comment" id="comment" tabindex="60">
+		<label for="comment" class="inline">Comment on a gallery</label><br>
+
+		<input type="radio" name="intent" value="friends" id="friends" tabindex="70">
+		<label for="friends" class="inline"> Make friends</label><br>
+
+		<label for="discourse">Pour out your heart</label>
+		<textarea id="discourse" name="discourse" tabindex="80" rows="7" placeholder="This is where your thoughts go"></textarea>
+		<input type="submit" name="submit" id="submit" value="Oh really?" tabindex="90">
+	</fieldset>
+</form>
+
+
+-----------------------
+fieldset {
+	border: none;
+	background: rgb(237, 228, 214);
+	position: relative;
+	width: 80%;
+	padding:1em;
+	margin: 1em 0;
+	-webkit-border-radius: 0 .5em .5em 0;
+	-moz-border-radius: 0 .5em .5em 0;
+	border-radius: 0 .5em .5em 0;
+}
+
+-----------------------
+
+<form id="frmContact" action="http://www.desolve.org" method="post">
+	<fieldset>
+		<legend>About you</legend>
+
+		<label for="name">Name</label>
+		<input type="text" name="name" id="name" tabindex="10" placeholder="Your name" required>
+
+		<label for="email">Email</label>
+		<input type="email" name="email" id="email" tabindex="20" placeholder="valid email" required>
+
+		<label for="website">Personal website</label>
+		<input type="url" name="website" id="website" tabindex="30" placeholder="website" required>
+	</fieldset>
+	<fieldset>
+		<legend>Your turn</legend>
+		<p>What, exactly then, are you after?</p>
+		
+		<input type="radio" name="intent" value="suggest" id="suggest" tabindex="40">
+		<label for="suggest" class="inline">Suggest a city</label><br>
+
+		<input type="radio" name="intent" value="submit" id="submit" tabindex="50">
+		<label for="submit" class="inline">Submit my own gallery</label><br>
+
+		<input type="radio" name="intent" value="comment" id="comment" tabindex="60">
+		<label for="comment" class="inline">Comment on a gallery</label><br>
+
+		<input type="radio" name="intent" value="friends" id="friends" tabindex="70">
+		<label for="friends" class="inline"> Make friends</label><br>
+
+		<label for="discourse">Pour out your heart</label>
+		<textarea id="discourse" name="discourse" tabindex="80" rows="7" placeholder="This is where your thoughts go"></textarea>
+		<input type="submit" name="submit" id="submit" value="Oh really?" tabindex="90">
+	</fieldset>
+</form>
+-----------------------
+
+legend {
+	display: none;
+}
+
+fieldset:before {
+	content:attr(title);
+	display: block;
+	font: 1.2em Cantarell, Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	border-bottom: 1px solid rgb(76, 67, 65);
+	width: 80%;
+}
+
+-----------------------
+
+<form id="frmContact" action="http://www.desolve.org" method="post">
+	<fieldset title="About you">
+		<legend>About you</legend>
+		<label for="name">Name</label>
+		<input type="text" name="name" id="name" tabindex="10" placeholder="Your name" required>
+
+		<label for="email">Email</label>
+		<input type="email" name="email" id="email" tabindex="20" placeholder="valid email" required>
+
+		<label for="website">Personal website</label>
+		<input type="url" name="website" id="website" tabindex="30" placeholder="website" required>
+	</fieldset>
+	<fieldset title="Your turn">
+		<legend>Your turn</legend>
+		<p>What, exactly then, are you after?</p>
+		
+		<input type="radio" name="intent" value="suggest" id="suggest" tabindex="40">
+		<label for="suggest" class="inline">Suggest a city</label><br>
+
+		<input type="radio" name="intent" value="submit" id="submit" tabindex="50">
+		<label for="submit" class="inline">Submit my own gallery</label><br>
+
+		<input type="radio" name="intent" value="comment" id="comment" tabindex="60">
+		<label for="comment" class="inline">Comment on a gallery</label><br>
+
+		<input type="radio" name="intent" value="friends" id="friends" tabindex="70">
+		<label for="friends" class="inline"> Make friends</label><br>
+
+		<label for="discourse">Pour out your heart</label>
+		<textarea id="discourse" name="discourse" tabindex="80" rows="7" placeholder="This is where your thoughts go"></textarea>
+		<input type="submit" name="submit" id="submit" value="Oh really?" tabindex="90">
+	</fieldset>
+</form>
+
+-----------------------
+<!--[if lt IE 8]>
+	<style>
+		legend {
+			display: block;
+			font: 1.2em Cantarell, Arial, Helvetica, sans-serif;
+			font-weight:bold;
+			border-bottom: 1px solid rgb(76, 67, 65);
+			width: 80%;
+		}
+	</style>
+<![endif]-->
+-----------------------
+
+03-04
+==============================
+
+
+fieldset {
+	border: none;
+	float: left;
+	width: 50%;
+	padding: 0;
+	margin: 0;
+}
+
+fieldset:before {
+	content:attr(title);
+	display: block;
+	font: 1.2em Cantarell, Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	border-bottom: 1px solid rgb(76, 67, 65);
+}
+
+legend {
+	display: none;
+}
+
+-----------------------
+<!--[if lt IE 8]>
+	<style>
+		legend {
+			display: block;
+			font: 1.2em Cantarell, Arial, Helvetica, sans-serif;
+			font-weight:bold;
+			border-bottom: 1px solid rgb(76, 67, 65);
+		}
+	</style>
+<![endif]-->
+-----------------------
+
+#frmContact {
+	background: rgb(237, 228, 214);
+	margin: 1em 0;
+	-webkit-border-radius: 0 .5em .5em 0;
+	-moz-border-radius: 0 .5em .5em 0;
+	border-radius: 0 .5em .5em 0;
+	padding: 20px;
+}
+
+.group:before, .group:after { content: "\0020"; display: block; height: 0; overflow: hidden; }  
+.group:after { clear: both; }  
+.group { zoom: 1; }
+
+-----------------------
+
+<form id="frmContact" class="group" action="http://www.desolve.org" method="post">
+
+
+
+03-05
+==============================
+
+#frmContact fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;	
+}
+
+
+.hidden {
+	display: none;
+}
+
+------------------------
+
+#frmContact {
+	background: url('../_images/desolvepostcard.png') no-repeat;
+	width: 860px;
+	height: 600px;
+	position: relative;
+}
+
+-----------------------
+
+#frmContact fieldset#commentsfs {
+	position: absolute;
+	left: 244px;
+	top: 310px;
+}
+
+
+#frmContact #commentsfs textarea {
+	position: absolute;
+	background: transparent;
+	width: 269px;
+	height: 165px;
+	border: 0;
+	top: 30px;
+	padding: 10px;
+	outline: solid transparent;
+	font: normal 1.4em/1.2em satisfy,serif;
+	color: #175e8a;
+	opacity: .8;
+	background
+}
+
+-----------------------
+
+
+#frmContact #aboutyoufs input {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+
+	font: normal 1.4em/1.2em satisfy,serif;
+	color: #97332A;
+	width: 250px;
+	display: block;
+	background: transparent;
+	border: 0;
+	outline: solid transparent;
+	color: #175e8a;
+	opacity: .8;
+}
+
+#frmContact #aboutyoufs {
+	position: absolute;
+	left: 567px;
+	top: 340px;
+}
+
+
+#frmContact #aboutyoufs label {
+	position: absolute;
+	height: 53px;
+	border: 0;
+	cursor: pointer;
+}
+
+#frmContact #aboutyoufs label#email {
+	top: 54px;
+}
+
+#frmContact #aboutyoufs label#website {
+	top: 108px;
+}
+
+
+-----------------------
+#frmContact input[type="submit"] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	position: absolute;
+	left: 700px;
+	top: 500px;
+	width: 108px;
+	height: 50px;
+	border: 0;
+	background: url('../_images/postcardsendbtn.png') no-repeat left top;
+	cursor: pointer;
+}
+
+
+#frmContact input[type="submit"]:hover {
+	background: url('../_images/postcardsendbtn.png') no-repeat 0 -50px;
+}
+
+
+05-01
+==============================
+	<link rel="stylesheet" href="normalize.css" />
+	<link rel="stylesheet" href="mystyle.css" />
+-----------------------
+
+	input[type=text],input[type=password],input[type=submit],input[type=email],input[type=url],input[type=number],input[type=datetime],input[type=tel],textarea,button, select {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		border: none;
+		background: white;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+		padding: 5px;
+		margin: 0;
+		margin-bottom: 10px;
+	}
+	
+	.group:before, .group:after { content: "\0020"; display: block; height: 0; overflow: hidden; }  
+	.group:after { clear: both; }  
+	.group { zoom: 1; }  
+	 
+-----------------------
+
+body	{
+	background: #343742 url('verticallines.png');
+	margin-top: 50px;
+}
+
+-----------------------
+
+#myform {
+	font: normal .8em/1em Arial, Helvetica, Geneva, sans-serif;
+
+	background: #4F6161;
+	background: -webkit-linear-gradient(rgba(97, 126, 118, 0.6),rgba(53, 56, 67, .5));
+	background: -moz-linear-gradient(rgba(97, 126, 118, 0.6),rgba(53, 56, 67, .5));
+	background: -ms-linear-gradient(rgba(97, 126, 118, 0.6),rgba(53, 56, 67, .5));
+	background: -o-linear-gradient(rgba(97, 126, 118, 0.6),rgba(53, 56, 67, .5));
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+
+	width: 80%;
+	margin: 0 auto;
+	max-width: 500px;
+}
+
+-----------------------
+
+#myform fieldset {
+	border: none;
+	margin: 0;
+	padding: 0;
+	margin: 10px;
+}
+
+#myform fieldset:before {
+	content:attr(title);
+	display: block;
+	padding: 0;
+	padding-top: 30px;
+	font-weight: bold;
+	font-size: 1.25em;
+	color: #FFD98D;
+	margin: 0 auto;
+}
+  
+#myform legend {
+	display: none;
+}
+
+
+-----------------------
+
+<!--[if lt IE 8]>
+	<style>
+		legend {
+			display: block;
+			padding: 0;
+			padding-top: 30px;
+			font-weight: bold;
+			font-size: 1.25em;
+			color: #FFD98D;
+			margin: 0 auto;
+		}
+	</style>
+<![endif]-->
+
+
+-----------------------
+
+#myform ol {
+	margin: 0px;
+	padding: 0px;
+}
+ 
+#myform ol li {
+	list-style: none;
+	padding: 8px;
+	border-top: 1px solid #697276;
+	border-bottom: 1px solid #2E3539;
+}
+
+#myform ol li:first-child {
+	border-top:none;
+}
+
+#myform ol li:last-child {
+	border-bottom:none;
+}
+
+-----------------------
+#myform ol li ol li {
+	padding-bottom: 0;
+	display: inline;
+	padding: 0px;
+	border-top: none;
+	border-bottom: none;
+}
+
+#myform ol li input[type="checkbox"] {
+	width: auto;
+	display: inline;
+}
+
+#myform ol li ol li input {
+	display: inline;
+	width: auto;
+}
+-----------------------
+#myform ol li label, .grouphead {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 5px;
+	color: #8A9081;
+	color: rgba(240, 255, 250, 0.54);
+}
+
+#myform ol li.singleline label {
+	font-weight: normal;
+	display: inline;
+}
+
+#myform ol li ol li label {
+	font-weight: normal;
+	display: inline;
+	cursor: pointer
+}
+-----------------------
+#myform ol li input, #myform textarea {
+	display: block;
+	width: 96%;
+	border: 1px solid #343742;
+	padding: 5px;
+	background: #86897C;
+	margin: 0 auto;	
+	outline: none;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#myform input[required] {
+	border-color: #FEB41C;
+}
+
+
+
+#myform ol li select {
+	width: 200px;
+	width: 50%;
+	min-width: 100px;	
+	background: #B1AE87;
+	color:#343742;
+	font-weight: bold;
+	border: 0;
+
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+
+#myform textarea {
+	height: 75px;
+}
+-----------------------
+#myform button {
+	width: 100px;
+	width: 30%;
+	min-width: 100px;
+	float: right;
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	border: 0;
+	background: #B1AE87;
+	color:#343742;
+	cursor: pointer;
+	font-weight: bold;
+
+
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+
+
+05-02
+==============================
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+05-03
+==============================
+
+<link rel="stylesheet" href="_css/form_handheld.css" media="only screen and (max-device-width: 480px)"/>
+
+-----------------------
+
+
+	fieldset {
+		border: none;
+		background: rgb(237, 228, 214);
+		position: relative;
+		width: 80%;
+		padding:1em;
+		margin: 1em 0;
+		-webkit-border-radius: 0 .5em .5em 0;
+		-moz-border-radius: 0 .5em .5em 0;
+		border-radius: 0 .5em .5em 0;
+		float: none;
+	}
+
+	fieldset:before {
+		width: 80%;
+	}
+
+
+-----------------------
+
+
+@media only screen and (max-device-width: 480px) {
+
+	fieldset {
+		border: none;
+		background: rgb(237, 228, 214);
+		position: relative;
+		width: 80%;
+		padding:1em;
+		margin: 1em 0;
+		-webkit-border-radius: 0 .5em .5em 0;
+		-moz-border-radius: 0 .5em .5em 0;
+		border-radius: 0 .5em .5em 0;
+		float: none;
+	}
+
+	fieldset:before {
+		width: 80%;
+	}
+
+}
+
+05-04
+==============================
+
+-webkit-text-size-adjust: 200%
+
+-----------------------
+
+	fieldset:before {
+		width: 80%;
+		font-size: 2em;
+	}
+
+
+	label {
+		font-size: 2em;
+	}
+
+	input[type="text"], input[type="email"], input[type="url"], textarea {
+		font-size: 1.5em;
+	}
+	
+06-01
+==============================
+
+<link rel="stylesheet" href="normalize.css" />
+<link rel="stylesheet" href="mystyle.css" />
+
+------------------------
+
+form * {
+	background: transparent;
+}
+
+input[type=text],input[type=password],input[type=submit],input[type=email],input[type=url],input[type=tel],input[type=number],input[type=datetime],textarea,button, select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: none;
+	background: white;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	padding: 5px;
+	margin: 0;
+	margin-bottom: 10px;
+}
+
+.group:before, .group:after { content: "\0020"; display: block; height: 0; overflow: hidden; }  
+.group:after { clear: both; }  
+.group { zoom: 1; }  
+
+------------------------
+body	{
+	margin-top: 50px;
+	background: #2B313B;
+	background: url(noisetexture.png), -webkit-linear-gradient(#475161,#2B313B) no-repeat, #2B313B;
+	background: url(noisetexture.png), -moz-linear-gradient(#475161,#2B313B) no-repeat, #2B313B;
+	background: url(noisetexture.png), -o-linear-gradient(#475161,#2B313B) no-repeat, #2B313B;
+	background: url(noisetexture.png), -ms-linear-gradient(#475161,#2B313B) no-repeat, #2B313B;
+	background: url(noisetexture.png), linear-gradient(#475161,#2B313B) no-repeat, #2B313B;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#475161', endColorstr='#2B313B',GradientType=0 );
+}
+
+#myform {
+	font: normal .8em/1em Arial, Helvetica, Geneva, sans-serif;
+	width: 80%;
+	margin: 0 auto;
+	max-width: 500px;
+	background: url(greytexture.jpg) #DDD;
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+
+
+	-webkit-box-shadow: 10px 10px 20px #20242C;
+	-moz-box-shadow: 10px 10px 20px #20242C;
+	box-shadow: 10px 10px 20px #20242C;
+}
+------------------------
+#myform fieldset {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+#myform fieldset:before {
+	content:attr(title);
+	display: block;
+	padding: 0;
+	padding: 20px 10px 3px 10px;
+	font-weight: bold;
+	font-size: 1.25em;
+	color: #777;
+	margin: 0 auto;
+	text-shadow: 1px 1px 1px #FFF;
+}
+  
+#myform legend {
+	display: none;
+}
+
+------------------------
+
+<!--[if lt IE 8]>
+	<style>
+		legend {
+			display: block;
+			padding: 0;
+			padding-top: 30px;
+			font-weight: bold;
+			font-size: 1.25em;
+			color: #FFD98D;
+			margin: 0 auto;
+		}
+	</style>
+<![endif]-->
+
+------------------------
+
+#myform ol {
+	margin: 0px;
+	padding: 0px;
+}
+ 
+#myform ol li {
+	position: relative;
+	list-style: none;
+	padding: 8px;
+	border-top: 1px solid #EEE;
+	border-bottom: 1px solid #888;
+}
+
+#myform ol li:first-child {
+	border-top:none;
+}
+
+#myform ol li:last-child {
+	border-bottom:none;
+}
+
+------------------------
+
+#myform ol li ol li {
+	padding-bottom: 0;
+	display: inline;
+	padding: 0px;
+	border-top: none;
+	border-bottom: none;
+}
+
+------------------------
+
+#myform ol li ol li label {
+	font-weight: normal;
+	display: inline;
+	cursor: pointer
+}
+
+#myform ol li.singleline label {
+	font-weight: normal;
+	display: inline;
+}
+
+#myform ol li label, .grouphead {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 5px;
+	color: #454D4D;
+	text-shadow: 1px 1px 1px #FFF;
+	padding-left: 5px;
+}
+
+
+
+------------------------
+#myform ol li input, #myform textarea {
+	display: block;
+	width: 96%;
+	padding: 5px;
+	margin: 0 auto;	
+	outline: none;
+	border: 1px solid #999;
+
+	background: #CCCCCC;
+	background: -webkit-linear-gradient(#FFFFFF,#DDDDDD) no-repeat;
+	background: -moz-linear-gradient(#FFFFFF,#BBBBBB) no-repeat;
+	background: -o-linear-gradient(#FFFFFF,#BBBBBB) no-repeat;
+	background: -ms-linear-gradient(#FFFFFF,#BBBBBB) no-repeat;
+	background: linear-gradient(#FFFFFF,#BBBBBB) no-repeat;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#BBBBBB',GradientType=0 );
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+------------------------
+#myform ol li ol li input {
+	width: auto;
+	display: inline;
+}
+
+#myform ol li input[type="checkbox"] {
+	width: auto;
+	display: inline;
+}
+
+#myform textarea {
+	height: 75px;
+}
+------------------------
+
+#myform ol li select {
+	width: 200px;
+	width: 50%;
+	min-width: 100px;	
+	color: #EEE;
+	font-weight: bold;
+	border: 0;
+
+	background: #93481A;
+	background: -webkit-linear-gradient(#93481A,#6D2F0E);
+	background: -moz-linear-gradient(#93481A,#6D2F0E);
+	background: -o-linear-gradient(#93481A,#6D2F0E);
+	background: -ms-linear-gradient(#93481A,#6D2F0E);
+	background: linear-gradient(#93481A,#6D2F0E);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#93481A', endColorstr='#6D2F0E',GradientType=0 );
+
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+
+------------------------
+
+#myform button {
+	width: 100px;
+	width: 20%;
+	min-width: 100px;
+ 	height: 24px;
+	float: right;
+	padding: 0;
+	margin-right: 10px;
+	margin-top: 5px;
+	border: 0;
+	color:#FFF;
+	font-weight: bold;
+	cursor: pointer;
+	
+	background: #466E82;
+	background: url(arrows.png) no-repeat right top, #466E82;
+	background: url(arrows.png) no-repeat right top, -webkit-linear-gradient(#466E82,#2C4552);
+	background: url(arrows.png) no-repeat right top, -moz-linear-gradient(#466E82,#2C4552);
+	background: url(arrows.png) no-repeat right top, -ms-linear-gradient(#466E82,#2C4552);
+	background: url(arrows.png) no-repeat right top, -o-linear-gradient(#466E82,#2C4552);
+	background: url(arrows.png) no-repeat right top, linear-gradient(#466E82,#2C4552);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#466E82', endColorstr='#2C4552',GradientType=0 );
+	
+
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+
+------------------------
+
+#myform button:hover {
+	background: url(arrows.png) no-repeat right top, #93481A;
+	background: url(arrows.png) no-repeat right top, -webkit-linear-gradient(#93481A,#6D2F0E);
+	background: url(arrows.png) no-repeat right top, -moz-linear-gradient(#93481A,#6D2F0E);
+	background: url(arrows.png) no-repeat right top, -ms-linear-gradient(#93481A,#6D2F0E);
+	background: url(arrows.png) no-repeat right top, -o-linear-gradient(#93481A,#6D2F0E);
+	background: url(arrows.png) no-repeat right top, linear-gradient(#93481A,#6D2F0E);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#93481A', endColorstr='#6D2F0E',GradientType=0 );
+}
+
+06-02
+==============================
+
+<div class="buttonnav next">next</div>
+
+<div class="buttonnav prev">prev</div>
+<div class="buttonnav next">next</div>
+
+<div class="buttonnav prev">prev</div>
+
+------------------------
+
+#myform button, #myform .buttonnav {
+
+
+#myform button:hover, #myform .buttonnav:hover {
+
+------------------------
+
+ #myform .buttonnav {
+	display:inline-block;
+ 	height: 19px;
+ 	padding-top: 5px;
+ 	text-align: center;
+ 	margin-bottom: 10px;
+
+	zoom: 1;
+	*display:inline;
+}
+
+
+------------------------
+
+ #myform .buttonnav.prev {
+  	margin-left: 10px;
+ 	float: none;
+
+	background: url(arrows.png) no-repeat left bottom, #466E82;
+	background: url(arrows.png) no-repeat left bottom, -webkit-gradient(linear, 0 0, 0 100%, from(#466E82) to(#2C4552));
+	background: url(arrows.png) no-repeat left bottom, -webkit-linear-gradient(#466E82,#2C4552);
+	background: url(arrows.png) no-repeat left bottom, -moz-linear-gradient(#466E82,#2C4552);
+	background: url(arrows.png) no-repeat left bottom, -ms-linear-gradient(#466E82,#2C4552);
+	background: url(arrows.png) no-repeat left bottom, -o-linear-gradient(#466E82,#2C4552);
+	background: url(arrows.png) no-repeat left bottom, linear-gradient(#466E82,#2C4552);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#93481A', endColorstr='#6D2F0E',GradientType=0 );
+}
+
+
+ #myform .buttonnav.prev:hover {
+ 	margin-left: 10px;
+ 	float: none;
+
+	background: url(arrows.png) no-repeat left bottom, #93481A;
+	background: url(arrows.png) no-repeat left bottom, -webkit-linear-gradient(#93481A,#6D2F0E);
+	background: url(arrows.png) no-repeat left bottom, -moz-linear-gradient(#93481A,#6D2F0E);
+	background: url(arrows.png) no-repeat left bottom, -ms-linear-gradient(#93481A,#6D2F0E);
+	background: url(arrows.png) no-repeat left bottom, -o-linear-gradient(#93481A,#6D2F0E);
+	background: url(arrows.png) no-repeat left bottom, linear-gradient(#93481A,#6D2F0E);
+}
+
+
+------------------------
+
+.hidden {
+	display: none;
+}
+
+------------------------
+
+<div class="nav">
+	<ul>
+		<li id="activetab" title="Login Info">Step 1</li>
+		<li title="Other Info">Step 2</li>
+		<li title="Comments">Step 3</li>
+	</ul>
+</div>
+
+------------------------
+
+.nav ul {
+	display: block;
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 50px;
+	max-width: 500px;
+	padding: 0;
+	padding-left: 40px;
+}
+
+------------------------
+
+.nav li {
+	list-style: none;
+	display: inline-block;
+	padding: 5px 10px;
+	margin-right: 5px;
+	color: #FFF;
+	font-size: .9em;
+	background: #93481A;
+	
+	-webkit-border-radius: 10px 10px 0 0;
+	-moz-border-radius:  10px 10px 0 0;
+	border-radius:  10px 10px 0 0;
+	
+	-webkit-box-shadow: inset 0 -3px 4px #6E3614;
+	-moz-box-shadow: inset 0 -3px 4px #6E3614;
+	box-shadow: inset 0 -3px 4px #6E3614;
+	
+	cursor: pointer;
+	
+	zoom: 1;
+	*display:inline;
+
+}
+
+------------------------
+
+.nav li#activetab {
+	background: #466E82;
+	font-weight: bold;
+	color: #FFF;
+
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+------------------------
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+@media only screen and (max-device-width: 480px) {
+
+	.nav ul {
+		margin-top: 5px;
+	}
+
+}
+
+
+06-03
+==============================
+
+<script src="jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="myscript.js" type="text/javascript"></script>
+
+------------------------
+
+$(document).ready(function(){
+});
+
+
+------------------------
+	$('.nav li').click(function(e){
+		$('.nav li').attr('id', ''); //make all navtabs inactive
+		$(this).attr('id', 'activetab'); //make the one we clicked active
+	});
+
+
+------------------------
+
+	//When someone clicks on the navigation links
+	$('.nav li').click(function(e){
+		$('.nav li').attr('id', ''); //make all navtabs inactive
+		$(this).attr('id', 'activetab'); //make the one we clicked active
+		
+		//hide the fieldsets
+		$('fieldset').attr('class', 'hidden');
+
+	});
+
+------------------------
+
+	//When someone clicks on the navigation links
+	$('.nav li').click(function(e){
+		$('.nav li').attr('id', ''); //make all navtabs inactive
+		$(this).attr('id', 'activetab'); //make the one we clicked active
+		
+		//hide all of the fieldsets
+		$('fieldset').attr('class', 'hidden');
+
+		whichitem=$(this).attr('title'); //get the title of the nav we clicked
+
+		//make the class of what we cleared not hidden
+		$("fieldset[title='"+whichitem+"']").attr('class', ''); 
+	});
+
+------------------------
+
+	//When someone clicks on the previous button
+	$('.prev').click(function(e){
+		var listItem = document.getElementById('activetab'); //find out which navtab is active
+		whichOne=$('li').index(listItem); //find the index of the navtab
+
+		$('.nav li').attr('id', ''); //make all the navtabs inactive
+		$(".nav li:eq("+(whichOne-1)+")").attr('id', 'activetab'); //make previous tab active
+	});
+
+
+------------------------
+
+	//When someone clicks on the previous button
+	$('.prev').click(function(e){
+		var listItem = document.getElementById('activetab'); //find out which navtab is active
+		whichOne=$('li').index(listItem); //get the index of the navtab
+
+		$('.nav li').attr('id', ''); //make all the navtabs inactive
+		$(".nav li:eq("+(whichOne-1)+")").attr('id', 'activetab'); //make previous tab active
+
+		$('fieldset').attr('class', 'hidden'); //hide all the fieldsets
+		$("fieldset:eq("+(whichOne-1)+")").attr('class', ''); //show the previous fieldset
+	});
+
+
+
+------------------------
+
+	//When someone clicks on the next button
+	$('.next').click(function(e){
+		var listItem = document.getElementById('activetab'); //find out which navtab is active
+		whichOne=$('li').index(listItem); //get the index of the navtab
+
+		$('.nav li').attr('id', ''); //make all the navtabs inactive
+		$(".nav li:eq("+(whichOne+1)+")").attr('id', 'activetab'); //make next tab active
+
+		$('fieldset').attr('class', 'hidden'); //hide all the fieldsets
+		$("fieldset:eq("+(whichOne+1)+")").attr('class', ''); //show the next fieldset
+	});
+
+------------------------
+
+
+06-04
+==============================
+
+<form id="myform" class="group" action="thanks.html" method="POST">
+
+------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Thanks</title>
+	<link rel="stylesheet" href="mystyle.css" />
+</head>
+<body>
+	<div id="thanks">
+		<h2>Thank You</h2>
+		<p>Thanks for filling out our form. Someone will contact you shortly regarding your request.</p>
+	</div>
+</body>
+</html>
+
+------------------------
+
+#thanks {
+	font: normal .8em/1em Arial, Helvetica, Geneva, sans-serif;
+
+	background: url(greytexture.jpg) #DDD;
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+
+	width: 80%;
+	margin: 0 auto;
+	max-width: 500px;
+	-webkit-box-shadow: 10px 10px 20px #20242C;
+	padding: 20px;
+}
+
+#thanks h2 {
+	color: #a3643d;
+}
+
+------------------------
+
+	$("form#myform").submit(function() {
+		
+		//make sure required fields have content
+		if (($("input:#myname").val() == "") || ($("input:#myemail").val() == "") || ($("input:#myurl").val() == "")) {	   
+			return false;
+		}
+		return true;
+	});
+
+------------------------
+
+<div id="message"></div>
+
+------------------------
+
+.message {
+	position: relative;
+	top: 15px;
+	width: 300px;
+	margin: 0 auto;
+	margin-bottom: 5px;
+	color: #FFF;
+	padding: 5px;
+	text-align: center;
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color: #466e82;
+}
+
+------------------------
+
+$("form#myform").submit(function() {
+
+	if (($("input:#myname").val() == "") || ($("input:#myemail").val() == "") || ($("input:#myurl").val() == "")) {
+   
+   		if (($("input:#myname").val() == "")) {
+   			$("#message").append('<div class="message">Step 1: You forgot to include your name</div>').hide().fadeIn(200);
+   		}
+   
+		return false;
+	}
+	return true;
+});
+
+------------------------
+
+$("form#myform").submit(function() {
+
+	$('#message').empty(); //clear message when people resubmit
+
+	if (($("input:#myname").val() == "") || ($("input:#myemail").val() == "") || ($("input:#myurl").val() == "")) {
+   		if (($("input:#myname").val() == "")) {
+   			$("#message").append('<div class="message">Step 1: You forgot to include your name</div>').hide().fadeIn(200);
+   		}
+		return false;
+	}
+	return true;
+});
+
+
+------------------------
+
+$("form#myform").submit(function() {
+
+	$('#message').empty(); //clear message when people resubmit
+	$('.alert').remove(); //remove alert when people resubmit
+
+
+	if (($("input:#myname").val() == "") || ($("input:#myemail").val() == "") || ($("input:#myurl").val() == "")) {
+   		if (($("input:#myname").val() == "")) {
+   			$("#message").append('<div class="message">Step 1: You forgot to include your name</div>').hide().fadeIn(200);
+
+   			$("#myname").after('<div class="alert" id="alertname">Enter your name</div>');
+
+   		}
+		return false;
+	}
+	return true;
+});
+
+------------------------
+
+.alert {
+	position: absolute;
+	right: 15px;
+	top: 28px;
+	color: #FFF;
+	padding: 5px 10px;
+	text-align:center;
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color: #93481a;
+	
+}
+
+------------------------
+
+$("form#myform").submit(function() {
+
+	$('#message').empty(); //clear message when people resubmit
+	$('.alert').remove(); //remove alert when people resubmit
+
+	if (($("input:#myname").val() == "") || ($("input:#myemail").val() == "") || ($("input:#myurl").val() == "")) {
+   
+   		if (($("input:#myname").val() == "")) {
+   			$("#message").append('<div class="message">Step 1: You forgot to include your name</div>').hide().fadeIn(200);
+   			$("#myname").after('<div class="alert" id="alertname">Enter your name</div>');
+   		}
+   
+   		if (($("input:#myemail").val() == "")) {
+   			$("#message").append('<div class="message">Step 1: You forgot to include an email address</div>').hide().fadeIn(200);
+   			$("#myemail").after('<div class="alert" id="alertemail">Enter an email address</div>');
+   		}
+   
+   		if (($("input:#myurl").val() == "")) {
+   			$("#message").append('<div class="message">Step 2: You forgot to include your web site URL</div>').hide().fadeIn(200);
+   			$("#myurl").after('<div class="alert" id="alerturl">Enter a site URL</div>');
+   		}
+   
+		return false;
+	}
+	return true;
+});
+
+
+

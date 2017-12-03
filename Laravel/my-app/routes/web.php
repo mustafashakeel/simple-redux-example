@@ -96,3 +96,20 @@ Route::get('/updaterecords',function(){
 
 	return $updated;
 });
+
+
+Route::get('/uploadfile','UploadFileController@index');
+Route::post('/uploadfile','UploadFileController@showUploadFile');
+
+
+
+Route::get('session/get','SessionController@accessSessionData');
+Route::get('session/set','SessionController@storeSessionData');
+Route::get('session/remove','SessionController@deleteSessionData');
+
+
+Route::get('localization/{locale}','LocalizationController@index');
+
+
+Route::get('event','CreateStudentController@insertform');
+Route::post('addstudent','CreateStudentController@insert');

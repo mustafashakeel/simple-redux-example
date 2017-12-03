@@ -13,6 +13,8 @@ import {
   FormsModule,
   ReactiveFormsModule
 } from '@angular/forms';
+import { TestPipe } from './test.pipe';
+import { TestComponent } from './test/test.component';
 
 const routes =[
    // basic routes
@@ -27,7 +29,9 @@ const routes =[
   declarations: [
     AppComponent,HomeComponent,
     ContactComponent,
-    AboutComponent
+    AboutComponent,
+    TestPipe,
+    TestComponent
   ],
   imports: [
     BrowserModule,

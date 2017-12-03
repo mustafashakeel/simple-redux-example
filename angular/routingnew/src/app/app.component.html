@@ -1,0 +1,39 @@
+<div class="page-header">
+  <div class="container">
+  <h1>Router Sample</h1>
+  <div class="navLinks">
+  <a [routerLink]="['/home']">Home</a>
+  <a [routerLink]="['/about']">About Us</a>
+  <a [routerLink]="['/contact']">Contact Us</a>
+  |
+  </div>
+  </div>
+  </div>
+  <div>
+forms
+
+<div class="ui raised segment">
+  <h2 class="ui header">Demo Form: Sku</h2>
+  <form #f="ngForm"
+        (ngSubmit)="onSubmit(f.value)"
+        class="ui form">
+
+    <div class="field">
+      <label for="skuInput">SKU</label>
+      <input type="text"
+             id="skuInput"
+             placeholder="SKU"
+             name="sku" ngModel>
+    </div>
+
+    <button type="submit" class="ui button">Submit</button>
+  </form>
+</div>
+
+
+  </div>
+  <div id="content">
+  <div class="container">
+  <router-outlet></router-outlet>
+  </div>
+  </div>
