@@ -39,10 +39,7 @@ const routes =[
     ReactiveFormsModule,
       RouterModule.forRoot(routes), // <-- routes
   ],
-  providers: [
-     { provide: LocationStrategy, useClass: HashLocationStrategy },
-
-  ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
